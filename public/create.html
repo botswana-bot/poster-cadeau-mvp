@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Créer — Poster MVP</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <a class="logo" href="/">Poster cadeau</a>
+        <div class="badge">Étape 1/4</div>
+      </div>
+
+      <h1 style="margin:0 0 10px;font-size:26px">Créer ton poster</h1>
+
+      <form id="form" class="form card">
+        <div class="field">
+          <label>Photo (prototype)</label>
+          <input name="photoUrl" type="url" placeholder="https://..." required />
+          <small>Pour la démo : URL de photo. L’upload fichier viendra ensuite.</small>
+        </div>
+
+        <div class="field">
+          <label>Style</label>
+          <select name="styleId" id="style"></select>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Tagline (obligatoire)</label>
+            <input name="tagline" type="text" maxlength="60" required placeholder="ex: Le boss du barbecue" />
+            <small>60 caractères max.</small>
+          </div>
+          <div class="field">
+            <label>Prénom (optionnel)</label>
+            <input name="firstName" type="text" maxlength="20" placeholder="ex: Tom" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Ton</label>
+            <select name="tone">
+              <option value="gentle">Gentil</option>
+              <option value="sarcastic">Sarcastique</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Format</label>
+            <input value="A4 (MVP)" disabled />
+          </div>
+        </div>
+
+        <div class="field">
+          <label style="display:flex;gap:10px;align-items:flex-start">
+            <input name="consentOk" type="checkbox" required />
+            <span class="meta">J’ai le consentement de la personne sur la photo.</span>
+          </label>
+          <label style="display:flex;gap:10px;align-items:flex-start">
+            <input name="adultOk" type="checkbox" required />
+            <span class="meta">La personne sur la photo est majeure.</span>
+          </label>
+        </div>
+
+        <button class="btn primary" type="submit">Générer mes 2 aperçus</button>
+        <div class="notice">On ne stocke rien côté serveur dans cette démo (localStorage uniquement).</div>
+      </form>
+    </div>
+
+    <script type="module">
+      import { STYLES, saveCreation } from "/app.js";
+
+      const sel = document.querySelector('#style');
+      sel.innerHTML = STYLES.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+
+      document.querySelector('#form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+
+        const id = saveCreation({
+          photoUrl: String(fd.get('photoUrl')),
+          styleId: String(fd.get('styleId')),
+          tagline: String(fd.get('tagline')),
+          firstName: String(fd.get('firstName') || '').trim() || null,
+          tone: String(fd.get('tone')),
+          consentOk: fd.get('consentOk') === 'on',
+          adultOk: fd.get('adultOk') === 'on'
+        });
+
+        location.href = `/preview.html?id=${encodeURIComponent(id)}`;
+      });
+    </script>
+  </body>
+</html>

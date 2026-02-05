@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Checkout — Poster MVP</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <a class="logo" href="/">Poster cadeau</a>
+        <div class="badge">Étape 3/4</div>
+      </div>
+
+      <h1 style="margin:0 0 10px;font-size:26px">Commander</h1>
+
+      <div class="card">
+        <div style="font-weight:800">Poster A4 — 19€</div>
+        <div class="meta" id="meta"></div>
+        <div class="notice" style="margin-top:10px">Livraison en plus (placeholder). France métropolitaine.</div>
+      </div>
+
+      <div class="hr"></div>
+      <button class="btn primary" id="pay">Payer (simulé)</button>
+      <div style="margin-top:10px" class="notice">Stripe + calcul livraison seront branchés après validation du concept.</div>
+
+      <p style="margin-top:14px"><a href="#" id="back" class="notice">← Retour</a></p>
+    </div>
+
+    <script type="module">
+      import { loadCreation, qs, escapeHtml, STYLES, setStatus } from "/app.js";
+
+      const id = qs('id');
+      const cr = id ? loadCreation(id) : null;
+
+      if (!cr) {
+        document.querySelector('#meta').textContent = "Création introuvable.";
+      } else {
+        const style = STYLES.find(s => s.id === cr.styleId);
+        document.querySelector('#meta').innerHTML = `Style: <b>${escapeHtml(style?.name || cr.styleId)}</b><br/>Tagline: <b>${escapeHtml(cr.tagline)}</b>`;
+        document.querySelector('#back').href = `/preview.html?id=${encodeURIComponent(id)}`;
+
+        document.querySelector('#pay').addEventListener('click', () => {
+          setStatus(id, 'ready_for_pod');
+          location.href = `/order.html?id=${encodeURIComponent(id)}`;
+        });
+      }
+    </script>
+  </body>
+</html>

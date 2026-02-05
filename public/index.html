@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Poster cadeau — aperçu MVP</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <div class="logo">Poster cadeau</div>
+        <div class="badge">MVP aperçu</div>
+      </div>
+
+      <section class="hero">
+        <h1>Un poster cadeau, en 2 minutes</h1>
+        <p>
+          Tu envoies une photo, tu choisis un style “affiche”, tu écris une tagline, tu vois
+          <b>2 aperçus</b>, puis tu commandes (A4, France).
+        </p>
+        <div class="row">
+          <a class="btn primary" href="/create.html">Créer mon poster</a>
+          <a class="btn ghost" href="/about.html">Comment ça marche</a>
+        </div>
+      </section>
+
+      <div class="hr"></div>
+
+      <h2 style="margin:0 0 10px;font-size:18px">Styles (MVP)</h2>
+      <div id="styles" class="grid"></div>
+
+      <div class="footer">
+        Note : ceci est un prototype visuel (pas de génération IA réelle, pas de paiement, pas de POD).
+      </div>
+    </div>
+
+    <script type="module">
+      import { STYLES, escapeHtml } from "/app.js";
+
+      const el = document.querySelector('#styles');
+      el.innerHTML = STYLES.map(s => `
+        <div class="card">
+          <h3>${escapeHtml(s.name)}</h3>
+          <p>${escapeHtml(s.blurb)}</p>
+        </div>
+      `).join('');
+    </script>
+  </body>
+</html>

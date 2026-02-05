@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Commande — Poster MVP</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <a class="logo" href="/">Poster cadeau</a>
+        <div class="badge">Étape 4/4</div>
+      </div>
+
+      <h1 style="margin:0 0 10px;font-size:26px">Commande confirmée</h1>
+      <p class="meta" id="meta"></p>
+
+      <div class="imggrid" id="final"></div>
+
+      <div class="hr"></div>
+      <a class="btn primary" href="/create.html">Créer un autre poster</a>
+
+      <div class="footer">
+        POD (Gelato/Printful/Printify) et génération IA seront branchés après.
+      </div>
+    </div>
+
+    <script type="module">
+      import { loadCreation, qs, escapeHtml, picsum, STYLES } from "/app.js";
+
+      const id = qs('id');
+      const cr = id ? loadCreation(id) : null;
+
+      if (!cr) {
+        document.querySelector('#meta').textContent = "Commande introuvable.";
+      } else {
+        const style = STYLES.find(s => s.id === cr.styleId);
+        document.querySelector('#meta').innerHTML = `Statut: <b>${escapeHtml(cr.status || 'ready_for_pod')}</b><br/>Style: <b>${escapeHtml(style?.name || cr.styleId)}</b><br/>Tagline: <b>${escapeHtml(cr.tagline)}</b>`;
+
+        const u = picsum(id + '_final', 1536, 2160);
+        document.querySelector('#final').innerHTML = `
+          <figure class="figure">
+            <img src="${u}" alt="Final" />
+            <figcaption class="notice">Final (placeholder). Export print-ready + POD à venir.</figcaption>
+          </figure>
+        `;
+      }
+    </script>
+  </body>
+</html>

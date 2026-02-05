@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aperçus — Poster MVP</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="topbar">
+        <a class="logo" href="/">Poster cadeau</a>
+        <div class="badge">Étape 2/4</div>
+      </div>
+
+      <h1 style="margin:0 0 10px;font-size:26px">Tes 2 aperçus</h1>
+      <p id="meta" class="meta"></p>
+
+      <div class="imggrid" id="imgs"></div>
+
+      <div class="hr"></div>
+      <div class="row">
+        <a class="btn primary" id="cta" href="#">Continuer / Commander</a>
+        <a class="btn ghost" href="/create.html">Recommencer</a>
+      </div>
+
+      <div class="footer">Note : watermark + génération réelle viendront ensuite.</div>
+    </div>
+
+    <script type="module">
+      import { loadCreation, picsum, qs, escapeHtml, STYLES } from "/app.js";
+
+      const id = qs('id');
+      const cr = id ? loadCreation(id) : null;
+
+      if (!cr) {
+        document.querySelector('#meta').textContent = "Création introuvable.";
+      } else {
+        const style = STYLES.find(s => s.id === cr.styleId);
+        document.querySelector('#meta').innerHTML = `Style: <b>${escapeHtml(style?.name || cr.styleId)}</b> — Ton: <b>${escapeHtml(cr.tone)}</b><br/>Tagline: <b>${escapeHtml(cr.tagline)}</b>`;
+
+        const a = picsum(id + '_a', 768, 1086);
+        const b = picsum(id + '_b', 768, 1086);
+
+        document.querySelector('#imgs').innerHTML = [a,b].map((u, i) => `
+          <figure class="figure">
+            <img src="${u}" alt="Aperçu ${i+1}" />
+            <figcaption class="notice">Aperçu ${i+1} (placeholder)</figcaption>
+          </figure>
+        `).join('');
+
+        document.querySelector('#cta').href = `/checkout.html?id=${encodeURIComponent(id)}`;
+      }
+    </script>
+  </body>
+</html>

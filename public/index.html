@@ -10,36 +10,38 @@
     <div class="container">
       <div class="topbar">
         <div class="logo"><span class="logoMark"></span>Poster cadeau</div>
-        <div class="badge">Aperçu (MVP)</div>
+        <div class="segment" role="tablist" aria-label="Navigation">
+          <a class="active" href="#">Explorer</a>
+          <a href="/about.html">Guide</a>
+        </div>
       </div>
 
-      <section class="hero2">
+      <section class="hero">
         <div class="heroCard">
-          <h1 class="heroTitle">Un poster cadeau, qui claque.</h1>
+          <h1 class="heroTitle">Ton cadeau “affiche de film”.</h1>
           <p class="heroLead">
-            Photo + style “affiche” + tagline → <b>2 aperçus</b> → commande A4 (France).
+            Choisis un style, écris une tagline, et vois <b>2 aperçus</b> avant de commander.
             <br />
-            Objectif : <b>ressemblance forte</b> + rendu <b>photoréaliste</b>.
+            A4 • 19€ • France métropolitaine (livraison en plus)
           </p>
-          <div class="pills">
-            <span class="pill">A4</span>
-            <span class="pill">19€</span>
-            <span class="pill">Livraison en plus</span>
-            <span class="pill">France métropolitaine</span>
-            <span class="pill">2 aperçus avant achat</span>
-          </div>
-          <div class="heroActions">
-            <a class="btn primary" href="/create.html">Créer mon poster</a>
-            <a class="btn" href="/about.html">Comment ça marche</a>
-          </div>
-          <p class="notice" style="margin-top:12px">
-            Démo : pas de génération IA réelle pour le moment (visuels exemples).
-          </p>
-        </div>
 
-        <div class="mockStack" aria-hidden="true">
-          <img class="mockPoster second" src="/assets/poster-comedy.svg" alt="" />
-          <img class="mockPoster" src="/assets/poster-action.svg" alt="" />
+          <div class="searchRow">
+            <div class="searchPill" aria-hidden="true">
+              <span class="searchIcon"></span>
+              <span class="searchText">Rechercher un style (MVP)</span>
+            </div>
+            <a class="btn primary" href="/create.html">Créer</a>
+          </div>
+
+          <div class="pills">
+            <span class="pill">2 aperçus</span>
+            <span class="pill">Photoréaliste</span>
+            <span class="pill">Tagline gentille ou sarcastique</span>
+          </div>
+
+          <p class="notice" style="margin-top:12px">
+            Démo visuelle : images exemples (pas encore de génération IA réelle).
+          </p>
         </div>
       </section>
 

@@ -9,25 +9,43 @@
   <body>
     <div class="container">
       <div class="topbar">
-        <div class="logo">Poster cadeau</div>
-        <div class="badge">MVP aperçu</div>
+        <div class="logo"><span class="logoMark"></span>Poster cadeau</div>
+        <div class="badge">Aperçu (MVP)</div>
       </div>
 
-      <section class="hero">
-        <h1>Un poster cadeau, en 2 minutes</h1>
-        <p>
-          Tu envoies une photo, tu choisis un style “affiche”, tu écris une tagline, tu vois
-          <b>2 aperçus</b>, puis tu commandes (A4, France).
-        </p>
-        <div class="row">
-          <a class="btn primary" href="/create.html">Créer mon poster</a>
-          <a class="btn ghost" href="/about.html">Comment ça marche</a>
+      <section class="hero2">
+        <div class="heroCard">
+          <h1 class="heroTitle">Un poster cadeau, qui claque.</h1>
+          <p class="heroLead">
+            Photo + style “affiche” + tagline → <b>2 aperçus</b> → commande A4 (France).
+            <br />
+            Objectif : <b>ressemblance forte</b> + rendu <b>photoréaliste</b>.
+          </p>
+          <div class="pills">
+            <span class="pill">A4</span>
+            <span class="pill">19€</span>
+            <span class="pill">Livraison en plus</span>
+            <span class="pill">France métropolitaine</span>
+            <span class="pill">2 aperçus avant achat</span>
+          </div>
+          <div class="heroActions">
+            <a class="btn primary" href="/create.html">Créer mon poster</a>
+            <a class="btn" href="/about.html">Comment ça marche</a>
+          </div>
+          <p class="notice" style="margin-top:12px">
+            Démo : pas de génération IA réelle pour le moment (visuels exemples).
+          </p>
+        </div>
+
+        <div class="mockStack" aria-hidden="true">
+          <img class="mockPoster second" src="/assets/poster-comedy.svg" alt="" />
+          <img class="mockPoster" src="/assets/poster-action.svg" alt="" />
         </div>
       </section>
 
       <div class="hr"></div>
 
-      <h2 style="margin:0 0 10px;font-size:18px">Styles (MVP)</h2>
+      <h2 style="margin:0 0 10px;font-size:18px">Choisis ton style</h2>
       <div id="styles" class="grid"></div>
 
       <div class="footer">
@@ -39,11 +57,28 @@
       import { STYLES, escapeHtml } from "/app.js";
 
       const el = document.querySelector('#styles');
+      const styleThumb = (id) => {
+        const map = {
+          action: '/assets/poster-action.svg',
+          comedy: '/assets/poster-comedy.svg',
+          adventure: '/assets/poster-adventure.svg',
+          scifi: '/assets/poster-scifi.svg',
+          magazine: '/assets/poster-magazine.svg',
+          vintage: '/assets/poster-vintage.svg',
+        };
+        return map[id] || '/assets/poster-action.svg';
+      };
+
       el.innerHTML = STYLES.map(s => `
-        <div class="card">
+        <a class="card" href="/create.html" style="display:block">
+          <div class="thumb"><img src="${styleThumb(s.id)}" alt="" loading="lazy" /></div>
           <h3>${escapeHtml(s.name)}</h3>
           <p>${escapeHtml(s.blurb)}</p>
-        </div>
+          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
+            <span class="pill" style="border-color:rgba(255,255,255,.16)">2 aperçus</span>
+            <span class="pill" style="border-color:rgba(255,255,255,.16)">A4</span>
+          </div>
+        </a>
       `).join('');
     </script>
   </body>

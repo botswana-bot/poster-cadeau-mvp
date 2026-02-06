@@ -1,32 +1,60 @@
-:root{--bg:#0b0c0f;--card:#121521;--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--brand:#7c5cff;}
+:root{--bg:#07080b;--card:rgba(18,21,33,.72);--muted:rgba(255,255,255,.72);--line:rgba(255,255,255,.12);--brand1:#7c5cff;--brand2:#ff4fd8;--ok:#34d399;}
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#07080b, #0b0c0f);color:#fff}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:
+  radial-gradient(900px 520px at 18% -10%, rgba(124,92,255,.42), rgba(0,0,0,0)),
+  radial-gradient(760px 520px at 85% 18%, rgba(255,79,216,.28), rgba(0,0,0,0)),
+  radial-gradient(900px 520px at 30% 108%, rgba(34,211,238,.18), rgba(0,0,0,0)),
+  linear-gradient(180deg,#05060a, #0b0c0f);
+  color:#fff;
+}
 a{color:#fff;text-decoration:none}
-.container{max-width:980px;margin:0 auto;padding:24px}
+.container{max-width:1040px;margin:0 auto;padding:26px}
 .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
-.logo{font-weight:800;letter-spacing:.2px}
-.badge{font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;opacity:.9}
-.hero{display:grid;gap:10px;margin:18px 0 16px}
-.hero h1{font-size:34px;line-height:1.1;margin:0}
-.hero p{margin:0;color:var(--muted)}
+.logo{font-weight:900;letter-spacing:.2px;display:flex;align-items:center;gap:10px}
+.logoMark{width:12px;height:12px;border-radius:6px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:0 0 0 4px rgba(124,92,255,.12)}
+.badge{font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;opacity:.95;background:rgba(255,255,255,.04)}
+
+.hero2{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:center;margin:18px 0 16px}
+@media (max-width: 880px){.hero2{grid-template-columns:1fr;}}
+.heroCard{border:1px solid var(--line);border-radius:18px;padding:18px;background:rgba(18,21,33,.55);backdrop-filter: blur(10px);box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.heroTitle{font-size:40px;line-height:1.05;margin:0 0 10px;font-weight:950;letter-spacing:-.02em}
+.heroLead{margin:0;color:var(--muted);font-size:15px;line-height:1.55}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.pill{font-size:12px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:rgba(255,255,255,.82)}
+.heroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+.mockStack{position:relative;min-height:430px}
+.mockPoster{position:absolute;top:10px;right:10px;width:250px;transform:rotate(7deg);border-radius:18px;box-shadow:0 28px 70px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.16)}
+.mockPoster.second{top:60px;right:190px;width:250px;transform:rotate(-7deg);opacity:.98}
+@media (max-width: 880px){.mockStack{min-height:360px}.mockPoster{position:relative;top:auto;right:auto;transform:none;width:min(320px, 90%)}.mockPoster.second{display:none}}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.card{background:rgba(18,21,33,.72);border:1px solid var(--line);border-radius:14px;padding:14px}
-.card h3{margin:0 0 6px;font-size:16px}
+.card{background:rgba(18,21,33,.64);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:14px;transition:transform .18s ease, border-color .18s ease, background .18s ease;box-shadow:0 14px 42px rgba(0,0,0,.25)}
+.card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22);background:rgba(18,21,33,.78)}
+.card h3{margin:10px 0 6px;font-size:15px}
 .card p{margin:0;color:var(--muted);font-size:13px;line-height:1.35}
-.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.2);background:#14182a;color:#fff;font-weight:700}
-.btn.primary{background:var(--brand);border-color:transparent}
+.thumb{width:100%;aspect-ratio: 2 / 3;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:12px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(20,24,42,.66);color:#fff;font-weight:800;transition:transform .14s ease, box-shadow .14s ease, border-color .14s ease}
+.btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,.26)}
+.btn.primary{background:linear-gradient(135deg,var(--brand1),var(--brand2));border-color:transparent;box-shadow:0 16px 40px rgba(124,92,255,.22)}
+.btn.primary:hover{box-shadow:0 18px 46px rgba(255,79,216,.18), 0 18px 46px rgba(124,92,255,.18)}
 .btn.ghost{background:transparent}
+
 .form{display:grid;gap:12px}
 .field{display:grid;gap:6px}
 label{font-size:13px;color:var(--muted)}
-input,select{padding:11px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(0,0,0,.25);color:#fff;outline:none}
+input,select{padding:11px 12px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(0,0,0,.24);color:#fff;outline:none}
+input:focus,select:focus{border-color:rgba(255,255,255,.28);box-shadow:0 0 0 4px rgba(124,92,255,.14)}
 small{color:var(--muted)}
 .row{display:flex;gap:12px;flex-wrap:wrap}
 .row > *{flex:1}
 .hr{height:1px;background:var(--line);margin:18px 0}
+
 .imggrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.figure{background:rgba(18,21,33,.72);border:1px solid var(--line);border-radius:14px;padding:10px}
-.figure img{width:100%;height:auto;border-radius:12px;display:block}
+.figure{background:rgba(18,21,33,.64);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:10px;box-shadow:0 14px 42px rgba(0,0,0,.25)}
+.figure img{width:100%;height:auto;border-radius:14px;display:block}
 .meta{color:var(--muted);font-size:13px;line-height:1.4}
 .notice{color:var(--muted);font-size:12px;line-height:1.4}
 .footer{margin-top:26px;color:var(--muted);font-size:12px}

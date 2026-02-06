@@ -7,16 +7,21 @@
     <link rel="stylesheet" href="/app.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="topbar">
-        <a class="logo" href="/"><span class="logoMark"></span>Poster cadeau</a>
-        <div class="badge">Étape 1/4</div>
+    <header class="header">
+      <div class="headerInner">
+        <a class="brand" href="/"><span class="brandDot"></span>Poster cadeau</a>
+        <div class="headerActions">
+          <span class="pillBtn">Étape 1/4</span>
+        </div>
       </div>
+    </header>
 
-      <h1 style="margin:0 0 10px;font-size:26px">Créer ton poster</h1>
-      <p class="meta" style="margin:0 0 14px">2 aperçus avant achat • A4 • 19€ • France</p>
+    <main class="container">
+      <h1 class="h1">Créer ton poster</h1>
+      <p class="lead">A4 • 19€ • 2 aperçus avant achat • France métropolitaine (livraison en plus)</p>
 
-      <form id="form" class="form card">
+      <div class="hr"></div>
+      <form id="form" class="form" style="max-width:720px">
         <div class="field">
           <label>Photo (prototype)</label>
           <input name="photoUrl" type="url" placeholder="https://..." required />
@@ -68,7 +73,9 @@
         <button class="btn primary" type="submit">Générer mes 2 aperçus</button>
         <div class="notice">On ne stocke rien côté serveur dans cette démo (localStorage uniquement).</div>
       </form>
-    </div>
+
+      <div class="footer">Démo : localStorage uniquement. Upload fichier + IA plus tard.</div>
+    </main>
 
     <script type="module">
       import { STYLES, saveCreation } from "/app.js";

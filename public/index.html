@@ -7,53 +7,52 @@
     <link rel="stylesheet" href="/app.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="topbar">
-        <div class="logo"><span class="logoMark"></span>Poster cadeau</div>
-        <div class="segment" role="tablist" aria-label="Navigation">
-          <a class="active" href="#">Explorer</a>
-          <a href="/about.html">Guide</a>
+    <header class="header">
+      <div class="headerInner">
+        <a class="brand" href="/"><span class="brandDot"></span>Poster cadeau</a>
+
+        <a class="searchBar" href="/create.html" aria-label="Créer un poster">
+          <strong>Poster A4</strong>
+          <span class="searchSep"></span>
+          <span class="searchGhost">2 aperçus</span>
+          <span class="searchSep"></span>
+          <span class="searchGhost">Tagline</span>
+          <span class="searchBtn" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6-6"/></svg>
+          </span>
+        </a>
+
+        <div class="headerActions">
+          <a class="pillBtn" href="/about.html">Guide</a>
         </div>
       </div>
+    </header>
 
-      <section class="hero">
-        <div class="heroCard">
-          <h1 class="heroTitle">Ton cadeau “affiche de film”.</h1>
-          <p class="heroLead">
-            Choisis un style, écris une tagline, et vois <b>2 aperçus</b> avant de commander.
-            <br />
-            A4 • 19€ • France métropolitaine (livraison en plus)
-          </p>
+    <main class="container">
+      <h1 class="h1">Trouve ton style.</h1>
+      <p class="lead">Tu choisis un style “affiche”, tu écris une tagline, tu vois <b>2 aperçus</b> puis tu commandes.</p>
+      <div class="badges">
+        <span class="badge">A4</span>
+        <span class="badge">19€</span>
+        <span class="badge">Livraison en plus</span>
+        <span class="badge">France métropolitaine</span>
+      </div>
 
-          <div class="searchRow">
-            <div class="searchPill" aria-hidden="true">
-              <span class="searchIcon"></span>
-              <span class="searchText">Rechercher un style (MVP)</span>
-            </div>
-            <a class="btn primary" href="/create.html">Créer</a>
-          </div>
+      <div class="cats" aria-label="Catégories">
+        <div class="cat"><span class="catDot"></span>Action</div>
+        <div class="cat"><span class="catDot"></span>Comédie</div>
+        <div class="cat"><span class="catDot"></span>Aventure</div>
+        <div class="cat"><span class="catDot"></span>SF</div>
+        <div class="cat"><span class="catDot"></span>Magazine</div>
+        <div class="cat"><span class="catDot"></span>Vintage</div>
+      </div>
 
-          <div class="pills">
-            <span class="pill">2 aperçus</span>
-            <span class="pill">Photoréaliste</span>
-            <span class="pill">Tagline gentille ou sarcastique</span>
-          </div>
-
-          <p class="notice" style="margin-top:12px">
-            Démo visuelle : images exemples (pas encore de génération IA réelle).
-          </p>
-        </div>
-      </section>
-
-      <div class="hr"></div>
-
-      <h2 style="margin:0 0 10px;font-size:18px">Choisis ton style</h2>
       <div id="styles" class="grid"></div>
 
       <div class="footer">
-        Note : ceci est un prototype visuel (pas de génération IA réelle, pas de paiement, pas de POD).
+        Démo visuelle : pas de génération IA réelle, pas de paiement, pas de POD.
       </div>
-    </div>
+    </main>
 
     <script type="module">
       import { STYLES, escapeHtml } from "/app.js";
@@ -71,14 +70,22 @@
         return map[id] || '/assets/poster-action.svg';
       };
 
+      const heart = `
+        <span class="heart" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.2-8.6C1 9 3.2 6.5 6.3 6.5c1.7 0 3.2.9 3.9 2.2.7-1.3 2.2-2.2 3.9-2.2 3.1 0 5.3 2.5 3.5 5.9C19 16.4 12 21 12 21z"/></svg>
+        </span>
+      `;
+
       el.innerHTML = STYLES.map(s => `
         <a class="card" href="/create.html" style="display:block">
-          <div class="thumb"><img src="${styleThumb(s.id)}" alt="" loading="lazy" /></div>
-          <h3>${escapeHtml(s.name)}</h3>
-          <p>${escapeHtml(s.blurb)}</p>
-          <div style="margin-top:10px;display:flex;gap:8px;align-items:center">
-            <span class="pill" style="border-color:rgba(255,255,255,.16)">2 aperçus</span>
-            <span class="pill" style="border-color:rgba(255,255,255,.16)">A4</span>
+          <div class="thumb">
+            ${heart}
+            <img src="${styleThumb(s.id)}" alt="" loading="lazy" />
+          </div>
+          <div class="cardBody">
+            <div class="cardTitle">${escapeHtml(s.name)}</div>
+            <p class="cardText">${escapeHtml(s.blurb)}</p>
+            <p class="cardText" style="margin-top:8px"><b>2 aperçus</b> • A4</p>
           </div>
         </a>
       `).join('');

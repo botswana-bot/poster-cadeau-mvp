@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="/app.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="topbar">
-        <a class="logo" href="/"><span class="logoMark"></span>Poster cadeau</a>
-        <div class="badge">Étape 2/4</div>
+    <header class="header">
+      <div class="headerInner">
+        <a class="brand" href="/"><span class="brandDot"></span>Poster cadeau</a>
+        <div class="headerActions">
+          <span class="pillBtn">Étape 2/4</span>
+        </div>
       </div>
+    </header>
 
-      <h1 style="margin:0 0 10px;font-size:26px">Tes 2 aperçus</h1>
-      <p id="meta" class="meta"></p>
-      <p class="notice" style="margin:0 0 12px">Aperçus (placeholder). Dans la vraie version : watermark + rendu fidèle.</p>
+    <main class="container">
+      <h1 class="h1">Tes 2 aperçus</h1>
+      <p id="meta" class="lead"></p>
+      <p class="notice" style="margin:8px 0 12px">Aperçus placeholder. Dans la vraie version : watermark + rendu fidèle.</p>
 
       <div class="imggrid" id="imgs"></div>
 
@@ -25,8 +29,8 @@
         <a class="btn ghost" href="/create.html">Recommencer</a>
       </div>
 
-      <div class="footer">Note : watermark + génération réelle viendront ensuite.</div>
-    </div>
+      <div class="footer">Watermark + génération réelle viendront ensuite.</div>
+    </main>
 
     <script type="module">
       import { loadCreation, picsum, qs, escapeHtml, STYLES } from "/app.js";

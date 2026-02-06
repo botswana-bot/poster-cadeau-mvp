@@ -7,26 +7,34 @@
     <link rel="stylesheet" href="/app.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="topbar">
-        <a class="logo" href="/"><span class="logoMark"></span>Poster cadeau</a>
-        <div class="badge">Étape 3/4</div>
+    <header class="header">
+      <div class="headerInner">
+        <a class="brand" href="/"><span class="brandDot"></span>Poster cadeau</a>
+        <div class="headerActions">
+          <span class="pillBtn">Étape 3/4</span>
+        </div>
       </div>
+    </header>
 
-      <h1 style="margin:0 0 10px;font-size:26px">Commander</h1>
+    <main class="container">
+      <h1 class="h1">Commander</h1>
 
-      <div class="card">
-        <div style="font-weight:800">Poster A4 — 19€</div>
+      <div class="card" style="max-width:720px">
+        <div class="cardBody">
+          <div class="cardTitle">Poster A4</div>
+          <p class="cardText"><b>19€</b> (livraison en plus)</p>
+        </div>
         <div class="meta" id="meta"></div>
         <div class="notice" style="margin-top:10px">Livraison en plus (placeholder). France métropolitaine.</div>
       </div>
 
       <div class="hr"></div>
-      <button class="btn primary" id="pay">Payer (simulé)</button>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn primary" id="pay">Payer (simulé)</button>
+        <a href="#" id="back" class="btn">Retour</a>
+      </div>
       <div style="margin-top:10px" class="notice">Stripe + calcul livraison seront branchés après validation du concept.</div>
-
-      <p style="margin-top:14px"><a href="#" id="back" class="notice">← Retour</a></p>
-    </div>
+    </main>
 
     <script type="module">
       import { loadCreation, qs, escapeHtml, STYLES, setStatus } from "/app.js";

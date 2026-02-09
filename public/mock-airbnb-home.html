@@ -3,24 +3,37 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poster cadeau — aperçu MVP</title>
+    <title>Poster cadeau — Mock Airbnb home</title>
     <link rel="stylesheet" href="/app.css" />
     <style>
-      /* Airbnb-like homepage layout (still the same MVP flow underneath).
-         Structure: centered tabs + large search pill + horizontal carousels.
+      /* A more faithful Airbnb-like layout (mock).
+         Goal: replicate spacing + centered tabs + big search pill + horizontal carousels.
       */
       :root{
+        --air-bg:#ffffff;
+        --air-text:#111827;
         --air-muted:rgba(17,24,39,.60);
         --air-line:rgba(17,24,39,.08);
+        --air-shadow:0 18px 55px rgba(17,24,39,.14);
         --air-pill-shadow:0 12px 34px rgba(17,24,39,.12);
+        --air-radius:999px;
         --air-card-radius:18px;
         --air-accent:#ff385c;
       }
-      body{ background:#fff; }
+      body{ background:var(--air-bg); }
       .header{ position:sticky; top:0; background:rgba(255,255,255,.94); border-bottom:1px solid var(--air-line); }
       .headerInner{ padding:14px 22px 10px; align-items:flex-start; }
 
-      .topbar{ width:100%; display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap:12px; }
+      /* top row */
+      .topbar{
+        width:100%;
+        display:grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items:center;
+        gap:12px;
+      }
+      .brand{ font-weight:1000; }
+      .brandDot{ box-shadow:none; }
 
       .tabs{ display:flex; gap:26px; align-items:center; justify-content:center; }
       .tab{ font-weight:950; font-size:13px; color:rgba(17,24,39,.72); display:flex; gap:8px; align-items:center; }
@@ -31,17 +44,23 @@
       .rightActions{ display:flex; justify-content:flex-end; gap:10px; align-items:center; }
       .pillBtn{ box-shadow:none; background:transparent; border-color:transparent; font-weight:950; color:rgba(17,24,39,.78); }
       .avatar{ width:32px; height:32px; border-radius:999px; background:linear-gradient(180deg,#f3f4f6,#e5e7eb); border:1px solid rgba(17,24,39,.10); }
-      .menu{ width:42px;height:32px;border-radius:999px; border:1px solid rgba(17,24,39,.12); background:#fff; display:flex;align-items:center;justify-content:center; box-shadow:0 10px 24px rgba(17,24,39,.10); }
+      .menu{
+        width:42px;height:32px;border-radius:999px;
+        border:1px solid rgba(17,24,39,.12);
+        background:#fff;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 10px 24px rgba(17,24,39,.10);
+      }
       .menuIcon{ width:16px; height:16px; border-top:2px solid rgba(17,24,39,.70); border-bottom:2px solid rgba(17,24,39,.70); position:relative; }
       .menuIcon::after{ content:""; position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:2px; background:rgba(17,24,39,.70); }
 
-      .searchBar{ display:none; }
+      /* Search pill row */
       .searchWrap{ display:flex; justify-content:center; margin:14px 0 4px; }
       .airSearch{
         width:min(860px, 100%);
         display:flex; align-items:center;
         border:1px solid rgba(17,24,39,.12);
-        border-radius:999px;
+        border-radius:var(--air-radius);
         background:#fff;
         box-shadow: var(--air-pill-shadow);
         overflow:hidden;
@@ -50,23 +69,66 @@
       .segTitle{ font-size:12px; font-weight:1000; letter-spacing:-.01em; }
       .segHint{ font-size:13px; color:rgba(17,24,39,.52); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .segSep{ width:1px; height:34px; background:rgba(17,24,39,.10); }
-      .searchGo{ margin:8px; width:42px; height:42px; border-radius:999px; background:var(--air-accent); display:grid; place-items:center; box-shadow:0 16px 38px rgba(255,56,92,.28); flex:0 0 auto; }
+      .searchGo{
+        margin:8px;
+        width:42px; height:42px;
+        border-radius:999px;
+        background:var(--air-accent);
+        display:grid; place-items:center;
+        box-shadow:0 16px 38px rgba(255,56,92,.28);
+        flex:0 0 auto;
+      }
       .searchGo svg{ width:18px; height:18px; fill:#fff; }
 
+      /* Content sections */
       .dividerLine{ height:1px; background:var(--air-line); margin:14px 0; }
       .sectionTitle{ font-weight:1000; letter-spacing:-.02em; margin:0 0 10px; font-size:18px; }
+      .sectionSub{ color:var(--air-muted); margin:0 0 10px; font-size:13px; }
 
-      .carousel{ display:flex; gap:14px; overflow:auto; padding:4px 0 8px; scroll-snap-type:x mandatory; }
-      .card2{ scroll-snap-align:start; width:260px; flex:0 0 auto; }
-      .thumb2{ position:relative; width:100%; aspect-ratio: 20 / 19; border-radius: var(--air-card-radius); overflow:hidden; border:1px solid rgba(17,24,39,.08); background:linear-gradient(180deg,#fff,#f3f4f6); }
+      .carousel{
+        display:flex;
+        gap:14px;
+        overflow:auto;
+        padding:4px 0 8px;
+        scroll-snap-type:x mandatory;
+      }
+      .card2{
+        scroll-snap-align:start;
+        width:260px;
+        flex:0 0 auto;
+      }
+      .thumb2{
+        position:relative;
+        width:100%;
+        aspect-ratio: 20 / 19;
+        border-radius: var(--air-card-radius);
+        overflow:hidden;
+        border:1px solid rgba(17,24,39,.08);
+        background:linear-gradient(180deg,#fff,#f3f4f6);
+      }
       .thumb2 img{ width:100%; height:100%; object-fit:cover; display:block; }
-      .fav{ position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:999px; background:rgba(255,255,255,.92); border:1px solid rgba(17,24,39,.10); display:grid; place-items:center; }
+      .fav{
+        position:absolute; top:10px; right:10px;
+        width:30px; height:30px; border-radius:999px;
+        background:rgba(255,255,255,.92);
+        border:1px solid rgba(17,24,39,.10);
+        display:grid; place-items:center;
+      }
       .fav svg{ width:16px; height:16px; stroke:rgba(17,24,39,.70); fill:none; stroke-width:2; }
+
       .meta2{ padding:8px 2px 0; }
       .title2{ font-weight:1000; font-size:13px; margin:0; letter-spacing:-.01em; }
       .desc2{ margin:3px 0 0; color:var(--air-muted); font-size:12px; }
 
-      .topNote{ margin:10px 0 0; text-align:center; color:rgba(17,24,39,.55); font-size:13px; }
+      /* Hide the old MVP search bar in this mock */
+      .searchBar{ display:none; }
+
+      /* small helper */
+      .topNote{
+        margin:10px 0 0; text-align:center;
+        color:rgba(17,24,39,.55);
+        font-size:13px;
+      }
     </style>
   </head>
   <body>
@@ -115,7 +177,7 @@
     </header>
 
     <main class="container">
-      <div class="topNote">Démo visuelle : pas de génération IA réelle, pas de paiement, pas de POD.</div>
+      <div class="topNote">Mock design “Airbnb-like” — on garde le MVP, on change surtout la structure visuelle.</div>
       <div class="dividerLine"></div>
 
       <section>
@@ -128,7 +190,7 @@
         <div class="carousel" id="popular"></div>
       </section>
 
-      <div class="footer">Clique sur une carte → créer un poster.</div>
+      <div class="footer">Mock : cartes = visuels de style existants. Clique → create.</div>
     </main>
 
     <script type="module">

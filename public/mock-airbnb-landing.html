@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Poster cadeau — Mock Airbnb landing</title>
+    <link rel="stylesheet" href="/app.css" />
+    <style>
+      /* Airbnb-ish refinements (mock only) */
+      :root{ --accent:#ff385c; --shadow2:0 10px 30px rgba(17,24,39,.10); }
+      body{ background: linear-gradient(180deg,#fff,#fafafa); }
+      .hero{
+        display:grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap:22px;
+        align-items:stretch;
+        margin-top:18px;
+      }
+      @media (max-width: 900px){ .hero{grid-template-columns:1fr;}}
+
+      .heroLeft{ padding:12px 0; }
+      .kicker{ font-weight:950; letter-spacing:-.02em; color:rgba(17,24,39,.75); font-size:13px; }
+      .h0{ font-size:44px; line-height:1.02; letter-spacing:-.05em; margin:10px 0 10px; font-weight:1000; }
+      @media (max-width: 520px){ .h0{font-size:36px;} }
+      .sub{ color:rgba(17,24,39,.64); margin:0; line-height:1.55; max-width:52ch; }
+
+      .heroCard{
+        background:#fff;
+        border:1px solid rgba(17,24,39,.08);
+        border-radius:24px;
+        box-shadow: 0 22px 70px rgba(17,24,39,.14);
+        overflow:hidden;
+        position:relative;
+        min-height: 330px;
+      }
+      .heroCard::before{
+        content:"";
+        position:absolute; inset:-40px;
+        background:
+          radial-gradient(520px 280px at 30% 20%, rgba(255,56,92,.16), rgba(0,0,0,0)),
+          radial-gradient(520px 280px at 80% 70%, rgba(255,178,195,.22), rgba(0,0,0,0));
+      }
+      .heroCardInner{ position:relative; padding:18px; display:grid; gap:10px; }
+      .miniGrid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+      .mini{
+        border-radius:18px;
+        border:1px solid rgba(17,24,39,.08);
+        background:rgba(255,255,255,.84);
+        padding:12px;
+        box-shadow: var(--shadow2);
+        min-height:96px;
+      }
+      .miniTitle{ font-weight:950; letter-spacing:-.02em; font-size:13px; }
+      .miniText{ margin:6px 0 0; color:rgba(17,24,39,.62); font-size:12px; line-height:1.35; }
+
+      .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+      .ctaRow .btn{ padding:13px 18px; }
+
+      .trust{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+      .chip{ font-size:12px; font-weight:900; color:rgba(17,24,39,.66); padding:8px 10px; border-radius:999px; border:1px solid rgba(17,24,39,.10); background:#fff; box-shadow:var(--shadow2); }
+
+      /* Make the header search bar look closer to Airbnb */
+      .searchBar{ box-shadow:0 14px 32px rgba(17,24,39,.12); border-color:rgba(17,24,39,.12); }
+      .searchBtn{ box-shadow:0 14px 34px rgba(255,56,92,.26); }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="headerInner">
+        <a class="brand" href="/"><span class="brandDot"></span>Poster cadeau</a>
+
+        <a class="searchBar" href="/create.html" aria-label="Créer un poster">
+          <strong>A4</strong>
+          <span class="searchSep"></span>
+          <span class="searchGhost">Style</span>
+          <span class="searchSep"></span>
+          <span class="searchGhost">Tagline</span>
+          <span class="searchBtn" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm11 3-6-6"/></svg>
+          </span>
+        </a>
+
+        <div class="headerActions">
+          <a class="pillBtn" href="/about.html">Guide</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="heroLeft">
+          <div class="kicker">Cadeau • France métropolitaine</div>
+          <h1 class="h0">Ton affiche IA, imprimée.
+          </h1>
+          <p class="sub">Tu ajoutes une photo, tu choisis un style d’affiche, tu écris une tagline. On te montre <b>2 aperçus</b> avant la commande.</p>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="/create.html">Créer mon poster</a>
+            <a class="btn" href="/about.html">Voir des exemples</a>
+          </div>
+
+          <div class="trust" aria-label="Infos">
+            <span class="chip">A4 • 19€</span>
+            <span class="chip">2 aperçus</span>
+            <span class="chip">Rendu premium</span>
+            <span class="chip">Livraison en plus</span>
+          </div>
+        </div>
+
+        <aside class="heroCard" aria-label="Carte aperçu">
+          <div class="heroCardInner">
+            <div class="miniGrid">
+              <div class="mini">
+                <div class="miniTitle">Style</div>
+                <p class="miniText">Action, magazine, vintage…</p>
+              </div>
+              <div class="mini">
+                <div class="miniTitle">Tagline</div>
+                <p class="miniText">Gentil ou sarcastique (60 caractères).</p>
+              </div>
+              <div class="mini">
+                <div class="miniTitle">Aperçu 1</div>
+                <p class="miniText">Variante A (pose/éclairage).</p>
+              </div>
+              <div class="mini">
+                <div class="miniTitle">Aperçu 2</div>
+                <p class="miniText">Variante B (décor/ambiance).</p>
+              </div>
+            </div>
+            <div class="notice">Mock design “Airbnb-ish”.</div>
+          </div>
+        </aside>
+      </section>
+
+      <div class="hr"></div>
+
+      <h2 class="h1" style="font-size:22px">Styles populaires</h2>
+      <p class="lead">Même grille que le MVP actuel, mais avec un hero plus “Airbnb”.</p>
+      <div id="styles" class="grid" style="margin-top:14px"></div>
+
+      <div class="footer">Mock visuel uniquement.</div>
+    </main>
+
+    <script type="module">
+      import { STYLES, escapeHtml } from "/app.js";
+      const el = document.querySelector('#styles');
+      const styleThumb = (id) => ({
+        action: '/assets/poster-action.svg',
+        comedy: '/assets/poster-comedy.svg',
+        adventure: '/assets/poster-adventure.svg',
+        scifi: '/assets/poster-scifi.svg',
+        magazine: '/assets/poster-magazine.svg',
+        vintage: '/assets/poster-vintage.svg',
+      }[id] || '/assets/poster-action.svg');
+
+      el.innerHTML = STYLES.map(s => `
+        <a class="card" href="/create.html" style="display:block">
+          <div class="thumb">
+            <span class="heart" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.6-9.2-8.6C1 9 3.2 6.5 6.3 6.5c1.7 0 3.2.9 3.9 2.2.7-1.3 2.2-2.2 3.9-2.2 3.1 0 5.3 2.5 3.5 5.9C19 16.4 12 21 12 21z"/></svg>
+            </span>
+            <img src="${styleThumb(s.id)}" alt="" loading="lazy" />
+          </div>
+          <div class="cardBody">
+            <div class="cardTitle">${escapeHtml(s.name)}</div>
+            <p class="cardText">${escapeHtml(s.blurb)}</p>
+          </div>
+        </a>
+      `).join('');
+    </script>
+  </body>
+</html>

@@ -6,12 +6,19 @@
     <title>Poster cadeau</title>
     <meta http-equiv="refresh" content="0;url=/index-classic.html" />
     <script>
-      // Design switcher: classic (default) vs airbnb.
+      // Design switcher router
       (function(){
         try{
           const key='poster_mvp_design';
           const v=localStorage.getItem(key) || 'classic';
-          const to = v === 'airbnb' ? '/index-airbnb.html' : '/index-classic.html';
+          const map={
+            classic:'/index-classic.html',
+            airbnb:'/index-airbnb.html',
+            'airbnb-b':'/index-airbnb-b.html',
+            'airbnb-c':'/index-airbnb-c.html',
+            'airbnb-d':'/index-airbnb-d.html'
+          };
+          const to = map[v] || map.classic;
           if (location.pathname !== to) location.replace(to);
         }catch(e){
           location.replace('/index-classic.html');

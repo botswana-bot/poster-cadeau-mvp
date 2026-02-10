@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Poster cadeau — aperçu MVP</title>
     <link rel="stylesheet" href="/app.css" />
+    <style>
+      .designSelect{ appearance:none; padding:9px 34px 9px 12px; border-radius:999px; border:1px solid rgba(17,24,39,.12); background:#fff; font-weight:950; font-size:12px; color:rgba(17,24,39,.78); box-shadow:var(--shadow2); cursor:pointer; }
+      .designWrap{ position:relative; }
+      .designWrap:after{ content:""; position:absolute; right:12px; top:50%; transform:translateY(-40%); width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid rgba(17,24,39,.55); pointer-events:none; }
+    </style>
   </head>
   <body>
     <header class="header">
@@ -23,7 +28,15 @@
         </a>
 
         <div class="headerActions">
-          <button class="pillBtn" id="toggleDesign" type="button">Design: Classique</button>
+          <div class="designWrap">
+            <select class="designSelect" id="design">
+              <option value="classic" selected>Classique</option>
+              <option value="airbnb">Airbnb A</option>
+              <option value="airbnb-b">Airbnb B</option>
+              <option value="airbnb-c">Airbnb C</option>
+              <option value="airbnb-d">Airbnb D</option>
+            </select>
+          </div>
           <a class="pillBtn" href="/about.html">Guide</a>
         </div>
       </div>
@@ -58,15 +71,9 @@
     <script type="module">
       import { STYLES, escapeHtml } from "/app.js";
 
-      const DESIGN_KEY = 'poster_mvp_design';
-      const setDesign = (v) => localStorage.setItem(DESIGN_KEY, v);
-      const go = () => location.href = '/';
-
-      const btn = document.querySelector('#toggleDesign');
-      btn.addEventListener('click', () => {
-        setDesign('airbnb');
-        go();
-      });
+      const DESIGN_KEY='poster_mvp_design';
+      const sel=document.querySelector('#design');
+      sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
       const el = document.querySelector('#styles');
       const styleThumb = (id) => {

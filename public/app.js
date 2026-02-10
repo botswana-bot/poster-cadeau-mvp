@@ -42,6 +42,23 @@ export function picsum(seed, w, h) {
   return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 }
 
+// Realistic photo thumbnails (free, no API key). Uses Unsplash Source.
+// Note: these are random-ish per keyword; good enough for MVP visual feel.
+export function stylePhoto(styleId, w = 900, h = 900) {
+  const q = {
+    action: "cinematic,action movie poster,dramatic lighting",
+    comedy: "comedy,portrait,studio lighting,smile",
+    adventure: "adventure,explorer,jungle,travel,portrait",
+    scifi: "science fiction,astronaut,futuristic,neon portrait",
+    magazine: "magazine cover,portrait,studio editorial",
+    vintage: "1950s vintage advertisement,retro portrait",
+  }[styleId] || "portrait,studio";
+
+  // Unsplash Source endpoint: returns an image directly.
+  // Keep a stable-ish signature by including styleId in the query.
+  return `https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q + "," + styleId)}`;
+}
+
 export function qs(name) {
   return new URLSearchParams(location.search).get(name);
 }

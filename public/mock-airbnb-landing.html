@@ -142,16 +142,9 @@
     </main>
 
     <script type="module">
-      import { STYLES, escapeHtml } from "/app.js";
+      import { STYLES, escapeHtml, stylePhoto } from "/app.js";
       const el = document.querySelector('#styles');
-      const styleThumb = (id) => ({
-        action: '/assets/poster-action.svg',
-        comedy: '/assets/poster-comedy.svg',
-        adventure: '/assets/poster-adventure.svg',
-        scifi: '/assets/poster-scifi.svg',
-        magazine: '/assets/poster-magazine.svg',
-        vintage: '/assets/poster-vintage.svg',
-      }[id] || '/assets/poster-action.svg');
+      const styleThumb = (id) => stylePhoto(id, 900, 900);
 
       el.innerHTML = STYLES.map(s => `
         <a class="card" href="/create.html" style="display:block">

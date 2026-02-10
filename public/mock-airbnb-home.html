@@ -194,15 +194,8 @@
     </main>
 
     <script type="module">
-      import { STYLES } from "/app.js";
-      const styleThumb = (id) => ({
-        action: '/assets/poster-action.svg',
-        comedy: '/assets/poster-comedy.svg',
-        adventure: '/assets/poster-adventure.svg',
-        scifi: '/assets/poster-scifi.svg',
-        magazine: '/assets/poster-magazine.svg',
-        vintage: '/assets/poster-vintage.svg',
-      }[id] || '/assets/poster-action.svg');
+      import { STYLES, stylePhoto } from "/app.js";
+      const styleThumb = (id) => stylePhoto(id, 900, 900);
 
       const heart = `
         <span class="fav" aria-hidden="true">

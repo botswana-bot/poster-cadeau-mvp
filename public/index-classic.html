@@ -72,7 +72,7 @@
     </main>
 
     <script type="module">
-      import { STYLES, escapeHtml } from "/app.js";
+      import { STYLES, escapeHtml, stylePhoto } from "/app.js";
 
       const DESIGN_KEY='poster_mvp_design';
       const sel=document.querySelector('#design');
@@ -80,17 +80,7 @@
       sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
       const el = document.querySelector('#styles');
-      const styleThumb = (id) => {
-        const map = {
-          action: '/assets/poster-action.svg',
-          comedy: '/assets/poster-comedy.svg',
-          adventure: '/assets/poster-adventure.svg',
-          scifi: '/assets/poster-scifi.svg',
-          magazine: '/assets/poster-magazine.svg',
-          vintage: '/assets/poster-vintage.svg',
-        };
-        return map[id] || '/assets/poster-action.svg';
-      };
+      const styleThumb = (id) => stylePhoto(id, 900, 900);
 
       const heart = `
         <span class="heart" aria-hidden="true">

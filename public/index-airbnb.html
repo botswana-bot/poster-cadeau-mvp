@@ -123,20 +123,13 @@
     </main>
 
     <script type="module">
-      import { STYLES } from "/app.js";
+      import { STYLES, stylePhoto } from "/app.js";
       const DESIGN_KEY='poster_mvp_design';
       const sel=document.querySelector('#design');
       sel.value = 'airbnb';
       sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
-      const styleThumb = (id) => ({
-        action: '/assets/poster-action.svg',
-        comedy: '/assets/poster-comedy.svg',
-        adventure: '/assets/poster-adventure.svg',
-        scifi: '/assets/poster-scifi.svg',
-        magazine: '/assets/poster-magazine.svg',
-        vintage: '/assets/poster-vintage.svg',
-      }[id] || '/assets/poster-action.svg');
+      const styleThumb = (id) => stylePhoto(id, 900, 900);
 
       const heart = `
         <span class="fav" aria-hidden="true">

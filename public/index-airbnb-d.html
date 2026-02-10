@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poster cadeau — accueil (Airbnb A)</title>
+    <title>Poster cadeau — accueil (Airbnb D)</title>
     <link rel="stylesheet" href="/app.css" />
     <style>
-      /* Variante A — référence (celle qu'on avait déjà) */
+      /* Variante D — "Airbnb hero" : un bandeau promo + carrousel principal */
       :root{
         --air-muted:rgba(17,24,39,.60);
         --air-line:rgba(17,24,39,.08);
@@ -18,12 +18,10 @@
       .header{ position:sticky; top:0; background:rgba(255,255,255,.94); border-bottom:1px solid var(--air-line); }
       .headerInner{ padding:14px 22px 10px; align-items:flex-start; }
       .topbar{ width:100%; display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap:12px; }
-
       .tabs{ display:flex; gap:26px; align-items:center; justify-content:center; }
       .tab{ font-weight:950; font-size:13px; color:rgba(17,24,39,.72); display:flex; gap:8px; align-items:center; }
       .tab span{ font-size:18px; }
       .tab.active{ color:rgba(17,24,39,.92); }
-      .tab .badgeNew{ font-size:10px; font-weight:1000; padding:3px 8px; border-radius:999px; background:rgba(17,24,39,.06); color:rgba(17,24,39,.72); margin-left:6px; }
 
       .rightActions{ display:flex; justify-content:flex-end; gap:10px; align-items:center; }
       .avatar{ width:32px; height:32px; border-radius:999px; background:linear-gradient(180deg,#f3f4f6,#e5e7eb); border:1px solid rgba(17,24,39,.10); }
@@ -36,21 +34,39 @@
       .designWrap:after{ content:""; position:absolute; right:12px; top:50%; transform:translateY(-40%); width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid rgba(17,24,39,.55); pointer-events:none; }
 
       .searchBar{ display:none; }
-      .searchWrap{ display:flex; justify-content:center; margin:14px 0 4px; }
+      .searchWrap{ display:flex; justify-content:center; margin:14px 0 10px; }
       .airSearch{ width:min(860px, 100%); display:flex; align-items:center; border:1px solid rgba(17,24,39,.12); border-radius:999px; background:#fff; box-shadow: var(--air-pill-shadow); overflow:hidden; }
       .seg{ padding:12px 16px; flex:1; min-width:0; }
-      .segTitle{ font-size:12px; font-weight:1000; letter-spacing:-.01em; }
+      .segTitle{ font-size:12px; font-weight:1000; }
       .segHint{ font-size:13px; color:rgba(17,24,39,.52); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .segSep{ width:1px; height:34px; background:rgba(17,24,39,.10); }
       .searchGo{ margin:8px; width:42px; height:42px; border-radius:999px; background:var(--air-accent); display:grid; place-items:center; box-shadow:0 16px 38px rgba(255,56,92,.28); flex:0 0 auto; }
       .searchGo svg{ width:18px; height:18px; fill:#fff; }
 
-      .dividerLine{ height:1px; background:var(--air-line); margin:14px 0; }
+      .promo{
+        border-radius:22px;
+        border:1px solid rgba(17,24,39,.08);
+        background:
+          radial-gradient(640px 220px at 20% 0%, rgba(255,56,92,.16), rgba(0,0,0,0)),
+          radial-gradient(640px 220px at 90% 100%, rgba(255,178,195,.22), rgba(0,0,0,0)),
+          #fff;
+        box-shadow:0 18px 55px rgba(17,24,39,.12);
+        padding:16px 16px;
+        display:flex;
+        gap:14px;
+        align-items:center;
+        justify-content:space-between;
+      }
+      .promo h2{ margin:0; font-size:20px; font-weight:1000; letter-spacing:-.03em; }
+      .promo p{ margin:2px 0 0; color:var(--air-muted); font-size:13px; }
+      .promo .btn{ box-shadow:0 14px 30px rgba(255,56,92,.22); }
+
+      .dividerLine{ height:1px; background:var(--air-line); margin:14px 0 14px; }
       .sectionTitle{ font-weight:1000; letter-spacing:-.02em; margin:0 0 10px; font-size:18px; }
 
       .carousel{ display:flex; gap:14px; overflow:auto; padding:4px 0 8px; scroll-snap-type:x mandatory; }
-      .card2{ scroll-snap-align:start; width:260px; flex:0 0 auto; }
-      .thumb2{ position:relative; width:100%; aspect-ratio: 20 / 19; border-radius: var(--air-card-radius); overflow:hidden; border:1px solid rgba(17,24,39,.08); background:linear-gradient(180deg,#fff,#f3f4f6); }
+      .card2{ scroll-snap-align:start; width:280px; flex:0 0 auto; }
+      .thumb2{ position:relative; width:100%; aspect-ratio: 16 / 10; border-radius: var(--air-card-radius); overflow:hidden; border:1px solid rgba(17,24,39,.08); background:linear-gradient(180deg,#fff,#f3f4f6); }
       .thumb2 img{ width:100%; height:100%; object-fit:cover; display:block; }
       .fav{ position:absolute; top:10px; right:10px; width:30px; height:30px; border-radius:999px; background:rgba(255,255,255,.92); border:1px solid rgba(17,24,39,.10); display:grid; place-items:center; }
       .fav svg{ width:16px; height:16px; stroke:rgba(17,24,39,.70); fill:none; stroke-width:2; }
@@ -58,7 +74,7 @@
       .title2{ font-weight:1000; font-size:13px; margin:0; letter-spacing:-.01em; }
       .desc2{ margin:3px 0 0; color:var(--air-muted); font-size:12px; }
 
-      .topNote{ margin:10px 0 0; text-align:center; color:rgba(17,24,39,.55); font-size:13px; }
+      .footer{ margin-top:20px; }
     </style>
   </head>
   <body>
@@ -69,8 +85,8 @@
 
           <nav class="tabs" aria-label="Navigation">
             <div class="tab active"><span>🏠</span> Logements</div>
-            <div class="tab"><span>🎈</span> Expériences <span class="badgeNew">NOUVEAU</span></div>
-            <div class="tab"><span>🛎️</span> Services <span class="badgeNew">NOUVEAU</span></div>
+            <div class="tab"><span>🎈</span> Expériences</div>
+            <div class="tab"><span>🛎️</span> Services</div>
           </nav>
 
           <div class="rightActions">
@@ -106,27 +122,34 @@
     </header>
 
     <main class="container">
-      <div class="topNote">Démo visuelle : pas de génération IA réelle, pas de paiement, pas de POD.</div>
+      <div class="promo">
+        <div>
+          <h2>Ton affiche IA, imprimée.</h2>
+          <p>2 aperçus avant achat • A4 • France métropolitaine</p>
+        </div>
+        <a class="btn primary" href="/create.html">Créer mon poster</a>
+      </div>
+
       <div class="dividerLine"></div>
 
       <section>
-        <h2 class="sectionTitle">Styles consultés récemment</h2>
-        <div class="carousel" id="recent"></div>
+        <h2 class="sectionTitle">Sélection du jour</h2>
+        <div class="carousel" id="featured"></div>
       </section>
 
       <section style="margin-top:18px">
-        <h2 class="sectionTitle">Styles populaires • Toulouse</h2>
-        <div class="carousel" id="popular"></div>
+        <h2 class="sectionTitle">Autres styles</h2>
+        <div class="carousel" id="more"></div>
       </section>
 
-      <div class="footer">Variante A : référence.</div>
+      <div class="footer">Variante D : bandeau promo + carrousel hero.</div>
     </main>
 
     <script type="module">
       import { STYLES } from "/app.js";
       const DESIGN_KEY='poster_mvp_design';
       const sel=document.querySelector('#design');
-      sel.value = 'airbnb';
+      sel.value = 'airbnb-d';
       sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
       const styleThumb = (id) => ({
@@ -146,11 +169,13 @@
       const card = (s, subtitle) => `
         <a class="card2" href="/create.html">
           <div class="thumb2">${heart}<img src="${styleThumb(s.id)}" alt="" loading="lazy" /></div>
-          <div class="meta2"><p class="title2">${s.name.split('—')[0].trim()}</p><p class="desc2">${subtitle}</p></div>
+          <div class="meta2"><p class="title2">${s.name}</p><p class="desc2">${subtitle}</p></div>
         </a>`;
 
-      document.querySelector('#recent').innerHTML = STYLES.map(s => card(s, '2 aperçus • A4')).join('');
-      document.querySelector('#popular').innerHTML = STYLES.concat(STYLES).slice(0,10).map(s => card(s, 'Rendu premium')).join('');
+      const featured = STYLES.concat(STYLES).slice(0,6);
+      const more = STYLES.concat(STYLES).slice(2,10);
+      document.querySelector('#featured').innerHTML = featured.map(s => card(s, '2 aperçus • A4')).join('');
+      document.querySelector('#more').innerHTML = more.map(s => card(s, 'Rendu premium')).join('');
     </script>
   </body>
 </html>

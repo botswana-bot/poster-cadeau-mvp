@@ -3,50 +3,72 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poster cadeau — accueil (Airbnb A)</title>
+    <title>Poster cadeau — accueil (Airbnb B)</title>
     <link rel="stylesheet" href="/app.css" />
     <style>
-      /* Variante A — référence (celle qu'on avait déjà) */
+      /* Variante B — "Airbnb minimal + pro" : plus blanc, plus fin, plus typographique */
       :root{
-        --air-muted:rgba(17,24,39,.60);
+        --air-muted:rgba(17,24,39,.58);
         --air-line:rgba(17,24,39,.08);
-        --air-pill-shadow:0 12px 34px rgba(17,24,39,.12);
-        --air-card-radius:18px;
+        --air-pill-shadow:0 10px 28px rgba(17,24,39,.10);
+        --air-card-radius:16px;
         --air-accent:#ff385c;
       }
       body{ background:#fff; }
-      .header{ position:sticky; top:0; background:rgba(255,255,255,.94); border-bottom:1px solid var(--air-line); }
+      .header{ position:sticky; top:0; background:rgba(255,255,255,.96); border-bottom:1px solid var(--air-line); }
       .headerInner{ padding:14px 22px 10px; align-items:flex-start; }
       .topbar{ width:100%; display:grid; grid-template-columns: 1fr auto 1fr; align-items:center; gap:12px; }
 
-      .tabs{ display:flex; gap:26px; align-items:center; justify-content:center; }
-      .tab{ font-weight:950; font-size:13px; color:rgba(17,24,39,.72); display:flex; gap:8px; align-items:center; }
+      .tabs{ display:flex; gap:22px; align-items:center; justify-content:center; }
+      .tab{ font-weight:950; font-size:13px; color:rgba(17,24,39,.70); display:flex; gap:8px; align-items:center; }
       .tab span{ font-size:18px; }
       .tab.active{ color:rgba(17,24,39,.92); }
-      .tab .badgeNew{ font-size:10px; font-weight:1000; padding:3px 8px; border-radius:999px; background:rgba(17,24,39,.06); color:rgba(17,24,39,.72); margin-left:6px; }
+      .badgeNew{ font-size:10px; font-weight:1000; padding:3px 8px; border-radius:999px; background:rgba(17,24,39,.06); color:rgba(17,24,39,.72); margin-left:4px; }
 
       .rightActions{ display:flex; justify-content:flex-end; gap:10px; align-items:center; }
       .avatar{ width:32px; height:32px; border-radius:999px; background:linear-gradient(180deg,#f3f4f6,#e5e7eb); border:1px solid rgba(17,24,39,.10); }
-      .menu{ width:42px;height:32px;border-radius:999px; border:1px solid rgba(17,24,39,.12); background:#fff; display:flex;align-items:center;justify-content:center; box-shadow:0 10px 24px rgba(17,24,39,.10); }
+      .menu{ width:42px;height:32px;border-radius:999px; border:1px solid rgba(17,24,39,.12); background:#fff; display:flex;align-items:center;justify-content:center; box-shadow:0 10px 22px rgba(17,24,39,.08); }
       .menuIcon{ width:16px; height:16px; border-top:2px solid rgba(17,24,39,.70); border-bottom:2px solid rgba(17,24,39,.70); position:relative; }
       .menuIcon::after{ content:""; position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); height:2px; background:rgba(17,24,39,.70); }
 
-      .designSelect{ appearance:none; padding:9px 34px 9px 12px; border-radius:999px; border:1px solid rgba(17,24,39,.12); background:#fff; font-weight:950; font-size:12px; color:rgba(17,24,39,.78); box-shadow:0 10px 22px rgba(17,24,39,.06); cursor:pointer; }
+      .designSelect{
+        appearance:none;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        padding:9px 34px 9px 12px;
+        border-radius:999px;
+        border:1px solid rgba(17,24,39,.12);
+        background:#fff;
+        font-weight:950;
+        font-size:12px;
+        color:rgba(17,24,39,.78);
+        box-shadow:0 10px 22px rgba(17,24,39,.06);
+        cursor:pointer;
+      }
       .designWrap{ position:relative; }
-      .designWrap:after{ content:""; position:absolute; right:12px; top:50%; transform:translateY(-40%); width:0;height:0; border-left:5px solid transparent; border-right:5px solid transparent; border-top:6px solid rgba(17,24,39,.55); pointer-events:none; }
+      .designWrap:after{
+        content:"";
+        position:absolute; right:12px; top:50%; transform:translateY(-40%);
+        width:0;height:0;
+        border-left:5px solid transparent;
+        border-right:5px solid transparent;
+        border-top:6px solid rgba(17,24,39,.55);
+        pointer-events:none;
+      }
 
       .searchBar{ display:none; }
-      .searchWrap{ display:flex; justify-content:center; margin:14px 0 4px; }
-      .airSearch{ width:min(860px, 100%); display:flex; align-items:center; border:1px solid rgba(17,24,39,.12); border-radius:999px; background:#fff; box-shadow: var(--air-pill-shadow); overflow:hidden; }
-      .seg{ padding:12px 16px; flex:1; min-width:0; }
+      .searchWrap{ display:flex; justify-content:center; margin:14px 0 6px; }
+      .airSearch{ width:min(900px, 100%); display:flex; align-items:center; border:1px solid rgba(17,24,39,.12); border-radius:999px; background:#fff; box-shadow: var(--air-pill-shadow); overflow:hidden; }
+      .seg{ padding:12px 18px; flex:1; min-width:0; }
       .segTitle{ font-size:12px; font-weight:1000; letter-spacing:-.01em; }
-      .segHint{ font-size:13px; color:rgba(17,24,39,.52); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .segHint{ font-size:13px; color:rgba(17,24,39,.50); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
       .segSep{ width:1px; height:34px; background:rgba(17,24,39,.10); }
-      .searchGo{ margin:8px; width:42px; height:42px; border-radius:999px; background:var(--air-accent); display:grid; place-items:center; box-shadow:0 16px 38px rgba(255,56,92,.28); flex:0 0 auto; }
+      .searchGo{ margin:8px; width:42px; height:42px; border-radius:999px; background:var(--air-accent); display:grid; place-items:center; box-shadow:0 16px 36px rgba(255,56,92,.24); flex:0 0 auto; }
       .searchGo svg{ width:18px; height:18px; fill:#fff; }
 
-      .dividerLine{ height:1px; background:var(--air-line); margin:14px 0; }
-      .sectionTitle{ font-weight:1000; letter-spacing:-.02em; margin:0 0 10px; font-size:18px; }
+      .heroLine{ height:1px; background:var(--air-line); margin:12px 0 16px; }
+      .h2{ font-weight:1000; letter-spacing:-.03em; margin:0 0 6px; font-size:20px; }
+      .p{ margin:0; color:var(--air-muted); font-size:13px; }
 
       .carousel{ display:flex; gap:14px; overflow:auto; padding:4px 0 8px; scroll-snap-type:x mandatory; }
       .card2{ scroll-snap-align:start; width:260px; flex:0 0 auto; }
@@ -58,7 +80,7 @@
       .title2{ font-weight:1000; font-size:13px; margin:0; letter-spacing:-.01em; }
       .desc2{ margin:3px 0 0; color:var(--air-muted); font-size:12px; }
 
-      .topNote{ margin:10px 0 0; text-align:center; color:rgba(17,24,39,.55); font-size:13px; }
+      .footer{ margin-top:20px; }
     </style>
   </head>
   <body>
@@ -106,27 +128,29 @@
     </header>
 
     <main class="container">
-      <div class="topNote">Démo visuelle : pas de génération IA réelle, pas de paiement, pas de POD.</div>
-      <div class="dividerLine"></div>
+      <h2 class="h2">Crée ton poster en 2 minutes</h2>
+      <p class="p">Photo + style + tagline → 2 aperçus → commande A4 (France).</p>
+      <div class="heroLine"></div>
 
       <section>
-        <h2 class="sectionTitle">Styles consultés récemment</h2>
+        <h2 class="h2">Styles consultés récemment</h2>
         <div class="carousel" id="recent"></div>
       </section>
 
       <section style="margin-top:18px">
-        <h2 class="sectionTitle">Styles populaires • Toulouse</h2>
+        <h2 class="h2">Styles populaires • Toulouse</h2>
         <div class="carousel" id="popular"></div>
       </section>
 
-      <div class="footer">Variante A : référence.</div>
+      <div class="footer">Variante B : minimal + pro.</div>
     </main>
 
     <script type="module">
       import { STYLES } from "/app.js";
       const DESIGN_KEY='poster_mvp_design';
       const sel=document.querySelector('#design');
-      sel.value = 'airbnb';
+      // Ensure the selector always reflects the current template
+      sel.value = 'airbnb-b';
       sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
       const styleThumb = (id) => ({

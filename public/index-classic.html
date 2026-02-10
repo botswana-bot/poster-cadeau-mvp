@@ -30,11 +30,14 @@
         <div class="headerActions">
           <div class="designWrap">
             <select class="designSelect" id="design">
-              <option value="classic" selected>Classique</option>
+              <option value="classic">Classique</option>
               <option value="airbnb">Airbnb A</option>
               <option value="airbnb-b">Airbnb B</option>
               <option value="airbnb-c">Airbnb C</option>
               <option value="airbnb-d">Airbnb D</option>
+              <option value="airbnb-e">Airbnb E</option>
+              <option value="airbnb-f">Airbnb F</option>
+              <option value="airbnb-g">Airbnb G</option>
             </select>
           </div>
           <a class="pillBtn" href="/about.html">Guide</a>
@@ -73,6 +76,7 @@
 
       const DESIGN_KEY='poster_mvp_design';
       const sel=document.querySelector('#design');
+      sel.value = 'classic';
       sel.addEventListener('change', ()=>{ localStorage.setItem(DESIGN_KEY, sel.value); location.href='/'; });
 
       const el = document.querySelector('#styles');

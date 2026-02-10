@@ -42,20 +42,21 @@ export function picsum(seed, w, h) {
   return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 }
 
-// Realistic photo thumbnails (free, no API key).
-// Uses picsum.photos with fixed image IDs for stability (no hotlink blocks).
+// Realistic thumbnails with people (free, no API key).
+// Uses randomuser.me portrait images (stable URLs) so we always see a face.
+// For the MVP, we pick different portrait IDs per style.
 export function stylePhoto(styleId, w = 900, h = 900) {
-  const id = {
-    action: 1005,     // dramatic portrait
-    comedy: 1027,     // smile / portrait
-    adventure: 1011,  // travel / nature
-    scifi: 903,       // city lights / futuristic vibe
-    magazine: 823,    // editorial portrait vibe
-    vintage: 1060,    // retro-ish texture
-  }[styleId] || 1025;
+  const url = {
+    action: "https://randomuser.me/api/portraits/men/32.jpg",
+    comedy: "https://randomuser.me/api/portraits/women/44.jpg",
+    adventure: "https://randomuser.me/api/portraits/men/65.jpg",
+    scifi: "https://randomuser.me/api/portraits/women/68.jpg",
+    magazine: "https://randomuser.me/api/portraits/women/12.jpg",
+    vintage: "https://randomuser.me/api/portraits/men/8.jpg",
+  }[styleId] || "https://randomuser.me/api/portraits/men/1.jpg";
 
-  // Note: picsum may not guarantee semantic match, but it's real photography and stable.
-  return `https://picsum.photos/id/${id}/${w}/${h}`;
+  // w/h not controllable here; CSS (object-fit: cover) handles cropping.
+  return url;
 }
 
 export function qs(name) {

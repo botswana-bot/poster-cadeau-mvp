@@ -42,21 +42,20 @@ export function picsum(seed, w, h) {
   return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 }
 
-// Realistic photo thumbnails (free, no API key). Uses Unsplash Source.
-// Note: these are random-ish per keyword; good enough for MVP visual feel.
+// Realistic photo thumbnails (free, no API key).
+// Uses picsum.photos with fixed image IDs for stability (no hotlink blocks).
 export function stylePhoto(styleId, w = 900, h = 900) {
-  const q = {
-    action: "cinematic,action movie poster,dramatic lighting",
-    comedy: "comedy,portrait,studio lighting,smile",
-    adventure: "adventure,explorer,jungle,travel,portrait",
-    scifi: "science fiction,astronaut,futuristic,neon portrait",
-    magazine: "magazine cover,portrait,studio editorial",
-    vintage: "1950s vintage advertisement,retro portrait",
-  }[styleId] || "portrait,studio";
+  const id = {
+    action: 1005,     // dramatic portrait
+    comedy: 1027,     // smile / portrait
+    adventure: 1011,  // travel / nature
+    scifi: 903,       // city lights / futuristic vibe
+    magazine: 823,    // editorial portrait vibe
+    vintage: 1060,    // retro-ish texture
+  }[styleId] || 1025;
 
-  // Unsplash Source endpoint: returns an image directly.
-  // Keep a stable-ish signature by including styleId in the query.
-  return `https://source.unsplash.com/${w}x${h}/?${encodeURIComponent(q + "," + styleId)}`;
+  // Note: picsum may not guarantee semantic match, but it's real photography and stable.
+  return `https://picsum.photos/id/${id}/${w}/${h}`;
 }
 
 export function qs(name) {

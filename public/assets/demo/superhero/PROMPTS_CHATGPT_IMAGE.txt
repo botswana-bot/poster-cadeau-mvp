@@ -1,0 +1,109 @@
+PROMPTS — “Superhéros full body (bases pour intégration visage)”
+
+Objectif
+- Générer ~10 images de superhéros photoréalistes, FULL BODY, dans des environnements variés.
+- Ces images servent de “bases” pour ensuite intégrer / remplacer le visage d’une personne (face swap / inpainting / montage).
+
+Recommandations
+- Format: vertical 2:3
+- Contraintes clés: head-to-toe visible, mains/pieds visibles, visage dégagé, lumière propre sur le visage, pas d’éléments qui traversent le visage.
+
+----------------------------------------
+PROMPT COMMUN (à conserver dans chaque prompt)
+----------------------------------------
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+
+Optional (if you want extra “face swap friendly”): slightly softer facial detail (not overly stylized), consistent skin tone, no face paint.
+
+----------------------------------------
+NEGATIVE PROMPT (si disponible dans ton outil)
+----------------------------------------
+helmet, mask, sunglasses, face paint, extreme close-up, cropped body, out of frame, blurry, motion blur, lowres, deformed hands, extra fingers, missing fingers, text, watermark, logo
+
+========================================
+10 PROMPTS COMPLETS (copier/coller)
+========================================
+
+[01] Rooftop nuit pluie (urbain premium)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: On a rainy skyscraper rooftop at night, city skyline, wet reflective ground, subtle neon bokeh in the distance, wind moving the cape slightly, cinematic rim light.
+
+[02] Rue néon cyberpunk (lisible)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In a neon-lit futuristic street, holographic billboards far in the background, light fog, wet pavement reflections, cyan/magenta lighting, but keep the face clean and well lit.
+
+[03] Désert golden hour
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In a desert canyon at golden hour, sun rays, dust in the air, warm color grading, long shadows, heroic stance on a rock.
+
+[04] Pont + orage (électrique)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: On a bridge during a thunderstorm, lightning in the sky behind the character (not crossing the body), rain, dramatic clouds, strong backlight plus soft frontal fill light on the face.
+
+[05] Laboratoire high-tech
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: Inside a high-tech laboratory, clean sci-fi panels, subtle sparks far behind, cool white/blue lighting, glossy floor, cinematic depth of field, face evenly lit.
+
+[06] Forêt brumeuse
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In a dense forest with mist, moonlight shafts through trees, damp ground, subtle particles in the air, cool green/blue palette, centered full-body hero.
+
+[07] Arctique blizzard
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In an arctic blizzard, snow drifting around (not covering the face), cold blue lighting, ice formations, cape and suit details visible, strong contrast, full body visible.
+
+[08] Ruines antiques (aventure)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In ancient temple ruins, warm torchlight plus ambient moonlight, stone pillars, light dust, heroic stance, keep face unobstructed and well lit.
+
+[09] Hangar / vaisseau spatial (space opera)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: Inside a futuristic spaceship hangar, large door open to space/stars in the distance, cinematic volumetric light beams, metallic floor, full body centered.
+
+[10] Place de ville moderne (jour, pub premium)
+Photorealistic cinematic still. FULL BODY, head-to-toe in frame, feet visible, hands visible. Subject centered, standing, hero pose. Camera far enough so the entire body fits with margin. 35mm lens look, sharp focus, high detail, natural skin texture. Dramatic but clean lighting. No motion blur. No cropping.
+Face clearly visible, unobstructed (no helmet, no mask, no sunglasses, no heavy shadow on the face). Hair not covering the face.
+Leave clean space around the head (no sparks/smoke crossing the face). Neutral facial expression, front-facing or slight 3/4. Even lighting on the face.
+Original superhero design (not from any existing franchise).
+Output: vertical poster, 2:3 aspect ratio.
+Scene: In a modern city plaza at daytime, soft overcast light, clean background architecture, premium commercial look, very sharp full-body, neutral face lighting for easy face replacement.

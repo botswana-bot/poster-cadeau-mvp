@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Démo — Superhéros (avec photo source)</title>
+  <link rel="stylesheet" href="/app.css" />
+  <style>
+    .wrap{max-width:1120px;margin:0 auto;padding:18px 22px 28px}
+    .grid2{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    @media (max-width: 1100px){.grid2{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width: 720px){.grid2{grid-template-columns:repeat(2,1fr)}}
+    .tile{background:#fff;border:1px solid rgba(17,24,39,.08);border-radius:16px;overflow:hidden;box-shadow:var(--shadow2)}
+    .tile img{width:100%;height:auto;display:block}
+    .cap{padding:10px 12px;color:var(--muted);font-size:12px}
+    .note{color:var(--muted);font-size:12px;line-height:1.45;margin-top:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="h1">Démo — Superhéros (à partir d'une photo)</div>
+    <p class="lead">10 rendus générés à partir d'une photo fournie (img2img) + un prompt “superhéros dans un environnement”.</p>
+    <p class="note">Note: c'est une démo technique. L'identité est généralement préservée, mais c'est une recréation (pas un collage pixel-perfect).</p>
+
+    <div class="grid2">
+      <a class="tile" href="/assets/demo/superhero-client/01-rooftop.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/01-rooftop.png" alt="Rooftop" /><div class="cap">01 — Rooftop</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/02-alley.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/02-alley.png" alt="Alley" /><div class="cap">02 — Alley</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/03-desert.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/03-desert.png" alt="Desert" /><div class="cap">03 — Desert</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/04-underwater.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/04-underwater.png" alt="Underwater" /><div class="cap">04 — Underwater</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/05-space.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/05-space.png" alt="Space" /><div class="cap">05 — Space</div></a>
+
+      <a class="tile" href="/assets/demo/superhero-client/06-forest.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/06-forest.png" alt="Forest" /><div class="cap">06 — Forest</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/07-arctic.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/07-arctic.png" alt="Arctic" /><div class="cap">07 — Arctic</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/08-medieval.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/08-medieval.png" alt="Medieval" /><div class="cap">08 — Medieval</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/09-lab.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/09-lab.png" alt="Lab" /><div class="cap">09 — Lab</div></a>
+      <a class="tile" href="/assets/demo/superhero-client/10-storm.png" target="_blank" rel="noreferrer"><img src="/assets/demo/superhero-client/10-storm.png" alt="Storm" /><div class="cap">10 — Storm</div></a>
+    </div>
+
+    <div class="footer">Fichiers: <code>/public/assets/demo/superhero-client/</code> • Page: <code>/demo-superhero-client.html</code></div>
+  </div>
+</body>
+</html>

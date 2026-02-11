@@ -42,20 +42,18 @@ export function picsum(seed, w, h) {
   return `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`;
 }
 
-// Realistic thumbnails with people (free, no API key).
-// Uses randomuser.me portrait images (stable URLs) so we always see a face.
-// For the MVP, we pick different portrait IDs per style.
+// Capsule thumbnails: AI-generated examples stored locally (stable + fast).
 export function stylePhoto(styleId, w = 900, h = 900) {
   const url = {
-    action: "https://randomuser.me/api/portraits/men/32.jpg",
-    comedy: "https://randomuser.me/api/portraits/women/44.jpg",
-    adventure: "https://randomuser.me/api/portraits/men/65.jpg",
-    scifi: "https://randomuser.me/api/portraits/women/68.jpg",
-    magazine: "https://randomuser.me/api/portraits/women/12.jpg",
-    vintage: "https://randomuser.me/api/portraits/men/8.jpg",
-  }[styleId] || "https://randomuser.me/api/portraits/men/1.jpg";
+    action: "/assets/capsules/action.png",
+    comedy: "/assets/capsules/comedy.png",
+    adventure: "/assets/capsules/adventure.png",
+    scifi: "/assets/capsules/scifi.png",
+    magazine: "/assets/capsules/magazine.png",
+    vintage: "/assets/capsules/vintage.png",
+  }[styleId] || "/assets/capsules/action.png";
 
-  // w/h not controllable here; CSS (object-fit: cover) handles cropping.
+  // w/h handled by CSS (object-fit: cover) on the <img>.
   return url;
 }
 

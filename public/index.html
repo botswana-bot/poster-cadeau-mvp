@@ -1,35 +1,31 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Poster cadeau</title>
-    <meta http-equiv="refresh" content="0;url=/index-classic.html" />
-    <script>
-      // Design switcher router
-      (function(){
-        try{
-          const key='poster_mvp_design';
-          const v=localStorage.getItem(key) || 'classic';
-          const map={
-            classic:'/index-classic.html',
-            airbnb:'/index-airbnb.html',
-            'airbnb-b':'/index-airbnb-b.html',
-            'airbnb-c':'/index-airbnb-c.html',
-            'airbnb-d':'/index-airbnb-d.html',
-            'airbnb-e':'/index-airbnb-e.html',
-            'airbnb-f':'/index-airbnb-f.html',
-            'airbnb-g':'/index-airbnb-g.html'
-          };
-          const to = map[v] || map.classic;
-          if (location.pathname !== to) location.replace(to);
-        }catch(e){
-          location.replace('/index-classic.html');
-        }
-      })();
-    </script>
-  </head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>Poster Cadeau — Démo</title>
+    <meta name="description" content="Poster Cadeau — POC">
+    <meta name="author" content="Lovable" />
+
+    <!-- TODO: Update og:title to match your application name -->
+    
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c461a647-7a1d-4134-be6b-a011b7cc910a/id-preview-7bcf787f--d5fa53b5-dccd-47dd-9be0-897b93be89cc.lovable.app-1771056592882.png">
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Lovable" />
+    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c461a647-7a1d-4134-be6b-a011b7cc910a/id-preview-7bcf787f--d5fa53b5-dccd-47dd-9be0-897b93be89cc.lovable.app-1771056592882.png">
+    <meta property="og:title" content="Lovable App">
+  <meta name="twitter:title" content="Lovable App">
+  <meta property="og:description" content="Poster Cadeau — POC">
+  <meta name="twitter:description" content="Poster Cadeau — POC">
+  <script type="module" crossorigin src="/lovable-assets/index-DRV1190k.js"></script>
+  <link rel="stylesheet" crossorigin href="/lovable-assets/index-DkN0iAQ8.css">
+</head>
+
   <body>
-    <p>Redirection…</p>
+    <div id="root"></div>
   </body>
 </html>

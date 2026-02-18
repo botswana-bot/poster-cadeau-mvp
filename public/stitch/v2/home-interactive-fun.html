@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#fb5170",
+              "background-light": "#f8f5f6",
+              "background-dark": "#230f13",
+            },
+            fontFamily: {
+              "display": ["Spline Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Spline Sans', sans-serif; }
+        .sparkle-container { position: relative; }
+        .sparkle-icon { position: absolute; top: -10px; right: -10px; animation: pulse 2s infinite; }
+        .glass-nav { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .horizontal-scroll-mask { mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .category-pill:hover { transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(251, 81, 112, 0.2); }
+    </style>
+<title>Poster Cadeau Home - Fun Variant</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 font-display transition-colors duration-300">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 px-6 py-4">
+<div class="max-w-7xl mx-auto flex justify-between items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-full px-8 py-3 border border-primary/10 shadow-sm">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white">
+<span class="material-icons">movie_filter</span>
+</div>
+<span class="text-xl font-bold tracking-tight text-primary">PosterCadeau</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">How it Works</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Styles</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Reviews</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary/10 text-primary px-6 py-2 rounded-full font-semibold hover:bg-primary/20 transition-all">Login</button>
+<button class="bg-primary text-white px-6 py-2 rounded-full font-semibold shadow-lg shadow-primary/30 hover:shadow-primary/50 transition-all">Create Now</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="pt-32 pb-16 px-6">
+<div class="max-w-5xl mx-auto text-center">
+<h1 class="text-5xl md:text-7xl font-bold mb-6 text-slate-900 leading-[1.1]">
+                Turn Memories into <br/>
+<span class="text-primary italic">Movie Magic</span>
+</h1>
+<p class="text-lg text-slate-600 mb-12 max-w-2xl mx-auto">
+                The AI-powered gift your parents will never forget. Transform photos into stunning cinematic movie posters in seconds.
+            </p>
+<!-- Interactive Search Bar -->
+<div class="relative max-w-2xl mx-auto mb-16">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary via-orange-400 to-primary rounded-full blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative flex items-center bg-white p-2 rounded-full shadow-xl">
+<span class="material-icons text-primary/40 ml-4">auto_awesome</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-slate-700 font-medium px-4" placeholder="Type a theme: 'Superhero Dad' or 'Royal Mom'..." type="text"/>
+<button class="bg-primary text-white px-8 py-3 rounded-full font-bold flex items-center gap-2 hover:bg-primary/90 transition-all">
+<span>Generate</span>
+<span class="material-icons text-sm">rocket_launch</span>
+</button>
+</div>
+</div>
+<!-- Category Pills -->
+<div class="flex flex-wrap justify-center gap-3">
+<button class="category-pill flex items-center gap-2 bg-white px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition-all border border-slate-100">
+<span class="text-lg">🦸‍♂️</span> Super Dad
+                </button>
+<button class="category-pill flex items-center gap-2 bg-primary/10 text-primary px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition-all border border-primary/20">
+<span class="text-lg">👑</span> Queen Mom
+                </button>
+<button class="category-pill flex items-center gap-2 bg-white px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition-all border border-slate-100">
+<span class="text-lg">🎥</span> Vintage Noir
+                </button>
+<button class="category-pill flex items-center gap-2 bg-white px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition-all border border-slate-100">
+<span class="text-lg">✨</span> Fantasy Quest
+                </button>
+<button class="category-pill flex items-center gap-2 bg-white px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition-all border border-slate-100">
+<span class="text-lg">🏎️</span> Action Hero
+                </button>
+</div>
+</div>
+</header>
+<!-- Trust Carousel -->
+<section class="py-8 bg-primary/5 overflow-hidden">
+<div class="flex items-center gap-12 whitespace-nowrap horizontal-scroll-mask animate-marquee">
+<!-- Repeated content for scrolling effect simulation in layout -->
+<div class="flex shrink-0 items-center gap-12 px-4">
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">bolt</span> AI Powered Magic
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">local_shipping</span> Express Shipping
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">verified</span> 100% Love Guarantee
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">lock</span> Secure Payment
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">eco</span> Eco-Friendly Materials
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">bolt</span> AI Powered Magic
+                </div>
+<div class="flex items-center gap-3 text-primary/60 font-semibold uppercase tracking-widest text-xs">
+<span class="material-icons">local_shipping</span> Express Shipping
+                </div>
+</div>
+</div>
+</section>
+<!-- Gallery Grid -->
+<section class="py-24 px-6 max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="text-3xl font-bold text-slate-900 mb-2">Trending Masterpieces</h2>
+<p class="text-slate-500">The most loved styles this week.</p>
+</div>
+<button class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                View Gallery <span class="material-icons">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Product Card 1 -->
+<div class="group relative bg-white rounded-xl p-4 shadow-lg hover:shadow-2xl transition-all">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Cinematic action movie poster featuring an older man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSKUtMTukiCFYLeNpaS33jFTozDEy8H-iBGaUb5vIzBwjf8wBvr0xn6PPzGHMccGjEsdbMOZu7dUdT622DUJGCiIWd3fUV5vkBbThd35vbvZIBD6YSBaSMYad7xpDyqTYbTZ1-pIMC478UeewpWl4odK7Kc_6w-mDwkWiFmnrZRfkXLNALnAnI9sHPv5Fb5Ok8htljF53-3SBEUd6oJM-T4gUyQ22Jrxmi_zM2JsHpcN7aVrKaaSmEEGz6cL0Uol9v3VnuHFB749o"/>
+<!-- Sparkle Icon -->
+<div class="absolute top-4 right-4 bg-yellow-400 text-white p-2 rounded-full shadow-lg">
+<span class="material-icons text-lg">auto_awesome</span>
+</div>
+</div>
+<!-- Floating Price Tag -->
+<div class="absolute -bottom-4 right-8 bg-primary text-white px-6 py-2 rounded-full font-bold shadow-xl">
+                    $39.99
+                </div>
+<div class="pt-8 pb-4">
+<h3 class="text-xl font-bold text-slate-900">The Legend Arrives</h3>
+<p class="text-slate-500 text-sm">Cinematic Blockbuster Style</p>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative bg-white rounded-xl p-4 shadow-lg hover:shadow-2xl transition-all">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Classic royalty themed movie poster with a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEy9JUdRJr6v0_S0cN8gvM6-OtQXGxnfcB1xM_8r2iHDYt_8EWgJeI0uaRbgo8_8xxG-qFIhBfEFtUIIAtmIhJoAfa9_LwlezVvoj5hm8hT_yTzvOSNBbciOWw7Rm-NlZaj_NE1jUls9_ZOme6ctY_SarW5WNvYq-i0n2BnDHEGgwgylc07qUN2iNVkOsvE-YKCMfrexXhHyraL7su0ot2Tf42XTZauRKx9rc49v5uoJWkYS9UAyZPL6IVcTn8LXa0tRfpDB3w6oE"/>
+<div class="absolute top-4 right-4 bg-primary text-white px-4 py-1 rounded-full text-xs font-bold shadow-lg">
+                        HOT
+                    </div>
+</div>
+<div class="absolute -bottom-4 right-8 bg-primary text-white px-6 py-2 rounded-full font-bold shadow-xl">
+                    $44.99
+                </div>
+<div class="pt-8 pb-4">
+<h3 class="text-xl font-bold text-slate-900">Queen of Hearts</h3>
+<p class="text-slate-500 text-sm">Regal &amp; Elegant Style</p>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative bg-white rounded-xl p-4 shadow-lg hover:shadow-2xl transition-all">
+<div class="relative overflow-hidden rounded-lg aspect-[3/4]">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Vintage black and white noir poster portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnKeYJxRCIgr9oMepDCnnEClhIUg0KWnmsw-OkSMjiBn28I2L0qDf6Cbub7KUX8FTp_ntvYb8o34kzNOujlR_SFq0QJLz1Q5OqiKMldUMlY75Negcypgq-Wu6zq42zQC6CgC-5JeksMtqJf37w3Ozwe52Py8Jo-5rKslSY7GE8xCAjpjxDMikar0bxd0yUwAIbqdaMIUo7fDPF4umfTLUj6DhUYpxfKtjfsQhcN7WDC79x-oISIqG4CJe6gDA506QmOf3Fkj8cMNg"/>
+</div>
+<div class="absolute -bottom-4 right-8 bg-primary text-white px-6 py-2 rounded-full font-bold shadow-xl">
+                    $39.99
+                </div>
+<div class="pt-8 pb-4">
+<h3 class="text-xl font-bold text-slate-900">Midnight Noir</h3>
+<p class="text-slate-500 text-sm">Vintage Aesthetic Style</p>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Accordion -->
+<section class="py-24 px-6 bg-slate-900 text-white rounded-[4rem] mx-4 mb-24 overflow-hidden relative">
+<div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="max-w-4xl mx-auto relative z-10">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">Curious? We got answers!</h2>
+<p class="text-slate-400">Everything you need to know about the magic behind the curtain.</p>
+</div>
+<div class="space-y-4">
+<!-- FAQ Item 1 -->
+<div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden group hover:border-primary/50 transition-colors">
+<button class="w-full px-8 py-6 text-left flex justify-between items-center">
+<span class="text-lg font-semibold">How does the AI work?</span>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-icons">add</span>
+</div>
+</button>
+<div class="px-8 pb-6 text-slate-400 hidden group-focus-within:block">
+                        Our advanced neural networks analyze your facial features and skin tones to seamlessly blend your image into artist-crafted cinematic layouts, ensuring a professional look every time.
+                    </div>
+</div>
+<!-- FAQ Item 2 -->
+<div class="bg-white/5 border border-primary/40 rounded-2xl overflow-hidden group shadow-lg shadow-primary/5">
+<button class="w-full px-8 py-6 text-left flex justify-between items-center text-primary">
+<span class="text-lg font-semibold">Can I use low-quality photos?</span>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-icons">remove</span>
+</div>
+</button>
+<div class="px-8 pb-6 text-slate-300">
+                        Absolutely! Our AI upscaling engine enhances the resolution of your photos automatically. While clearer photos are better, we've had amazing results with old family snapshots too!
+                    </div>
+</div>
+<!-- FAQ Item 3 -->
+<div class="bg-white/5 border border-white/10 rounded-2xl overflow-hidden group hover:border-primary/50 transition-colors">
+<button class="w-full px-8 py-6 text-left flex justify-between items-center">
+<span class="text-lg font-semibold">What is the delivery time?</span>
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-icons">add</span>
+</div>
+</button>
+<div class="px-8 pb-6 text-slate-400 hidden group-focus-within:block">
+                        Digital posters are delivered instantly to your email. Physical prints typically arrive within 3-5 business days across the US and Europe.
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Action Button -->
+<div class="fixed bottom-8 right-8 z-[100]">
+<button class="bg-primary text-white flex items-center gap-3 px-6 py-4 rounded-full shadow-2xl shadow-primary/40 hover:scale-105 active:scale-95 transition-all group">
+<span class="font-bold">Start Creating</span>
+<div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-primary transition-colors">
+<span class="material-icons text-sm">auto_fix_high</span>
+</div>
+</button>
+</div>
+<!-- Footer -->
+<footer class="py-16 px-6 border-t border-slate-200">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+<span class="material-icons text-sm">movie_filter</span>
+</div>
+<span class="text-lg font-bold text-primary">PosterCadeau</span>
+</div>
+<p class="text-slate-500 text-sm leading-relaxed">
+                    Bringing families together through the magic of cinema and artificial intelligence.
+                </p>
+</div>
+<div>
+<h4 class="font-bold mb-6">Shop</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Digital Posters</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Canvas Prints</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Framed Collection</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Support</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Track Order</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6">Stay Inspired</h4>
+<div class="flex gap-2 mb-6">
+<input class="bg-white border border-slate-200 rounded-full px-4 py-2 text-sm w-full focus:ring-primary focus:border-primary" placeholder="Your email" type="email"/>
+<button class="bg-primary text-white p-2 rounded-full">
+<span class="material-icons">send</span>
+</button>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all" href="#">
+<i class="material-icons text-lg">facebook</i>
+</a>
+<a class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition-all" href="#">
+<i class="material-icons text-lg">camera_alt</i>
+</a>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-slate-100 text-center text-slate-400 text-xs">
+            © 2024 PosterCadeau AI. All rights reserved. Built with ❤️ for families everywhere.
+        </div>
+</footer>
+</body></html>

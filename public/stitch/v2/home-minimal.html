@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Poster Cadeau - Minimal Cinematic Gifts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff4d6d",
+                        "background-light": "#f8f5f6",
+                        "background-dark": "#230f12",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-pill {
+            background-color: #ff4d6d;
+            color: white;
+        }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-display">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 px-6 lg:px-20 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">movie_edit</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900">Poster Cadeau</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+<a class="hover:text-primary transition-colors" href="#">Posters</a>
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<a class="hover:text-primary transition-colors" href="#">Personalized</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex bg-slate-100 rounded-lg p-1">
+<button class="px-3 py-1 text-xs font-semibold bg-white rounded shadow-sm">A</button>
+<button class="px-3 py-1 text-xs font-semibold text-slate-500">B</button>
+<button class="px-3 py-1 text-xs font-semibold text-slate-500">C</button>
+</div>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 lg:px-20 py-12">
+<!-- Airbnb Style Search Bar -->
+<div class="flex justify-center mb-16">
+<div class="flex flex-col md:flex-row items-center bg-white border border-slate-200 shadow-xl shadow-slate-200/50 rounded-full px-4 py-2 w-full max-w-3xl divide-y md:divide-y-0 md:divide-x divide-slate-200">
+<div class="flex-1 px-6 py-2 text-left w-full">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Destination</p>
+<input class="w-full bg-transparent border-none p-0 text-sm focus:ring-0 placeholder-slate-400" placeholder="Where for the art?" type="text"/>
+</div>
+<div class="flex-1 px-6 py-2 text-left w-full">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Category</p>
+<input class="w-full bg-transparent border-none p-0 text-sm focus:ring-0 placeholder-slate-400" placeholder="Superhero, Vintage..." type="text"/>
+</div>
+<div class="flex-1 px-6 py-2 text-left flex items-center justify-between w-full">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Budget</p>
+<input class="w-full bg-transparent border-none p-0 text-sm focus:ring-0 placeholder-slate-400" placeholder="Add price" type="text"/>
+</div>
+<button class="bg-primary text-white p-3 rounded-full hover:bg-primary/90 transition-all flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Category Capsules -->
+<div class="flex items-center gap-3 overflow-x-auto pb-8 no-scrollbar scroll-smooth">
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap active-pill">All Collections</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Trends</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Sci-Fi</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Superheroes</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Vintage</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Portraits</button>
+<button class="px-5 py-2 rounded-full border border-slate-200 text-sm font-medium hover:border-slate-900 transition-colors whitespace-nowrap">Minimalist</button>
+</div>
+<!-- Product Grid (2:3 Ratio) -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-24">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[2/3] overflow-hidden rounded-xl bg-slate-100 mb-4 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-slate-200">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Cinematic superhero father poster gift art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCTz8QxaRhdAjFB3mHYpjdFW9LfAGabSMiR55YWZuLzNjOzCesFYVXjKAHAsY-BwFwFn0SR7aigOxNelwT_dQ-4-1XqecEN0Hi3-WU2ikpVjAVHMyfqPssGyOSziSwd_NJ9Z0xyY7u4DFV5ROxEB2dY5b34i77L5L4OdYT5VFikvTxIvBmvcKiqpELQ25HSwowxTp-69birPiR_EsflksKsrBgR5dKMGpF7cADu2uERt4a4IpwQlfyGkpDflU7848JwN9yxU8j-4BE')"></div>
+<div class="absolute top-3 left-3 bg-white px-2 py-1 rounded-md shadow-sm">
+<p class="text-[10px] font-extrabold text-primary uppercase">Guest Favorite</p>
+</div>
+<button class="absolute top-3 right-3 text-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-slate-900 leading-tight">Dad as a Superhero</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-slate-500">4.9 (124 reviews)</span>
+</div>
+<p class="mt-2 text-sm font-bold text-slate-900">$49.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[2/3] overflow-hidden rounded-xl bg-slate-100 mb-4 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-slate-200">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Classic vintage film poster portrait of mother" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4_dB3NEYCt6d1Cs1xsMjrgko0dV4fYhcUpMTePGcYT-txMYw1GKOSAuOKqSCsn56VDp3uTGzFjSkcFb_miUlMWZsu-qKg5PezvIb1UwXXD3jKOc0Z_vR8DgdY3oS-N2N0Y95A6OXgd3QVRg2u4-06mpukUL9lTINQSrMlKY7kcCjmPE-qQA70GbdNj83vsqFj-hqAtEN_KMN5butCyqsesyE7APrLE1ukGrjLFBCo4FY6Qno-llGO-CzEqAs5xEdh8W3Wdc1w0pk')"></div>
+<button class="absolute top-3 right-3 text-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-slate-900 leading-tight">Vintage Film Portrait</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-slate-500">4.8 (92 reviews)</span>
+</div>
+<p class="mt-2 text-sm font-bold text-slate-900">$54.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[2/3] overflow-hidden rounded-xl bg-slate-100 mb-4 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-slate-200">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Epic sci-fi space odyssey family art" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcUJ9DvZhPsMDjaXgZLMo32sn6weupY01MrpMH2-CiWhLUgsFNQO4EmgyCrddgxhHQ1rdNsuDE5vfkqqYGlWdDEdVguqC_XRQfccBOFlZ8gmFaJJEfqE7G2DzNMZ-WlZLH_5ZkvbZ4KCX0YOPl8A9hNkUoGcpYOufMFIxjzpk_sARsMOrhii50g2Qk5SjNgB2VU6z_x4hpwq0C3opdy2fXxWenfCxozKOWrEWb0xCeMnGerxsfYSKiOIquVTq6H3LC285mFMOsRAU')"></div>
+<button class="absolute top-3 right-3 text-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-slate-900 leading-tight">Family Space Odyssey</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-slate-500">5.0 (56 reviews)</span>
+</div>
+<p class="mt-2 text-sm font-bold text-slate-900">$59.00</p>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[2/3] overflow-hidden rounded-xl bg-slate-100 mb-4 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-slate-200">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Godfather style cinematic grandfather portrait" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvZY_n6LF5DqjdjpPD3WxNbDLTs5b2vyHxPyruk4ODQ0BuqwQlEqKvp9zvPaBqc_FSCp_uIgk0f4RnNo7iQWa8PQnPFJuyeZGQE1QpW8guE5odoEpQKYzACoJngnnGTr0ku0UGJSnuK_wp9xdBTdzw3aA7XBsHEfcdNVHDGMOCPQCxHUO5854Zo-f1POKr9u3sl7ijyLoV5D9wE_cXurL-TAMe-g3dbKRGy0dOq6H8viO66U6_aC9LYgkwnTofxKi2tHkXHycjf2A')"></div>
+<button class="absolute top-3 right-3 text-white/70 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-semibold text-slate-900 leading-tight">The Grandfather Legacy</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-xs text-yellow-500" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs text-slate-500">4.7 (210 reviews)</span>
+</div>
+<p class="mt-2 text-sm font-bold text-slate-900">$49.00</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-12 py-16 border-y border-slate-100 mb-24">
+<div class="text-center flex flex-col items-center gap-4">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">rocket_launch</span>
+</div>
+<h4 class="font-bold text-slate-900">Fast Worldwide Shipping</h4>
+<p class="text-sm text-slate-500 max-w-xs">Delivered to your doorstep within 5-7 business days across the globe.</p>
+</div>
+<div class="text-center flex flex-col items-center gap-4">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">auto_awesome</span>
+</div>
+<h4 class="font-bold text-slate-900">AI-Powered Precision</h4>
+<p class="text-sm text-slate-500 max-w-xs">Our advanced cinematic engine turns any photo into high-definition movie art.</p>
+</div>
+<div class="text-center flex flex-col items-center gap-4">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600">verified_user</span>
+</div>
+<h4 class="font-bold text-slate-900">Secure Checkout</h4>
+<p class="text-sm text-slate-500 max-w-xs">Your payment data is encrypted and handled by industry-leading providers.</p>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-3xl mx-auto py-12">
+<h2 class="text-3xl font-bold text-slate-900 text-center mb-12">Common Questions</h2>
+<div class="space-y-4">
+<details class="group bg-slate-50 rounded-xl p-6 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer" open="">
+<summary class="flex items-center justify-between text-slate-900 font-semibold">
+<span>How do I upload the photo?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        After selecting your favorite poster style, you'll be prompted to upload a high-resolution photo. Our AI works best with clear face portraits.
+                    </p>
+</details>
+<details class="group bg-slate-50 rounded-xl p-6 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer">
+<summary class="flex items-center justify-between text-slate-900 font-semibold">
+<span>What paper quality do you use?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        We print on 200gsm museum-grade semi-gloss paper, ensuring colors stay vibrant and cinematic for decades.
+                    </p>
+</details>
+<details class="group bg-slate-50 rounded-xl p-6 [&amp;_summary::-webkit-details-marker]:hidden cursor-pointer">
+<summary class="flex items-center justify-between text-slate-900 font-semibold">
+<span>Can I see a preview before printing?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-slate-600 text-sm leading-relaxed">
+                        Yes! Our real-time generator shows you a preview instantly. We also send a final proof for approval for custom personalized orders.
+                    </p>
+</details>
+</div>
+</section>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-slate-50 border-t border-slate-100 py-20">
+<div class="max-w-7xl mx-auto px-6 lg:px-20 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary text-2xl">movie_edit</span>
+<h1 class="text-lg font-bold tracking-tight text-slate-900">Poster Cadeau</h1>
+</div>
+<p class="text-sm text-slate-500">Creating cinematic memories for the ones you love most.</p>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 mb-6">Shop</h5>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">All Posters</a></li>
+<li><a class="hover:text-primary" href="#">Best Sellers</a></li>
+<li><a class="hover:text-primary" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 mb-6">Support</h5>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">Shipping Info</a></li>
+<li><a class="hover:text-primary" href="#">Returns</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-slate-900 mb-6">Newsletter</h5>
+<p class="text-sm text-slate-500 mb-4">Get 10% off your first order.</p>
+<div class="flex gap-2">
+<input class="flex-1 bg-white border border-slate-200 rounded-lg px-4 py-2 text-sm focus:ring-primary focus:border-primary" placeholder="Your email" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-primary/90">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 lg:px-20 pt-16 mt-16 border-t border-slate-200 flex flex-col md:flex-row justify-between gap-6 text-[12px] text-slate-400">
+<p>© 2024 Poster Cadeau. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="hover:text-slate-600" href="#">Privacy Policy</a>
+<a class="hover:text-slate-600" href="#">Terms of Service</a>
+<a class="hover:text-slate-600" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+</body></html>

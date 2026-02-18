@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Poster Cadeau - Fun Cinematic Posters</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff4d6d",
+                        "background-light": "#f8f5f6",
+                        "background-dark": "#230f12",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background-color: rgba(248, 245, 246, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#1d0c0f] font-display">
+<!-- Sticky Bubbly Header -->
+<header class="sticky top-4 z-50 mx-auto max-w-[1200px] px-4">
+<nav class="glass-nav flex items-center justify-between px-6 py-3 rounded-full border border-primary/10 shadow-lg">
+<div class="flex items-center gap-2">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">movie_filter</span>
+</div>
+<span class="text-xl font-black tracking-tight text-[#1d0c0f]">Poster Cadeau</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">How it Works</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Themes</a>
+</div>
+<div class="flex items-center gap-3">
+<button class="hidden sm:block px-5 py-2 text-sm font-bold rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-all">
+                    Login
+                </button>
+<button class="px-6 py-2.5 text-sm font-bold rounded-full bg-primary text-white shadow-md shadow-primary/30 hover:scale-105 transition-transform">
+                    Create Now
+                </button>
+</div>
+</nav>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 pt-12">
+<!-- Hero Section -->
+<section class="text-center mb-16">
+<div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-primary/10 text-primary text-xs font-black uppercase tracking-widest">
+                ✨ AI Magic for your little hero
+            </div>
+<h1 class="text-5xl md:text-7xl font-black leading-[1.1] tracking-tighter mb-6 text-[#1d0c0f]">
+                Turn Your Child into a <span class="text-primary">Movie Star</span>
+</h1>
+<p class="text-lg md:text-xl text-[#a14556] max-w-2xl mx-auto mb-10 font-medium">
+                AI-generated cinematic posters that bring their imagination to life. Personalised, playful, and premium.
+            </p>
+<!-- Airbnb Style Search Bar -->
+<div class="max-w-3xl mx-auto bg-white rounded-full shadow-2xl p-2 flex flex-col md:flex-row items-center border border-primary/5">
+<button class="w-full md:w-1/3 px-8 py-4 text-left hover:bg-background-light rounded-full transition-colors flex items-center gap-4 group">
+<div class="p-2 bg-blue-100 text-blue-600 rounded-full group-hover:bg-blue-600 group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">auto_awesome</span>
+</div>
+<div>
+<p class="text-[10px] font-black uppercase text-gray-400">Theme</p>
+<p class="text-sm font-bold text-gray-700">Which world?</p>
+</div>
+</button>
+<div class="hidden md:block w-px h-8 bg-gray-100"></div>
+<button class="w-full md:w-1/3 px-8 py-4 text-left hover:bg-background-light rounded-full transition-colors flex items-center gap-4 group">
+<div class="p-2 bg-orange-100 text-orange-600 rounded-full group-hover:bg-orange-600 group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">cake</span>
+</div>
+<div>
+<p class="text-[10px] font-black uppercase text-gray-400">Age</p>
+<p class="text-sm font-bold text-gray-700">How old is the hero?</p>
+</div>
+</button>
+<div class="hidden md:block w-px h-8 bg-gray-100"></div>
+<div class="w-full md:w-1/3 pl-8 pr-2 py-2 flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="p-2 bg-purple-100 text-purple-600 rounded-full group-hover:bg-purple-600 group-hover:text-white transition-all">
+<span class="material-symbols-outlined text-xl">palette</span>
+</div>
+<div>
+<p class="text-[10px] font-black uppercase text-gray-400">Style</p>
+<p class="text-sm font-bold text-gray-700">Artistic Style</p>
+</div>
+</div>
+<button class="bg-primary p-4 rounded-full text-white shadow-lg hover:rotate-12 transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Category Capsules -->
+<section class="mb-20 overflow-x-auto pb-4 no-scrollbar">
+<div class="flex justify-center gap-6 min-w-max px-4">
+<a class="flex flex-col items-center gap-3 group" href="#">
+<div class="size-20 rounded-full border-4 border-primary bg-primary/5 flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-xl shadow-primary/20 overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-3xl text-primary">pets</span>
+</div>
+<span class="text-sm font-black text-[#1d0c0f]">Dino World</span>
+</a>
+<a class="flex flex-col items-center gap-3 group" href="#">
+<div class="size-20 rounded-full border-4 border-blue-400 bg-blue-50 flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-xl shadow-blue-400/20 overflow-hidden">
+<span class="material-symbols-outlined text-3xl text-blue-500">rocket_launch</span>
+</div>
+<span class="text-sm font-black text-gray-600 group-hover:text-[#1d0c0f]">Deep Space</span>
+</a>
+<a class="flex flex-col items-center gap-3 group" href="#">
+<div class="size-20 rounded-full border-4 border-purple-400 bg-purple-50 flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-xl shadow-purple-400/20 overflow-hidden">
+<span class="material-symbols-outlined text-3xl text-purple-500">auto_fix_high</span>
+</div>
+<span class="text-sm font-black text-gray-600 group-hover:text-[#1d0c0f]">Magic King</span>
+</a>
+<a class="flex flex-col items-center gap-3 group" href="#">
+<div class="size-20 rounded-full border-4 border-yellow-400 bg-yellow-50 flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-xl shadow-yellow-400/20 overflow-hidden">
+<span class="material-symbols-outlined text-3xl text-yellow-600">bolt</span>
+</div>
+<span class="text-sm font-black text-gray-600 group-hover:text-[#1d0c0f]">Superhero</span>
+</a>
+<a class="flex flex-col items-center gap-3 group" href="#">
+<div class="size-20 rounded-full border-4 border-emerald-400 bg-emerald-50 flex items-center justify-center transition-all group-hover:scale-110 group-hover:shadow-xl shadow-emerald-400/20 overflow-hidden">
+<span class="material-symbols-outlined text-3xl text-emerald-600">castle</span>
+</div>
+<span class="text-sm font-black text-gray-600 group-hover:text-[#1d0c0f]">Fairytale</span>
+</a>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="mb-24 px-4">
+<div class="flex items-center justify-between mb-10">
+<h2 class="text-3xl font-black tracking-tight">Featured Masterpieces</h2>
+<a class="text-primary font-bold flex items-center gap-2 hover:gap-3 transition-all" href="#">View All <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl shadow-primary/5 transition-transform group-hover:-translate-y-2">
+<img class="w-full h-full object-cover" data-alt="Cinematic fantasy poster of a child riding a glowing dragon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvQbYqPVcizIhl-couGRZ3bImcVnOXbTEzxrAtBTuhxa5zYbgs80-LOR9UNJpDV3k6SlG3GeC31Vz1EJEHsPEYy_jam9sGV8Mx7ZLaO2Pmgl93QZlS274_zQc8W2W4KFgE0064ywadlIYbN_aHmqTsc4uV3d5pRl-wSGgZWJvkoMxtxLTHxIgaabdTyvRXpH3W44RHYWV6C6pJXO-ecMfv39HGGHI5G76hqX7cNP-B22kIDgUYpJYgoaS6nN78b-NSlQsuMhQb44k"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Kids' Choice</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-[#1d0c0f] py-3 rounded-full font-bold shadow-xl">Customize Now</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-black text-xl mb-1">The Dragon Rider</h3>
+<p class="text-sm text-gray-500 font-medium">Magic Kingdom Theme</p>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-lg">
+<p class="text-primary font-black text-lg">$49</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl shadow-primary/5 transition-transform group-hover:-translate-y-2">
+<img class="w-full h-full object-cover" data-alt="Futuristic space poster with a young astronaut exploring a purple planet" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8G_jU3aLMqE3m1Px14fRnfd5W4l4UTkKO1aD16xYZVHYlzW354LLqClUPqYJZrt4H1RsGhTOLdBWtFOGBjRgUltfUnWVQ6XiQ2Z1amJ7IAUolQxoEUV57iMbsvBJVLCP3cRzv3x5w1CSQLbNlkJT8CUeKmChoQzCXOT7eK3v0ziahjjX9C8kAMHa964fhEZH6w0ieN4_00_F1aKo2tyJUEw23MKHIRCIIkqbZNtH0ypAH1Bt1qJIeHkJU5_4sm0WIlYe_mRXMFps"/>
+<div class="absolute top-4 left-4">
+<span class="bg-blue-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">New Arrival</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-[#1d0c0f] py-3 rounded-full font-bold shadow-xl">Customize Now</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-black text-xl mb-1">Star Voyager</h3>
+<p class="text-sm text-gray-500 font-medium">Deep Space Theme</p>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-lg">
+<p class="text-primary font-black text-lg">$54</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 shadow-xl shadow-primary/5 transition-transform group-hover:-translate-y-2">
+<img class="w-full h-full object-cover" data-alt="Epic prehistoric jungle poster with a small child standing near a friendly T-Rex" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqyBjWFEGfM_0hMqzmRetM5oibvfh25yOufdyLJ1szKgQdMOaa065Rhaafm_Jvm-gBU44CJkbChdiXmFaXf2UdKDC6PoUpHYbyHnhnW_avv390wDLB9UaCMQBNUJHFWlHc_w8J55d9KGS6iZZ9fnl6Ibhzd7C9GUpuG7ZDYmCR6cKAN2e86lTKWHu8_ocvip9TWPaN6oijFTmlzhpc-gVhDSCC9Am9EpLvz4doOGt6WrutDwUxo_VgVFOrZV0EhuQlqK1fjSZlRFs"/>
+<div class="absolute top-4 left-4">
+<span class="bg-emerald-500 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Popular</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<button class="w-full bg-white text-[#1d0c0f] py-3 rounded-full font-bold shadow-xl">Customize Now</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-black text-xl mb-1">Dino Guardian</h3>
+<p class="text-sm text-gray-500 font-medium">Prehistoric Adventure Theme</p>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-lg">
+<p class="text-primary font-black text-lg">$49</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="mb-24 bg-primary text-white rounded-[2.5rem] p-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center relative z-10">
+<div class="flex flex-col items-center gap-4">
+<div class="size-20 bg-white/20 rounded-2xl flex items-center justify-center rotate-3">
+<span class="material-symbols-outlined text-4xl">local_shipping</span>
+</div>
+<h4 class="text-2xl font-black">Fast Delivery</h4>
+<p class="text-white/80 font-medium">Shipped to your doorstep in 3-5 business days, worldwide.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="size-20 bg-white/20 rounded-2xl flex items-center justify-center -rotate-6">
+<span class="material-symbols-outlined text-4xl">workspace_premium</span>
+</div>
+<h4 class="text-2xl font-black">Museum Quality</h4>
+<p class="text-white/80 font-medium">Printed on premium 200gsm silk paper with archival inks.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="size-20 bg-white/20 rounded-2xl flex items-center justify-center rotate-6">
+<span class="material-symbols-outlined text-4xl">mood</span>
+</div>
+<h4 class="text-2xl font-black">100% Joy Guarantee</h4>
+<p class="text-white/80 font-medium">If they don't love their movie star transformation, we'll fix it.</p>
+</div>
+</div>
+</section>
+<!-- FAQ Accordion -->
+<section class="max-w-3xl mx-auto mb-24 px-4">
+<h2 class="text-4xl font-black text-center mb-12">Common Questions</h2>
+<div class="space-y-4">
+<div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-black text-[#1d0c0f]">How does the AI magic work?</h4>
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-primary/20 p-6 shadow-md transition-shadow cursor-pointer">
+<div class="flex justify-between items-center mb-4">
+<h4 class="text-lg font-black text-[#1d0c0f]">What kind of photos should I upload?</h4>
+<span class="material-symbols-outlined text-primary">remove_circle</span>
+</div>
+<p class="text-gray-600 font-medium leading-relaxed">
+                        For the best movie star results, upload 3-5 clear photos of your child's face from different angles. Make sure the lighting is natural and no hats or sunglasses are blocking the face!
+                    </p>
+</div>
+<div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-black text-[#1d0c0f]">Can I see a preview before printing?</h4>
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</div>
+</div>
+<div class="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex justify-between items-center">
+<h4 class="text-lg font-black text-[#1d0c0f]">What are the poster sizes?</h4>
+<span class="material-symbols-outlined text-primary">add_circle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="mb-24 text-center px-4">
+<div class="bg-background-light border-2 border-dashed border-primary/30 rounded-[3rem] p-16">
+<h2 class="text-4xl md:text-5xl font-black mb-6">Ready to Create History?</h2>
+<p class="text-xl text-[#a14556] font-medium mb-10 max-w-xl mx-auto">Join 10,000+ happy parents who turned their kids' dreams into cinematic art.</p>
+<button class="px-12 py-5 bg-primary text-white text-xl font-black rounded-full shadow-2xl shadow-primary/40 hover:scale-110 active:scale-95 transition-all">
+                    Start Creating Now
+                </button>
+<div class="mt-8 flex items-center justify-center gap-2">
+<div class="flex -space-x-3">
+<img class="size-10 rounded-full border-2 border-white" data-alt="User profile avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWNWmK6OIbASvG8QBiy0p8wDAdkf44Jc2sXHwntHb1kQXxNofI6OZpunpoNeLGmNXOqZoU9I43m5aPLNbNQ_ctxmYUdue0XjK6eGP7vfQkRCVjV46OiYBChUWSIeT9WBp2s6yRry-rcFsie8N9SYYpxCsBwcDt8q_SVES4zcij2n0wyy9nxTC_axvvDiJpamZEmNQRle1WvaX_q1l6koE8o1vmStKrsCfktQIecZh2w2tE_V4Q6FUZRyUpg4g5yOE2CdmYskP9peI"/>
+<img class="size-10 rounded-full border-2 border-white" data-alt="User profile avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4Pvlm_2O3TRTD2mjlQDCYFbPDJY82vwlahFqzCxz84-C18Ro-7osB4liiPvOLG78BILUlOFifbFDSWrhk7C0u_ukfprosesSVqrTFMEKklCwCVuODzW0Vo_G0iFrrD-qT7uzPUxGW1CuiGH0zjyAjueq1awFtytVwCCHns3VZPJnhWn5JRvzduw_KQ8i9DHElAhPZLjY4ODoZP-i9-ZBaV5LisnQijceTdCiglq1pldti2i4zzcBj_X0B5myPWSGOEzWwUzicLoc"/>
+<img class="size-10 rounded-full border-2 border-white" data-alt="User profile avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQP38h1C5VL9_jLQ4Bry-1S26YqyEzer-bnSELPmzHi6zWPKgaItsmoofhUb1p7zUi7aqdRpoiVu6bvUySQz8j0xbFNR_CTDryPwwAQYCJQmT42coeCVBflaRFmLDg3dOFcC7sbmtD_lQa1EQbYWAvU9GMeh_52BAmsd4OutVMg48RqPAGCpaaJ0RFOR4oYl6ZRu9opUAEKSkDUzXWXC-9WfxKM4z1IaBzJujq3KHuecpJTdfbl32rsP65_9i3JdqlU59dhIeBGTE"/>
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-[10px] font-bold text-white border-2 border-white">+10k</div>
+</div>
+<p class="text-sm font-bold text-[#1d0c0f]">Trusted by families worldwide</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white border-t border-gray-100 py-16 px-4">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="bg-primary p-1.5 rounded-lg text-white">
+<span class="material-symbols-outlined text-2xl">movie_filter</span>
+</div>
+<span class="text-xl font-black tracking-tight text-[#1d0c0f]">Poster Cadeau</span>
+</div>
+<p class="text-gray-500 font-medium max-w-xs mb-8">
+                    We're on a mission to bring cinematic imagination to every child's bedroom wall. Created with ❤️ by parents, for parents.
+                </p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full bg-background-light flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">public</span>
+</a>
+<a class="size-10 rounded-full bg-background-light flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-black text-lg mb-6">Shop</h5>
+<ul class="space-y-4 text-gray-500 font-bold text-sm">
+<li><a class="hover:text-primary" href="#">All Themes</a></li>
+<li><a class="hover:text-primary" href="#">Best Sellers</a></li>
+<li><a class="hover:text-primary" href="#">Gift Cards</a></li>
+<li><a class="hover:text-primary" href="#">Reviews</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-black text-lg mb-6">Support</h5>
+<ul class="space-y-4 text-gray-500 font-bold text-sm">
+<li><a class="hover:text-primary" href="#">How it Works</a></li>
+<li><a class="hover:text-primary" href="#">Shipping Info</a></li>
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-16 pt-8 border-t border-gray-100 text-center">
+<p class="text-xs font-black text-gray-400 uppercase tracking-widest">© 2024 Poster Cadeau. All Rights Reserved.</p>
+</div>
+</footer>
+</body></html>

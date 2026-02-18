@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ff4d6d",
+              "background-light": "#f8f5f6",
+              "background-dark": "#230f12",
+            },
+            fontFamily: {
+              "display": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .poster-aspect { aspect-ratio: 2 / 3; }
+        .sticky-header { position: sticky; top: 0; z-index: 50; }
+        .glass-effect { backdrop-filter: blur(8px); background-color: rgba(248, 245, 246, 0.8); }
+    </style>
+<title>Category: Space Pilot - CosmicPosters</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#1d0c0f]">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden">
+<!-- Sticky Navigation -->
+<header class="sticky-header glass-effect border-b border-primary/10 px-6 lg:px-20 py-4">
+<div class="mx-auto max-w-[1200px] flex items-center justify-between gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl">rocket_launch</span>
+</div>
+<h2 class="text-xl font-black tracking-tight text-[#1d0c0f]">CosmicPosters</h2>
+</div>
+<!-- Search Bar -->
+<div class="flex-1 max-w-xl">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-4 text-primary/60 group-focus-within:text-primary">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="w-full h-11 bg-white border-none rounded-xl pl-12 pr-4 text-sm focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400 shadow-sm" placeholder="Search for space themes, astronauts, or ships..." type="text"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-[#1d0c0f]/70">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-primary underline underline-offset-8" href="#">Collections</a>
+<a class="hover:text-primary transition-colors" href="#">Custom</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2.5 rounded-xl bg-white text-[#1d0c0f] hover:bg-primary/10 transition-colors shadow-sm relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 size-2 bg-primary rounded-full"></span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary/20 p-0.5">
+<div class="size-full rounded-full bg-cover bg-center" data-alt="User profile circular avatar image" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9cULf8MmisxccvHoMf81GAwhNV7lN_3csyxu-3DcXiMevOS35019Rz-MSyM0_djsaNgcO8uc9JxeI62F68cRSsTUBottzaN5XqEJRlHliCijkX9LftLKBxl-U9mTKLm1zRBX-N-9_Jctmz5_3ZU0D-N9GtAKRo3D9uyoa4j4t3Sla24zP9ROrrH9PgY1005b7KqwXYrXZ30wJbVklYmkGp4eGSD4eyy-4R5eqakWbUZwU-XcQyZxsSmUwQfHLX-oDE5rziPWucos')"></div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="mx-auto max-w-[1200px] w-full px-6 lg:px-20 py-10">
+<!-- Hero Section -->
+<div class="mb-12">
+<div class="flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-widest mb-2">
+<span class="w-8 h-px bg-primary"></span>
+                Featured Theme
+            </div>
+<h1 class="text-5xl font-black text-[#1d0c0f] mb-4 tracking-tighter">Category: Space Pilot</h1>
+<p class="max-w-2xl text-lg text-gray-600 leading-relaxed">
+                Embark on a galactic adventure. Transform your favorite moments into cinematic space odyssey posters. High-definition prints that turn your world into a playground for the stars.
+            </p>
+</div>
+<!-- Filters & Sorting -->
+<div class="flex flex-wrap items-center justify-between gap-4 mb-10 pb-6 border-b border-primary/5">
+<div class="flex gap-2 overflow-x-auto pb-2 sm:pb-0 no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20 whitespace-nowrap">All Posters</button>
+<button class="px-5 py-2 rounded-full bg-white text-[#1d0c0f] text-sm font-semibold hover:bg-primary/5 transition-colors whitespace-nowrap shadow-sm">Commanders</button>
+<button class="px-5 py-2 rounded-full bg-white text-[#1d0c0f] text-sm font-semibold hover:bg-primary/5 transition-colors whitespace-nowrap shadow-sm">Starships</button>
+<button class="px-5 py-2 rounded-full bg-white text-[#1d0c0f] text-sm font-semibold hover:bg-primary/5 transition-colors whitespace-nowrap shadow-sm">Nebula backgrounds</button>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg text-sm font-semibold shadow-sm text-gray-700">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white rounded-lg text-sm font-semibold shadow-sm text-gray-700">
+                    Sort by: Popular
+                    <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+<!-- Poster Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Poster Card 1 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Astronaut pilot floating in a colorful nebula" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8wsDBZQ-mIw98nM-mcvMlpRs4OkI1_tGPZYD8RAdRGxHLu77TubjqzDXMi23GiLnbl9FHi4h_zH3pN-d9HD_9vO074Or7icEuU3p3He2VmSR3F96mQB2YE0N5PsMEzOKxbDoEU_MQm_znCXUIgZdAcK3IXoCIZfqp24IXk1NMAMmyURxTRXEiKLYCMs6MU2BSkznCHiQznUZT-D3uGQOfvG0BDhM3bkACnzPrnZxJFYMwdvBbjDqrnVakFiusjnjG7fvvjcVCUoc')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">The Nebula Captain</h3>
+<p class="text-sm text-gray-500">Premium Matte Print</p>
+</div>
+<span class="font-black text-primary text-lg">$49.00</span>
+</div>
+</div>
+<!-- Poster Card 2 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Retro style spaceship orbiting a blue planet" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAa1gpWAtoJkV7QD7XFsJ8YiQQy5c_eyEVXubh_Wbeo_v82mhPxelAMZEEgnaVL2-CMvZZJPuAjz4DSguVUgWDxTE8UCniUIVeVx8d15Zcv6qDoc786wQauPhnbCb62kGjlL8j9aHVLbafEDJqDjEeW60RlINpzfsYtmu4EwO80h5tmQ7QcVzjXvhTK-9V4edwkMsOp7sw8xsNTf0hjG7zay2R1L_NkY8QcFugIsZOOxTlD8z6CFu_uJUGAWGO83_L0ZIuofOLoenM')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">Stellar Voyager</h3>
+<p class="text-sm text-gray-500">Premium Matte Print</p>
+</div>
+<span class="font-black text-primary text-lg">$55.00</span>
+</div>
+</div>
+<!-- Poster Card 3 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Glowing cosmic horizon with distant stars" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBiwRkhB8s73_a7O3iR7mlGwFvnnFPUbYyP2s3MMGGoia_wY-n2yb9kspSvJy__WyJCbWHTDB6TDgxKs9VwHHLz5RsOG16m7CWzmlF3q-ozfhEQFRzuYwg_479YV66NDhr9lCdPrqOmdC-arolI1Sj0gWrvstzmhlQSkMqt_kItTey988hQKkxucypOkxhku3qD4WrAN0GVn4cpJpJ6lR_aRFRrPlQ8kA3tiy1hq52mhaR3QhTtqSSOpXoNHPta7aVn0fxetZrrXO0')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">Orion’s Edge</h3>
+<p class="text-sm text-gray-500">Handcrafted digital art</p>
+</div>
+<span class="font-black text-primary text-lg">$49.00</span>
+</div>
+</div>
+<!-- Poster Card 4 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Futuristic pilot silhouette inside a cockpit" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAoOmNVGQPLHXkXQ2OCZJ2hi-XCKTo8c75F0UN0CpDA9Q41Y-6HjLdHOJn2Tlm-uMMRkIiGBGXCsdJA7E2rHL5kXslzyy5MtcnCpwmx3B4xnmLfEPr0VOt9FCQDXatdjUx6xUDB0x0C9ahwxjWxU0jTfKvcurizDtiDw3zUPXUuX0h4dDArdB2op7TWjVZmoJntbT7fBkqDjFHF4cp151UoN1z6Vix4FmKerBbKeskTLXUFlh-kv7hn_D3zRTz8wP_ftR0sHFpBOuw')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">Supernova Pilot</h3>
+<p class="text-sm text-gray-500">Limited Edition</p>
+</div>
+<span class="font-black text-primary text-lg">$60.00</span>
+</div>
+</div>
+<!-- Poster Card 5 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Galactic explosion with vibrant pink hues" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ-s6xGk3QmC3NKoNnFFS1Qq4fbV8BzoBz_khiaFhRoh1fXlPNslLAI9zzX6pe_L3me9zgp-lpJEXrOq6sBgr0b2Qr2EwnFQSQL0kE_BCQzqy17SmliwzAHOLJkjEGO4TuHSv07KnqkG8kfEmZrAKba29dTefRi7nF6gymAAeAv2It11Mf-fnID_-xMzvbISj_YgQ-FilCVzUYaVRn_LVVwOI-gCEXXZfu_K44HrCsg9L6mSwHIP7M-tdnHMoQbcI5J-DmzNuuyQo')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">Galaxy Guardian</h3>
+<p class="text-sm text-gray-500">Premium Matte Print</p>
+</div>
+<span class="font-black text-primary text-lg">$45.00</span>
+</div>
+</div>
+<!-- Poster Card 6 -->
+<div class="group flex flex-col gap-4">
+<div class="relative poster-aspect w-full overflow-hidden rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300">
+<div class="size-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Abstract deep space void and stars" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBw6aZaNCqIydiqmSZoa6AzRWb0Pg3BpAK_NvpFucyalAF31B2Nk33UELOQ3qq2OTM1voLF6kFqqPLvYlg4xkVaqk9Fdj0hwm0M7r47TTc_k0lULwbpxUs5rCxAl3RD0Ak-ttzs9E9vDYJtIMH_6Ruec223voX7zLRsYFKpKWe5CCQPswuOApxzpnLqjFKhByDQjeGI8-SH0fx17WDefzHNm48BkVrKf8qqtdyqeoVJrClo5kuCGFT7F5Vs0F0furPVmERp7HrvEEc')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-primary text-white py-3 rounded-lg font-bold text-sm tracking-wide shadow-lg">PERSONALIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-bold text-[#1d0c0f] text-lg">Void Explorer</h3>
+<p class="text-sm text-gray-500">Cinematic style</p>
+</div>
+<span class="font-black text-primary text-lg">$52.00</span>
+</div>
+</div>
+<!-- Skeleton Loading State 1 -->
+<div class="animate-pulse flex flex-col gap-4">
+<div class="poster-aspect w-full bg-gray-200 rounded-xl"></div>
+<div class="flex justify-between items-center">
+<div class="space-y-2">
+<div class="h-4 w-32 bg-gray-200 rounded"></div>
+<div class="h-3 w-20 bg-gray-200 rounded"></div>
+</div>
+<div class="h-6 w-12 bg-gray-200 rounded"></div>
+</div>
+</div>
+<!-- Skeleton Loading State 2 -->
+<div class="animate-pulse flex flex-col gap-4">
+<div class="poster-aspect w-full bg-gray-200 rounded-xl"></div>
+<div class="flex justify-between items-center">
+<div class="space-y-2">
+<div class="h-4 w-28 bg-gray-200 rounded"></div>
+<div class="h-3 w-24 bg-gray-200 rounded"></div>
+</div>
+<div class="h-6 w-12 bg-gray-200 rounded"></div>
+</div>
+</div>
+</div>
+<!-- Load More Section -->
+<div class="mt-20 flex flex-col items-center gap-6">
+<div class="flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined animate-spin">progress_activity</span>
+<span class="text-sm font-medium tracking-wide">Loading more adventures...</span>
+</div>
+<button class="px-10 py-4 bg-white border border-primary/20 text-primary font-black rounded-xl hover:bg-primary hover:text-white transition-all duration-300 shadow-xl shadow-primary/5">
+                VIEW ALL THEMES
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-white border-t border-primary/5 py-12 px-6 lg:px-20 mt-20">
+<div class="mx-auto max-w-[1200px] flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<span class="font-black text-xl">CosmicPosters</span>
+</div>
+<p class="text-gray-500 text-sm max-w-xs">High-quality custom posters for dreamers, explorers, and space enthusiasts.</p>
+</div>
+<div class="flex gap-10">
+<div class="flex flex-col gap-2">
+<h4 class="font-bold text-sm uppercase text-gray-400 tracking-widest">Support</h4>
+<a class="text-sm hover:text-primary" href="#">Track Order</a>
+<a class="text-sm hover:text-primary" href="#">Returns</a>
+</div>
+<div class="flex flex-col gap-2">
+<h4 class="font-bold text-sm uppercase text-gray-400 tracking-widest">Company</h4>
+<a class="text-sm hover:text-primary" href="#">About Us</a>
+<a class="text-sm hover:text-primary" href="#">Artists</a>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="size-10 flex items-center justify-center rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">share</span>
+</button>
+<button class="size-10 flex items-center justify-center rounded-full bg-primary/5 text-primary hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">thumb_up</span>
+</button>
+</div>
+</div>
+<div class="mx-auto max-w-[1200px] border-t border-gray-100 mt-12 pt-8 text-center text-xs text-gray-400 uppercase tracking-widest">
+            © 2024 CosmicPosters Galactic. All rights reserved.
+        </div>
+</footer>
+</div>
+</body></html>

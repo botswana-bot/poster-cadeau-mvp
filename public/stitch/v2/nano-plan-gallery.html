@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Poster Cadeau — Galerie (nano-banana 1K)</title>
+    <style>
+      :root{--brand:#ff4d6d;}
+      body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif; padding:24px; max-width:1200px; margin:0 auto; background:#faf7f8; color:#111;}
+      a{color:var(--brand); text-decoration:none}
+      a:hover{text-decoration:underline}
+      h1{margin:0 0 8px;}
+      .sub{color:#555; margin:0 0 16px;}
+      .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px;}
+      .card{background:white; border:1px solid #eee; border-radius:16px; overflow:hidden; box-shadow:0 4px 16px rgba(0,0,0,.05)}
+      .imgWrap{aspect-ratio:3/4; background:#f1f1f1;}
+      img{width:100%; height:100%; object-fit:cover; display:block;}
+      .meta{padding:10px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px;}
+      .tag{font-weight:700; font-size:12px; color:#222;}
+      .btn{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #eee; background:#fff;}
+      .btn:hover{border-color:#ddd;}
+      .missing{opacity:.55}
+      .missing .imgWrap{display:flex; align-items:center; justify-content:center; color:#777; font-size:13px; text-align:center; padding:14px;}
+    </style>
+  </head>
+  <body>
+    <p><a href="/stitch/v2/index.html">← Retour Stitch v2</a></p>
+    <h1>Galerie — images générées (nano-banana, 1K)</h1>
+    <p class="sub">Toutes les images générées automatiquement à partir du plan de prompts. Format WebP, résolution 1K.</p>
+
+    <div class="grid" id="grid"></div>
+
+    <script>
+      // Liste explicite (on évite de dépendre d'un listing serveur)
+      const items = [
+        { id: '1.1', file: '/generated-nano-plan/nano_idea_1_1.webp', label: '1.1 Tudor' },
+        { id: '1.2', file: '/generated-nano-plan/nano_idea_1_2.webp', label: '1.2 Pharaon' },
+        { id: '1.3', file: '/generated-nano-plan/nano_idea_1_3.webp', label: '1.3 Shogun' },
+        { id: '1.4', file: '/generated-nano-plan/nano_idea_1_4.webp', label: '1.4 Versailles' },
+
+        { id: '2.1', file: '/generated-nano-plan/nano_idea_2_1.webp', label: '2.1 Western' },
+        { id: '2.2', file: '/generated-nano-plan/nano_idea_2_2.webp', label: '2.2 Super-héros' },
+        { id: '2.3', file: '/generated-nano-plan/nano_idea_2_3.webp', label: '2.3 Agent secret' },
+        { id: '2.4', file: '/generated-nano-plan/nano_idea_2_4.webp', label: '2.4 Astronaute rétro' },
+
+        { id: '3.1', file: '/generated-nano-plan/nano_idea_3_1.webp', label: '3.1 Dragon Rider' },
+        { id: '3.2', file: '/generated-nano-plan/nano_idea_3_2.webp', label: '3.2 Grand sorcier' },
+        { id: '3.3', file: '/generated-nano-plan/nano_idea_3_3.webp', label: '3.3 Chevalier de lumière' },
+        { id: '3.4', file: '/generated-nano-plan/nano_idea_3_4.webp', label: '3.4 Viking' },
+
+        { id: '4.1', file: '/generated-nano-plan/nano_idea_4_1.webp', label: '4.1 Harlequin' },
+        { id: '4.2', file: '/generated-nano-plan/nano_idea_4_2.webp', label: '4.2 Chasse à courre' },
+        { id: '4.3', file: '/generated-nano-plan/nano_idea_4_3.webp', label: '4.3 Rock 80s' },
+        { id: '4.4', file: '/generated-nano-plan/nano_idea_4_4.webp', label: '4.4 Vogue' },
+
+        { id: '5.1', file: '/generated-nano-plan/nano_idea_5_1.webp', label: '5.1 Explorateur' },
+        // 5.2 Pirate: skippé (E005)
+        { id: '5.2', file: null, label: '5.2 Pirate (skippé)' },
+
+        { id: '6.1', file: null, label: '6.1 Carte de Noël (à générer)' },
+        { id: '6.2', file: null, label: '6.2 Anniversaire (à générer)' },
+        { id: '7.1', file: null, label: '7.1 Astronaute (à générer)' },
+        { id: '7.2', file: null, label: '7.2 Prince/Princesse (à générer)' },
+      ];
+
+      const grid = document.getElementById('grid');
+
+      function cardHTML(it){
+        const hasFile = !!it.file;
+        const cls = hasFile ? 'card' : 'card missing';
+        const img = hasFile
+          ? `<a href="${it.file}" target="_blank" rel="noreferrer"><div class="imgWrap"><img loading="lazy" src="${it.file}" alt="${it.label}" /></div></a>`
+          : `<div class="imgWrap">Image indisponible<br/>(pas générée)</div>`;
+        const btn = hasFile
+          ? `<a class="btn" href="${it.file}" target="_blank" rel="noreferrer">ouvrir</a>`
+          : `<span class="btn" aria-disabled="true">—</span>`;
+
+        return `
+          <div class="${cls}">
+            ${img}
+            <div class="meta">
+              <span class="tag">${it.label}</span>
+              ${btn}
+            </div>
+          </div>
+        `;
+      }
+
+      grid.innerHTML = items.map(cardHTML).join('');
+    </script>
+  </body>
+</html>

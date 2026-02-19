@@ -1,0 +1,1597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARTMOI — Catalogue & Commander</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET & VARIABLES ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream:   #FFF8F0;
+  --ink:     #1A0A2E;
+  --coral:   #FF4D6D;
+  --gold:    #FFB800;
+  --teal:    #00C9B1;
+  --violet:  #7B2FBE;
+  --lime:    #D4FF3C;
+  --peach:   #FFD6C0;
+  --r: 20px;
+  --sh: 5px 5px 0 var(--ink);
+  --sh-sm: 3px 3px 0 var(--ink);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ── NAV ──────────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: var(--cream);
+  border-bottom: 2px solid var(--ink);
+}
+.logo {
+  font-family: 'Fraunces', serif; font-weight: 900; font-size: 24px;
+  letter-spacing: -1px; text-decoration: none; color: var(--ink);
+}
+.logo span { color: var(--coral); }
+.nav-back {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 600; color: #6b5f7f;
+  text-decoration: none; cursor: pointer;
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--coral); }
+.nav-back svg { transition: transform .2s; }
+.nav-back:hover svg { transform: translateX(-3px); }
+
+/* ── PROGRESS BAR (tunnel) ────────────────────────────────────── */
+.progress-bar {
+  display: none;
+  align-items: center; justify-content: center;
+  gap: 0;
+  padding: 0 40px;
+  height: 56px;
+  background: white;
+  border-bottom: 2px solid var(--ink);
+  overflow-x: auto;
+}
+.progress-bar.visible { display: flex; }
+.prog-step {
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.prog-dot {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  background: white; color: var(--ink);
+  transition: background .3s, color .3s;
+}
+.prog-step.done .prog-dot   { background: var(--teal); color: white; }
+.prog-step.active .prog-dot { background: var(--coral); color: white; border-color: var(--coral); }
+.prog-label {
+  font-size: 13px; font-weight: 600; color: #9d8eb5;
+  white-space: nowrap;
+  transition: color .3s;
+}
+.prog-step.active .prog-label { color: var(--ink); }
+.prog-step.done .prog-label   { color: var(--teal); }
+.prog-line {
+  width: 40px; height: 2px; background: #e0d8f0;
+  flex-shrink: 0;
+  transition: background .3s;
+}
+.prog-line.done { background: var(--teal); }
+
+/* ── PAGES (tabs) ─────────────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 0 — CATALOGUE
+══════════════════════════════════════════════════════════════ */
+.catalogue-header {
+  padding: 48px 40px 32px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 24px; flex-wrap: wrap;
+}
+.catalogue-header h1 {
+  font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 60px);
+  font-weight: 900; letter-spacing: -2px; line-height: 1;
+}
+.catalogue-header h1 em { font-style: italic; color: var(--coral); }
+.catalogue-header p { font-size: 16px; color: #6b5f7f; margin-top: 8px; }
+
+.catalogue-count {
+  background: var(--lime); border: 2px solid var(--ink);
+  border-radius: 100px; padding: 8px 20px;
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  box-shadow: var(--sh-sm);
+}
+
+/* Filter chips */
+.filters {
+  display: flex; gap: 10px; flex-wrap: wrap;
+  padding: 0 40px 32px;
+  border-bottom: 2px solid var(--ink);
+}
+.chip {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 100px;
+  border: 2px solid var(--ink);
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; background: white;
+  transition: transform .15s, box-shadow .15s, background .15s;
+  user-select: none;
+}
+.chip:hover { transform: translateY(-2px); box-shadow: var(--sh-sm); }
+.chip.active {
+  background: var(--ink); color: var(--cream);
+  box-shadow: var(--sh-sm);
+}
+
+/* Grid */
+.catalogue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  padding: 40px;
+}
+
+.theme-card {
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+  background: white;
+  position: relative;
+}
+.theme-card:hover { transform: translate(-4px,-4px); box-shadow: 8px 8px 0 var(--ink); }
+
+.theme-card-img {
+  height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px;
+  position: relative;
+  overflow: hidden;
+}
+.theme-card-img .emoji { transition: transform .3s; display: block; }
+.theme-card:hover .emoji { transform: scale(1.2) rotate(8deg); }
+
+.theme-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(6px);
+  color: white; font-size: 11px; font-weight: 700;
+  padding: 4px 12px; border-radius: 100px; letter-spacing: .5px;
+}
+.theme-badge.new { background: var(--coral); }
+.theme-badge.hot { background: var(--gold); color: var(--ink); }
+.theme-badge.kids { background: var(--teal); }
+
+.theme-card-body { padding: 20px 22px 24px; }
+.theme-card-body h3 {
+  font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700;
+  margin-bottom: 6px; line-height: 1.15;
+}
+.theme-card-body p { font-size: 13px; color: #6b5f7f; line-height: 1.5; margin-bottom: 16px; }
+
+.theme-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.theme-price {
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 900;
+  color: var(--violet);
+}
+.theme-price span { font-size: 13px; font-weight: 500; color: #9d8eb5; }
+.btn-choose {
+  background: var(--coral); color: white;
+  border: 2px solid var(--ink); border-radius: 100px;
+  padding: 8px 20px; font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: var(--sh-sm);
+}
+.btn-choose:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+
+/* Category section title */
+.cat-section-title {
+  padding: 40px 40px 0;
+  display: flex; align-items: center; gap: 16px;
+}
+.cat-section-title h2 {
+  font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; letter-spacing: -1px;
+}
+.cat-divider {
+  flex: 1; height: 2px; background: var(--ink); opacity: .1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TUNNEL — SHARED SHELL
+══════════════════════════════════════════════════════════════ */
+.tunnel-wrap {
+  max-width: 880px; margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+.tunnel-title {
+  font-family: 'Fraunces', serif; font-size: clamp(28px,4vw,44px);
+  font-weight: 900; letter-spacing: -1.5px; margin-bottom: 8px;
+}
+.tunnel-subtitle { font-size: 16px; color: #6b5f7f; margin-bottom: 40px; }
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 1 — UPLOAD
+══════════════════════════════════════════════════════════════ */
+.upload-zone {
+  border: 2px dashed var(--ink);
+  border-radius: 24px;
+  padding: 64px 40px;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  transition: background .2s, border-style .2s, transform .15s;
+  position: relative;
+}
+.upload-zone:hover { background: #fdf5ff; transform: translateY(-2px); }
+.upload-zone.dragover {
+  background: #f0eaff;
+  border-style: solid;
+  border-color: var(--violet);
+}
+.upload-zone.has-image { border-style: solid; border-color: var(--teal); padding: 0; overflow: hidden; }
+
+.upload-icon {
+  font-size: 56px; margin-bottom: 16px; display: block;
+  animation: float 3s ease-in-out infinite;
+}
+.upload-zone h3 {
+  font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; margin-bottom: 8px;
+}
+.upload-zone p { font-size: 14px; color: #9d8eb5; margin-bottom: 24px; }
+
+.btn-upload-file {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink); color: var(--cream);
+  border: 2px solid var(--ink); border-radius: 100px;
+  padding: 12px 28px; font-size: 14px; font-weight: 700;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background .2s, transform .15s;
+}
+.btn-upload-file:hover { background: var(--violet); border-color: var(--violet); }
+
+.upload-preview {
+  width: 100%; height: 360px;
+  object-fit: cover; display: none;
+  border-radius: 22px;
+}
+.upload-preview.visible { display: block; }
+
+.upload-change {
+  position: absolute; bottom: 16px; right: 16px;
+  background: white; border: 2px solid var(--ink);
+  border-radius: 100px; padding: 8px 16px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  box-shadow: var(--sh-sm); transition: transform .15s;
+}
+.upload-change:hover { transform: translate(-2px,-2px); }
+
+.upload-tips {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin-top: 24px;
+}
+.tip-card {
+  background: white; border: 2px solid var(--ink); border-radius: 16px;
+  padding: 20px; text-align: center;
+}
+.tip-card .tip-icon { font-size: 28px; margin-bottom: 8px; }
+.tip-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.tip-card p { font-size: 12px; color: #9d8eb5; }
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 2 — THEME PICKER (dans le tunnel)
+══════════════════════════════════════════════════════════════ */
+.selected-theme-preview {
+  display: flex; align-items: center; gap: 20px;
+  background: white; border: 2px solid var(--teal);
+  border-radius: 16px; padding: 20px 24px;
+  margin-bottom: 32px;
+  box-shadow: 4px 4px 0 var(--teal);
+}
+.selected-theme-preview .preview-emoji { font-size: 48px; }
+.selected-theme-preview h4 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; }
+.selected-theme-preview p  { font-size: 13px; color: #6b5f7f; }
+.btn-change-theme {
+  margin-left: auto; flex-shrink: 0;
+  background: transparent; border: 2px solid var(--ink);
+  border-radius: 100px; padding: 8px 16px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background .2s;
+}
+.btn-change-theme:hover { background: var(--cream); }
+
+/* Mini theme grid inside tunnel */
+.mini-theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.mini-theme-card {
+  border: 2px solid var(--ink); border-radius: 14px;
+  overflow: hidden; cursor: pointer;
+  transition: transform .15s, box-shadow .15s, border-color .2s;
+}
+.mini-theme-card:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+.mini-theme-card.selected { border-color: var(--coral); box-shadow: 4px 4px 0 var(--coral); }
+.mini-theme-card .mini-img {
+  height: 100px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px;
+}
+.mini-theme-card .mini-label {
+  padding: 8px 10px;
+  font-size: 12px; font-weight: 700; line-height: 1.3;
+  border-top: 2px solid var(--ink);
+}
+.mini-theme-card.selected .mini-label { background: var(--coral); color: white; border-color: var(--coral); }
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 3 — PERSONALISATION / PREVIEW
+══════════════════════════════════════════════════════════════ */
+.preview-layout {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  align-items: start;
+}
+.preview-frame {
+  border: 2px solid var(--ink); border-radius: 20px;
+  overflow: hidden; position: relative;
+  box-shadow: 6px 6px 0 var(--ink);
+  background: white;
+}
+.preview-mockup {
+  width: 100%; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.preview-mockup .preview-bg {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 120px; filter: blur(0px);
+  transition: opacity .4s;
+}
+.preview-mockup .preview-user {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 50%; overflow: hidden;
+}
+.preview-mockup .preview-user img {
+  width: 100%; height: 100%; object-fit: cover;
+  mix-blend-mode: multiply; opacity: .7;
+}
+.preview-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: var(--ink); color: white;
+  padding: 12px 16px;
+  font-family: 'Fraunces', serif; font-size: 15px; font-weight: 700;
+  text-align: center;
+}
+.preview-loading {
+  position: absolute; inset: 0;
+  background: rgba(255,248,240,.95);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; border-radius: 18px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s;
+}
+.preview-loading.visible { opacity: 1; pointer-events: all; }
+.loader-ring {
+  width: 56px; height: 56px;
+  border: 3px solid #e0d8f0;
+  border-top-color: var(--coral);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+.preview-loading p { font-size: 14px; font-weight: 600; color: #6b5f7f; }
+.preview-loading small { font-size: 12px; color: #9d8eb5; }
+
+.preview-controls { }
+.preview-controls h3 {
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.control-group { margin-bottom: 24px; }
+.control-label {
+  font-size: 13px; font-weight: 700; letter-spacing: .5px;
+  text-transform: uppercase; color: #9d8eb5;
+  margin-bottom: 10px; display: block;
+}
+.text-input {
+  width: 100%; border: 2px solid var(--ink); border-radius: 12px;
+  padding: 12px 16px; font-size: 15px; font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: white; color: var(--ink);
+  transition: border-color .2s, box-shadow .2s;
+  outline: none;
+}
+.text-input:focus { border-color: var(--violet); box-shadow: 3px 3px 0 var(--violet); }
+
+/* Style tone picker */
+.tone-options {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+}
+.tone-opt {
+  border: 2px solid var(--ink); border-radius: 12px;
+  padding: 10px 8px; text-align: center; cursor: pointer;
+  font-size: 12px; font-weight: 700; background: white;
+  transition: transform .15s, background .2s;
+}
+.tone-opt .tone-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+.tone-opt:hover { transform: translateY(-2px); }
+.tone-opt.selected { background: var(--ink); color: white; }
+
+/* Dedicate toggle */
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: white; border: 2px solid var(--ink); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 12px;
+  cursor: pointer;
+}
+.toggle-row label { font-size: 14px; font-weight: 600; cursor: pointer; }
+.toggle {
+  width: 44px; height: 24px;
+  background: #e0d8f0; border-radius: 100px;
+  position: relative; transition: background .3s;
+  flex-shrink: 0;
+}
+.toggle::after {
+  content: ''; position: absolute;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: white; top: 3px; left: 3px;
+  transition: transform .3s; box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+.toggle.on { background: var(--teal); }
+.toggle.on::after { transform: translateX(20px); }
+
+.dedicate-field { display: none; margin-top: -4px; margin-bottom: 12px; }
+.dedicate-field.visible { display: block; }
+
+/* Regen button */
+.btn-regen {
+  width: 100%; padding: 14px;
+  background: white; border: 2px solid var(--ink); border-radius: 12px;
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: background .2s, transform .15s, box-shadow .15s;
+}
+.btn-regen:hover { background: #fdf5ff; transform: translate(-2px,-2px); box-shadow: var(--sh-sm); }
+.btn-regen .spin-icon { transition: transform .3s; }
+.btn-regen:hover .spin-icon { transform: rotate(180deg); }
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 4 — FORMAT & CHECKOUT
+══════════════════════════════════════════════════════════════ */
+.checkout-layout {
+  display: grid; grid-template-columns: 1fr 360px; gap: 32px;
+  align-items: start;
+}
+
+.format-picker h3 {
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.format-list { display: flex; flex-direction: column; gap: 12px; }
+.format-row {
+  display: flex; align-items: center; gap: 16px;
+  border: 2px solid var(--ink); border-radius: 16px;
+  padding: 16px 20px; cursor: pointer; background: white;
+  transition: transform .15s, box-shadow .15s, border-color .2s;
+}
+.format-row:hover { transform: translate(-2px,-2px); box-shadow: var(--sh-sm); }
+.format-row.selected {
+  border-color: var(--coral);
+  box-shadow: 4px 4px 0 var(--coral);
+  background: #fff5f6;
+}
+.format-row .format-icon {
+  font-size: 28px; width: 44px; text-align: center; flex-shrink: 0;
+}
+.format-row .format-info { flex: 1; }
+.format-row .format-info h4 { font-size: 15px; font-weight: 700; }
+.format-row .format-info p  { font-size: 12px; color: #9d8eb5; margin-top: 2px; }
+.format-row .format-info .format-tags {
+  display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap;
+}
+.format-tag {
+  background: var(--lime); border: 1px solid var(--ink);
+  border-radius: 100px; padding: 2px 10px;
+  font-size: 11px; font-weight: 700;
+}
+.format-row .format-price {
+  font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900;
+  color: var(--violet); flex-shrink: 0;
+}
+.format-row.selected .format-price { color: var(--coral); }
+.format-radio {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--ink); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.format-row.selected .format-radio { background: var(--coral); border-color: var(--coral); }
+.format-row.selected .format-radio::after {
+  content: ''; width: 8px; height: 8px; border-radius: 50%; background: white;
+}
+
+/* Delivery */
+.delivery-section { margin-top: 24px; }
+.delivery-section h3 {
+  font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700;
+  margin-bottom: 16px;
+}
+.delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.delivery-opt {
+  border: 2px solid var(--ink); border-radius: 14px;
+  padding: 16px; cursor: pointer; background: white;
+  transition: transform .15s, border-color .2s;
+}
+.delivery-opt:hover { transform: translateY(-2px); }
+.delivery-opt.selected { border-color: var(--teal); background: #f0fefb; }
+.delivery-opt .del-speed { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+.delivery-opt .del-label { font-size: 22px; font-weight: 900; font-family: 'Fraunces', serif; }
+.delivery-opt .del-price { font-size: 12px; color: #9d8eb5; margin-top: 4px; }
+.delivery-opt.selected .del-label { color: var(--teal); }
+
+/* Order summary */
+.order-summary {
+  border: 2px solid var(--ink); border-radius: 20px;
+  overflow: hidden; position: sticky; top: 88px;
+  box-shadow: var(--sh);
+}
+.summary-header {
+  background: var(--ink); color: white;
+  padding: 20px 24px;
+}
+.summary-header h3 { font-family: 'Fraunces', serif; font-size: 18px; font-weight: 700; }
+
+.summary-preview {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 24px; border-bottom: 2px solid var(--ink);
+  background: white;
+}
+.summary-preview .sum-thumb {
+  width: 56px; height: 72px;
+  border-radius: 8px; border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; flex-shrink: 0;
+}
+.summary-preview .sum-info h4 { font-size: 14px; font-weight: 700; }
+.summary-preview .sum-info p  { font-size: 12px; color: #9d8eb5; }
+
+.summary-lines { padding: 16px 24px; background: white; }
+.sum-line {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; font-size: 14px;
+  border-bottom: 1px solid #f0e8ff;
+}
+.sum-line:last-child { border-bottom: none; }
+.sum-line .label { color: #6b5f7f; }
+.sum-line .value { font-weight: 700; }
+.sum-line.total {
+  padding-top: 12px; margin-top: 4px;
+  border-top: 2px solid var(--ink); border-bottom: none;
+}
+.sum-line.total .label { font-size: 16px; font-weight: 700; color: var(--ink); }
+.sum-line.total .value {
+  font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; color: var(--coral);
+}
+
+.summary-cta { padding: 20px 24px; background: var(--cream); }
+.btn-order {
+  width: 100%; padding: 16px;
+  background: var(--coral); color: white;
+  border: 2px solid var(--ink); border-radius: 100px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: var(--sh-sm);
+  transition: transform .15s, box-shadow .15s, background .2s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-order:hover { transform: translate(-3px,-3px); box-shadow: 7px 7px 0 var(--ink); }
+.btn-order:active { transform: none; box-shadow: var(--sh-sm); }
+.summary-secure {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 12px; font-size: 12px; color: #9d8eb5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PAGE 5 — CONFIRMATION
+══════════════════════════════════════════════════════════════ */
+.confirm-page {
+  text-align: center; padding: 80px 40px;
+  max-width: 600px; margin: 0 auto;
+}
+.confirm-checkmark {
+  width: 100px; height: 100px; border-radius: 50%;
+  background: var(--teal); border: 3px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 48px; margin: 0 auto 32px;
+  box-shadow: 6px 6px 0 var(--ink);
+  animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both;
+}
+.confirm-page h1 {
+  font-family: 'Fraunces', serif; font-size: 44px; font-weight: 900;
+  letter-spacing: -2px; margin-bottom: 16px;
+}
+.confirm-page h1 em { font-style: italic; color: var(--coral); }
+.confirm-page p { font-size: 18px; color: #6b5f7f; line-height: 1.6; margin-bottom: 40px; }
+.confirm-steps {
+  display: flex; flex-direction: column; gap: 16px;
+  background: white; border: 2px solid var(--ink); border-radius: 20px;
+  padding: 24px; margin-bottom: 40px; text-align: left;
+}
+.confirm-step {
+  display: flex; align-items: center; gap: 16px;
+  font-size: 14px; font-weight: 600;
+}
+.confirm-step-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold); border: 2px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.btn-restart {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink); color: white;
+  border: 2px solid var(--ink); border-radius: 100px;
+  padding: 14px 32px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  text-decoration: none; box-shadow: var(--sh);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-restart:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--coral); }
+
+/* ── BOTTOM CTA (tunnel pages) ─────────────────────────────── */
+.tunnel-footer {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: white; border-top: 2px solid var(--ink);
+  padding: 16px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+.tunnel-footer.hidden { display: none; }
+.tf-left { font-size: 14px; color: #6b5f7f; }
+.tf-left strong { color: var(--ink); font-size: 16px; }
+.tf-actions { display: flex; gap: 12px; }
+.btn-next {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--coral); color: white;
+  border: 2px solid var(--ink); border-radius: 100px;
+  padding: 13px 28px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: var(--sh-sm);
+  transition: transform .15s, box-shadow .15s;
+}
+.btn-next:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+.btn-next:disabled { opacity: .4; pointer-events: none; }
+.btn-prev {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--ink);
+  border: 2px solid var(--ink); border-radius: 100px;
+  padding: 13px 24px; font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background .2s;
+}
+.btn-prev:hover { background: var(--cream); }
+
+/* ── ANIMATIONS ────────────────────────────────────────────── */
+@keyframes float  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+@keyframes spin   { to { transform: rotate(360deg); } }
+@keyframes popIn  { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.page.active { animation: fadeIn .35s ease; }
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0e8ff 25%, #e8dcff 50%, #f0e8ff 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 8px;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .progress-bar { padding: 0 16px; }
+  .prog-label { display: none; }
+  .prog-line { width: 20px; }
+
+  .catalogue-header { padding: 24px 16px 16px; }
+  .filters { padding: 0 16px 20px; }
+  .catalogue-grid { padding: 20px 16px; gap: 16px; grid-template-columns: 1fr 1fr; }
+  .theme-card-img { height: 130px; font-size: 56px; }
+  .cat-section-title { padding: 24px 16px 0; }
+
+  .tunnel-wrap { padding: 24px 16px 100px; }
+
+  .upload-tips { grid-template-columns: 1fr; }
+
+  .preview-layout { grid-template-columns: 1fr; }
+
+  .checkout-layout { grid-template-columns: 1fr; }
+  .order-summary { position: static; }
+
+  .delivery-grid { grid-template-columns: 1fr; }
+
+  .tunnel-footer { padding: 12px 16px; }
+  .tf-left { display: none; }
+
+  .mini-theme-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .mini-theme-card .mini-img { height: 70px; font-size: 36px; }
+}
+
+  img{max-width:100%; height:auto;}
+  .card img, .tile img, .poster img, .thumb img, .preview img { width:100%; height:100%; object-fit:cover; display:block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="homepage.html" class="logo">ART<span>MOI</span></a>
+  <div id="nav-center"></div>
+  <a id="nav-back" class="nav-back" href="#" onclick="goBack(); return false;" style="display:none">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    Retour
+  </a>
+</nav>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progress-bar">
+  <div class="prog-step" id="ps-0">
+    <div class="prog-dot">📸</div>
+    <span class="prog-label">Ma photo</span>
+  </div>
+  <div class="prog-line" id="pl-0"></div>
+  <div class="prog-step" id="ps-1">
+    <div class="prog-dot">🎨</div>
+    <span class="prog-label">Mon thème</span>
+  </div>
+  <div class="prog-line" id="pl-1"></div>
+  <div class="prog-step" id="ps-2">
+    <div class="prog-dot">✍️</div>
+    <span class="prog-label">Personnaliser</span>
+  </div>
+  <div class="prog-line" id="pl-2"></div>
+  <div class="prog-step" id="ps-3">
+    <div class="prog-dot">🛒</div>
+    <span class="prog-label">Commander</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 0 — CATALOGUE
+════════════════════════════════════════════════════════════ -->
+<div id="page-catalogue" class="page active">
+  <div class="catalogue-header">
+    <div>
+      <h1>Tous les <em>univers</em></h1>
+      <p>Clique sur un thème pour commencer ta création</p>
+    </div>
+    <div class="catalogue-count" id="count-badge">55 thèmes disponibles</div>
+  </div>
+
+  <div class="filters" id="filters">
+    <div class="chip active" data-filter="all">✨ Tout voir</div>
+    <div class="chip" data-filter="prestige">👑 Prestige</div>
+    <div class="chip" data-filter="humour">😂 Humour</div>
+    <div class="chip" data-filter="fantasy">🧙 Fantasy</div>
+    <div class="chip" data-filter="cinema">🎬 Cinéma</div>
+    <div class="chip" data-filter="kids">👶 Enfants</div>
+    <div class="chip" data-filter="animals">🐾 Animaux</div>
+    <div class="chip" data-filter="art">🎭 Art & Musées</div>
+    <div class="chip" data-filter="mythologie">⚡ Mythologie</div>
+    <div class="chip" data-filter="gaming">🎮 Gaming</div>
+  </div>
+
+  <div id="catalogue-content"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 1 — UPLOAD
+════════════════════════════════════════════════════════════ -->
+<div id="page-upload" class="page">
+  <div class="tunnel-wrap">
+    <div class="tunnel-title">📸 Ta photo, ton chef-d'œuvre</div>
+    <p class="tunnel-subtitle">Upload une photo nette de ton visage (selfie face caméra, idéalement).</p>
+
+    <div class="upload-zone" id="upload-zone" onclick="triggerUpload()">
+      <span class="upload-icon">📷</span>
+      <h3>Glisse ta photo ici</h3>
+      <p>ou clique pour choisir depuis ton appareil</p>
+      <button class="btn-upload-file" onclick="e => e.stopPropagation()">
+        📁 Choisir une photo
+      </button>
+      <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handleFile(event)">
+      <img class="upload-preview" id="upload-preview" alt="Votre photo">
+      <button class="upload-change" id="upload-change" style="display:none" onclick="event.stopPropagation(); triggerUpload()">
+        🔄 Changer
+      </button>
+    </div>
+
+    <div class="upload-tips" style="margin-top:24px">
+      <div class="tip-card">
+        <div class="tip-icon">☀️</div>
+        <h4>Bonne lumière</h4>
+        <p>Évite les contre-jours et les ombres sur le visage</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📐</div>
+        <h4>Face caméra</h4>
+        <p>Regarde l'objectif pour un résultat optimal</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🔍</div>
+        <h4>Photo nette</h4>
+        <p>Minimum 800×800 px, sans flou ni filtre fort</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 2 — THEME (tunnel)
+════════════════════════════════════════════════════════════ -->
+<div id="page-theme" class="page">
+  <div class="tunnel-wrap">
+    <div class="tunnel-title">🎨 Ton univers</div>
+    <p class="tunnel-subtitle">Le thème choisi depuis le catalogue est déjà sélectionné — tu peux en choisir un autre.</p>
+
+    <div class="selected-theme-preview" id="selected-preview">
+      <div class="preview-emoji" id="sel-emoji"><img src="/generated-nano-plan/nano_idea_1_1.webp" alt="Royal" loading="lazy"> </div>
+      <div>
+        <h4 id="sel-name">Portrait Tudor</h4>
+        <p id="sel-desc">XVIe siècle · Style Holbein</p>
+      </div>
+      <button class="btn-change-theme" onclick="expandThemes()">Changer →</button>
+    </div>
+
+    <div id="theme-picker-expand" style="display:none">
+      <div class="mini-theme-grid" id="mini-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 3 — PREVIEW & PERSONNALISATION
+════════════════════════════════════════════════════════════ -->
+<div id="page-preview" class="page">
+  <div class="tunnel-wrap">
+    <div class="tunnel-title">✍️ Personnalise ton tableau</div>
+    <p class="tunnel-subtitle">Ajoute ta touche personnelle avant l'impression.</p>
+
+    <div class="preview-layout">
+      <!-- Mockup -->
+      <div>
+        <div class="preview-frame">
+          <div class="preview-mockup" id="preview-mockup">
+            <div class="preview-bg" id="preview-bg"><img src="/generated-nano-plan/nano_idea_1_1.webp" alt="Royal" loading="lazy"> </div>
+            <div class="preview-loading" id="preview-loading">
+              <div class="loader-ring"></div>
+              <p>Notre IA compose ton tableau…</p>
+              <small>Environ 15 secondes</small>
+            </div>
+          </div>
+          <div class="preview-label" id="preview-label">Portrait Royal Tudor</div>
+        </div>
+        <button class="btn-regen" onclick="regenerate()" style="margin-top:12px">
+          <span class="spin-icon">🔄</span> Générer une autre version
+        </button>
+      </div>
+
+      <!-- Controls -->
+      <div class="preview-controls">
+        <h3>Tes options</h3>
+
+        <div class="control-group">
+          <span class="control-label">Ambiance</span>
+          <div class="tone-options">
+            <div class="tone-opt selected" data-tone="classique" onclick="selectTone(this)">
+              <span class="tone-icon">🎨</span>Classique
+            </div>
+            <div class="tone-opt" data-tone="dramatique" onclick="selectTone(this)">
+              <span class="tone-icon">⚡</span>Dramatique
+            </div>
+            <div class="tone-opt" data-tone="lumineux" onclick="selectTone(this)">
+              <span class="tone-icon">☀️</span>Lumineux
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="toggle-row" onclick="toggleDedicate()">
+            <label>🎁 Ajouter une dédicace</label>
+            <div class="toggle" id="dedicate-toggle"></div>
+          </div>
+          <div class="dedicate-field" id="dedicate-field">
+            <input class="text-input" type="text" id="dedicate-input"
+              placeholder="Ex: À mon papa, le plus grand des rois 👑"
+              maxlength="80"
+              oninput="updatePreviewLabel()">
+          </div>
+        </div>
+
+        <div class="control-group">
+          <span class="control-label">Nom sur le tableau (optionnel)</span>
+          <input class="text-input" type="text" id="name-input"
+            placeholder="Ex: Sir Alexandre le Magnifique"
+            maxlength="40">
+        </div>
+
+        <!-- Quality badge -->
+        <div style="background:#ecfff8;border:2px solid var(--teal);border-radius:14px;padding:16px;margin-top:8px">
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:6px">✅ Impression premium garantie</div>
+          <div style="font-size:12px;color:#4a7c6a;line-height:1.6">
+            Résolution 300 DPI · Papier coton 350g/m² · Encres pigmentaires longue durée · Made in France
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 4 — FORMAT & CHECKOUT
+════════════════════════════════════════════════════════════ -->
+<div id="page-checkout" class="page">
+  <div class="tunnel-wrap">
+    <div class="tunnel-title">🛒 Choisis ton format</div>
+    <p class="tunnel-subtitle">Tous les formats sont imprimés en France, sous 24h.</p>
+
+    <div class="checkout-layout">
+      <div>
+        <!-- Formats -->
+        <div class="format-picker">
+          <h3>Format d'impression</h3>
+          <div class="format-list" id="format-list">
+
+            <div class="format-row" data-price="29" onclick="selectFormat(this, 'A4 — 21×30 cm', 29)">
+              <div class="format-radio"></div>
+              <div class="format-icon">🖼</div>
+              <div class="format-info">
+                <h4>Essentiel — A4</h4>
+                <p>21 × 30 cm · Idéal pour bureau ou étagère</p>
+                <div class="format-tags">
+                  <span class="format-tag">Papier 300g</span>
+                  <span class="format-tag">Sans cadre</span>
+                </div>
+              </div>
+              <div class="format-price">29€</div>
+            </div>
+
+            <div class="format-row selected" data-price="49" onclick="selectFormat(this, 'A3 — 30×42 cm', 49)">
+              <div class="format-radio"></div>
+              <div class="format-icon">🖼</div>
+              <div class="format-info">
+                <h4>Signature — A3 ⭐</h4>
+                <p>30 × 42 cm · Le format préféré de nos clients</p>
+                <div class="format-tags">
+                  <span class="format-tag">Papier coton 350g</span>
+                  <span class="format-tag">Giclée fine art</span>
+                  <span class="format-tag">Certificat</span>
+                </div>
+              </div>
+              <div class="format-price">49€</div>
+            </div>
+
+            <div class="format-row" data-price="79" onclick="selectFormat(this, 'Prestige 50×70 cm', 79)">
+              <div class="format-radio"></div>
+              <div class="format-icon">🖼</div>
+              <div class="format-info">
+                <h4>Prestige — 50×70 cm</h4>
+                <p>Avec cadre bois artisan + sous-verre anti-UV</p>
+                <div class="format-tags">
+                  <span class="format-tag">Papier archival 400g</span>
+                  <span class="format-tag">Cadre inclus</span>
+                  <span class="format-tag">Prêt à accrocher</span>
+                </div>
+              </div>
+              <div class="format-price">79€</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Livraison -->
+        <div class="delivery-section">
+          <h3>Livraison</h3>
+          <div class="delivery-grid" id="delivery-grid">
+            <div class="delivery-opt selected" data-del-price="0" onclick="selectDelivery(this, 'standard', 0)">
+              <div class="del-speed">📦 Standard</div>
+              <div class="del-label">5–7 jours</div>
+              <div class="del-price">Offerte</div>
+            </div>
+            <div class="delivery-opt" data-del-price="5.9" onclick="selectDelivery(this, 'express', 5.9)">
+              <div class="del-speed">⚡ Express</div>
+              <div class="del-label">48 heures</div>
+              <div class="del-price">+5,90€</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <div class="order-summary">
+        <div class="summary-header">
+          <h3>Récapitulatif 🛒</h3>
+        </div>
+
+        <div class="summary-preview">
+          <div class="sum-thumb" id="sum-thumb"><img src="/generated-nano-plan/nano_idea_1_1.webp" alt="Royal" loading="lazy"> </div>
+          <div class="sum-info">
+            <h4 id="sum-theme-name">Portrait Tudor</h4>
+            <p id="sum-format-label">Format A3 — 30×42 cm</p>
+          </div>
+        </div>
+
+        <div class="summary-lines">
+          <div class="sum-line">
+            <span class="label">Création & impression</span>
+            <span class="value" id="sum-price">49€</span>
+          </div>
+          <div class="sum-line">
+            <span class="label">Livraison</span>
+            <span class="value" id="sum-delivery">Offerte</span>
+          </div>
+          <div class="sum-line total">
+            <span class="label">Total</span>
+            <span class="value" id="sum-total">49€</span>
+          </div>
+        </div>
+
+        <div class="summary-cta">
+          <button class="btn-order" onclick="placeOrder()">
+            🎉 Passer commande
+          </button>
+          <div class="summary-secure">
+            🔒 Paiement 100% sécurisé · CB / PayPal
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     PAGE 5 — CONFIRMATION
+════════════════════════════════════════════════════════════ -->
+<div id="page-confirm" class="page">
+  <div class="confirm-page">
+    <div class="confirm-checkmark">✓</div>
+    <h1>C'est <em>parti</em> !</h1>
+    <p>Ton tableau est en cours de création. Tu recevras un email de confirmation avec un aperçu dans les prochaines minutes.</p>
+
+    <div class="confirm-steps">
+      <div class="confirm-step">
+        <div class="confirm-step-icon">🎨</div>
+        <span><strong>Maintenant</strong> — Notre IA génère ton tableau en haute résolution</span>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-icon">✅</div>
+        <span><strong>Dans 1h</strong> — Tu reçois un email avec l'aperçu pour valider</span>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-icon">🖨</div>
+        <span><strong>Dans 24h</strong> — Impression sur papier premium en France</span>
+      </div>
+      <div class="confirm-step">
+        <div class="confirm-step-icon">📦</div>
+        <span><strong>Dans 48–72h</strong> — Livraison soigneusement emballée chez toi</span>
+      </div>
+    </div>
+
+    <a class="btn-restart" href="#" onclick="restart(); return false;">
+      🎨 Créer un autre tableau
+    </a>
+  </div>
+</div>
+
+<!-- TUNNEL FOOTER -->
+<div class="tunnel-footer hidden" id="tunnel-footer">
+  <div class="tf-left" id="tf-hint">
+    <strong id="tf-strong"></strong> <span id="tf-sub"></span>
+  </div>
+  <div class="tf-actions">
+    <button class="btn-prev" id="btn-prev" onclick="prevStep()">← Retour</button>
+    <button class="btn-next" id="btn-next" onclick="nextStep()">Continuer →</button>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════════════════════ */
+const THEMES = [
+  // PRESTIGE
+  { id:'tudor',    emoji:'👑', name:'Portrait Tudor',         desc:'XVIe siècle · Style Holbein',            cat:'prestige', badge:'',    color:'#3D0C6B,#7B2FBE' },
+  { id:'pharaon',  emoji:'𓂀', name:'Pharaon d\'Égypte',      desc:'Antiquité · Or & Lapis-lazuli',           cat:'prestige', badge:'hot', color:'#7A4800,#FFB800' },
+  { id:'shogun',   emoji:'⛩',  name:'Grand Shogun',           desc:'Japon féodal · Style cinématographique',  cat:'prestige', badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'versailles',emoji:'🌹',name:'Impératrice de Versailles',desc:'XVIIIe · Vigée Le Brun',              cat:'prestige', badge:'',    color:'#5C001A,#FF8FA3' },
+  { id:'napoleon', emoji:'🦅', name:'Général Napoléonien',    desc:'Empire · Jacques-Louis David',            cat:'prestige', badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'royalxmas',emoji:'🎄', name:'Carte Royale de Noël',   desc:'Portrait de famille façon Windsor',       cat:'prestige', badge:'hot', color:'#2D4A00,#D4FF3C' },
+
+  // HUMOUR
+  { id:'harlequin',emoji:'💋', name:'Couverture Harlequin',   desc:'Roman d\'amour kitsch · Années 80',       cat:'humour',  badge:'hot', color:'#7A0020,#FF4D6D' },
+  { id:'chasse',   emoji:'🐴', name:'Tableau de Chasse',      desc:'Portrait pompeux du XVIIIe',              cat:'humour',  badge:'',    color:'#2D4A00,#D4FF3C' },
+  { id:'rock80',   emoji:'🎸', name:'Rock Star Années 80',    desc:'Perruque, paillettes & stade plein',      cat:'humour',  badge:'new', color:'#3D0C6B,#7B2FBE' },
+  { id:'vogue',    emoji:'📸', name:'Couverture Vogue',       desc:'Mode haute couture · Ton nom en une',     cat:'humour',  badge:'',    color:'#7A0020,#FF4D6D' },
+  { id:'canape',   emoji:'🛋', name:'Conquérant du Canapé',  desc:'Héroïsme domestique glorifié',            cat:'humour',  badge:'new', color:'#7A4800,#FFB800' },
+  { id:'pizza',    emoji:'🍕', name:'Roi de la Pizza',        desc:'Renaissance culinaire · Style Bronzino',  cat:'humour',  badge:'new', color:'#7A0020,#FF4D6D' },
+
+  // FANTASY
+  { id:'dragon',   emoji:'🐉', name:'Dragon Rider',          desc:'Fantasy épique · Weta Workshop quality',  cat:'fantasy', badge:'',    color:'#3D0C6B,#7B2FBE' },
+  { id:'sorcier',  emoji:'🧙', name:'Grand Sorcier',         desc:'Archimage · Tour de magie et grimoires',  cat:'fantasy', badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'viking',   emoji:'⚔',  name:'Viking Légendaire',     desc:'Jarl · Fjord nordique au crépuscule',     cat:'fantasy', badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'chevalier',emoji:'🛡', name:'Chevalier de Lumière',  desc:'Pour enfants · Conte de fées magique',    cat:'fantasy', badge:'kids',color:'#2D4A00,#D4FF3C' },
+  { id:'sith',     emoji:'⚡', name:'Seigneur Sith',         desc:'Côté obscur · Haute Couture cosmique',    cat:'fantasy', badge:'hot', color:'#1A0A2E,#7B2FBE' },
+  { id:'sorciere', emoji:'🖤', name:'Reine Sorcière',        desc:'Dark fantasy · Pré-Raphaélite',           cat:'fantasy', badge:'',    color:'#1A0A2E,#FF4D6D' },
+
+  // CINÉMA
+  { id:'western',  emoji:'🤠', name:'Affiche Western',       desc:'Spaghetti 60s · Style Sergio Leone',      cat:'cinema',  badge:'',    color:'#7A4800,#FFB800' },
+  { id:'superhero',emoji:'🦸', name:'Super-Héros Urbain',    desc:'Blockbuster · Style MCU cinématographique',cat:'cinema', badge:'hot', color:'#002B5C,#4A90E2' },
+  { id:'spy',      emoji:'🕵', name:'Agent Secret',          desc:'Film d\'espionnage · Style James Bond',   cat:'cinema',  badge:'',    color:'#1A0A2E,#FFB800' },
+  { id:'astronaut',emoji:'🚀', name:'Astronaute NASA Rétro', desc:'Space Age · Affiche rétro-futuriste',     cat:'cinema',  badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'noir',     emoji:'🎩', name:'Détective Film Noir',   desc:'Noir & blanc · Gordon Willis photography', cat:'cinema', badge:'',    color:'#1A0A2E,#4A90E2' },
+  { id:'parrain',  emoji:'🌹', name:'Le Parrain',            desc:'Mafioso légendaire · Style Coppola/Willis',cat:'cinema', badge:'',    color:'#1A0A2E,#7B2FBE' },
+
+  // ENFANTS
+  { id:'bebe-pdg', emoji:'👶', name:'Bébé PDG Forbes',       desc:'CEO en couverture · Totalement sérieux',  cat:'kids',   badge:'hot', color:'#002B5C,#4A90E2' },
+  { id:'bebe-rock',emoji:'🎵', name:'Bébé Rockstar',         desc:'Backstage · Style Annie Leibovitz',       cat:'kids',   badge:'new', color:'#3D0C6B,#7B2FBE' },
+  { id:'bebe-chess',emoji:'♟',name:'Bébé Grand Maître',     desc:'Tournoi mondial · Sérieux absolu',        cat:'kids',   badge:'new', color:'#002B5C,#4A90E2' },
+  { id:'enfant-astro',emoji:'🌌',name:'Astronaute en Herbe', desc:'NASA · Fenêtre sur la Terre depuis l\'espace',cat:'kids',badge:'',  color:'#002B5C,#4A90E2' },
+  { id:'prince',   emoji:'🌟', name:'Prince/Princesse',      desc:'Conte de fées enchanté · Rebecca Dautremer',cat:'kids', badge:'',    color:'#2D4A00,#D4FF3C' },
+
+  // ANIMAUX
+  { id:'chat-renaissance',emoji:'🐱',name:'Chat Noble Renaissance',desc:'Portrait florentin · Style Bronzino', cat:'animals',badge:'hot',color:'#7A4800,#FFB800' },
+  { id:'chien-napoleon',emoji:'🐶',name:'Chien Général',     desc:'Grande Armée · Style Jacques-Louis David',cat:'animals', badge:'',    color:'#002B5C,#4A90E2' },
+  { id:'lapin-nasa',emoji:'🐰',name:'Lapin Astronaute NASA', desc:'Portrait officiel · Totalement sérieux',  cat:'animals', badge:'new', color:'#002B5C,#4A90E2' },
+
+  // ART & MUSÉES
+  { id:'joconde',  emoji:'🖼', name:'La Joconde Revisitée',  desc:'Léonard de Vinci · Fidélité absolue',     cat:'art',    badge:'',    color:'#7A4800,#FFB800' },
+  { id:'vermeer',  emoji:'🎨', name:'Fille à la Perle',      desc:'Vermeer · La plus intime des peintures',  cat:'art',    badge:'',    color:'#7A4800,#FFB800' },
+  { id:'warhol',   emoji:'🟨', name:'Diptyque Warhol',       desc:'Pop Art · Factory · Silkscreen couleur',  cat:'art',    badge:'hot', color:'#7A0020,#FFB800' },
+  { id:'banksy',   emoji:'🧱', name:'Mural Banksy',          desc:'Street art · Pochoir sur brique',         cat:'art',    badge:'new', color:'#1A0A2E,#4A90E2' },
+  { id:'arcimboldo',emoji:'🌸',name:'Portrait Fleuri',       desc:'Style Arcimboldo · Entièrement en fleurs',cat:'art',    badge:'',    color:'#2D4A00,#FFB800' },
+  { id:'cosmos',   emoji:'🌌', name:'Être de Galaxie',       desc:'Surréaliste · Corps fait de nébuleuses',  cat:'art',    badge:'new', color:'#1A0A2E,#7B2FBE' },
+
+  // MYTHOLOGIE
+  { id:'zeus',     emoji:'⚡', name:'Zeus sur l\'Olympe',    desc:'Dieu grec · Néoclassique somptueux',      cat:'mythologie',badge:'',  color:'#7A4800,#FFB800' },
+  { id:'odin',     emoji:'🐦', name:'Odin Allfather',        desc:'Mythologie nordique · Cinématographique', cat:'mythologie',badge:'hot',color:'#1A0A2E,#4A90E2' },
+  { id:'athena',   emoji:'🦉', name:'Athéna Déesse',         desc:'Sagesse & Guerre · Académisme lumineux',  cat:'mythologie',badge:'',  color:'#7A4800,#FFB800' },
+
+  // GAMING
+  { id:'rpg',      emoji:'⚔',  name:'Portrait RPG Légendaire',desc:'Level 99 · Paladin, Mage, Assassin…',   cat:'gaming',  badge:'hot', color:'#3D0C6B,#7B2FBE' },
+  { id:'gamecover',emoji:'🎮', name:'Jaquette de Jeu AAA',   desc:'PlayStation 5 · Cover du jeu de l\'année',cat:'gaming', badge:'new', color:'#002B5C,#FF4D6D' },
+];
+
+const CATEGORIES = [
+  { id:'prestige',   label:'👑 Prestige & Royauté',      filter:'prestige' },
+  { id:'humour',     label:'😂 Humour & Cadeau Viral',   filter:'humour' },
+  { id:'fantasy',    label:'🧙 Fantasy & Magie',          filter:'fantasy' },
+  { id:'cinema',     label:'🎬 Grand Écran & Cinéma',     filter:'cinema' },
+  { id:'kids',       label:'👶 Spécial Enfants',          filter:'kids' },
+  { id:'animals',    label:'🐾 Ton Animal de Légende',    filter:'animals' },
+  { id:'art',        label:'🎭 Chefs-d\'œuvre de Musée', filter:'art' },
+  { id:'mythologie', label:'⚡ Mythologie & Dieux',       filter:'mythologie' },
+  { id:'gaming',     label:'🎮 Gaming & Pop Culture',     filter:'gaming' },
+];
+
+/* ════════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════════ */
+let state = {
+  currentPage: 'catalogue',
+  tunnelStep: -1,
+  selectedTheme: null,
+  uploadedImage: null,
+  tone: 'classique',
+  dedicateOn: false,
+  dedicate: '',
+  name: '',
+  format: { label:'A3 — 30×42 cm', price: 49 },
+  deliveryPrice: 0,
+};
+
+/* ════════════════════════════════════════════════════════════
+   CATALOGUE RENDERING
+════════════════════════════════════════════════════════════ */
+function renderCatalogue(filter = 'all') {
+  const container = document.getElementById('catalogue-content');
+  container.innerHTML = '';
+  
+  const cats = filter === 'all'
+    ? CATEGORIES
+    : CATEGORIES.filter(c => c.filter === filter);
+
+  let count = 0;
+  cats.forEach(cat => {
+    const themes = THEMES.filter(t => t.cat === cat.filter);
+    if (!themes.length) return;
+    count += themes.length;
+
+    // Section title
+    const titleEl = document.createElement('div');
+    titleEl.className = 'cat-section-title';
+    titleEl.innerHTML = `<h2>${cat.label}</h2><div class="cat-divider"></div>`;
+    container.appendChild(titleEl);
+
+    // Grid
+    const grid = document.createElement('div');
+    grid.className = 'catalogue-grid';
+    themes.forEach(t => {
+      const el = document.createElement('div');
+      el.className = 'theme-card';
+      const badgeHtml = t.badge
+        ? `<span class="theme-badge ${t.badge === 'hot' ? 'hot' : t.badge === 'new' ? 'new' : t.badge === 'kids' ? 'kids' : ''}">${t.badge === 'hot' ? '🔥 Populaire' : t.badge === 'new' ? '✨ Nouveau' : '👶 Enfants'}</span>`
+        : '';
+      el.innerHTML = `
+        <div class="theme-card-img" style="background:linear-gradient(135deg,#${t.color.split(',')[0].replace('#','')},#${t.color.split(',')[1].replace('#','')})">
+          <span class="emoji">${t.emoji}</span>
+          ${badgeHtml}
+        </div>
+        <div class="theme-card-body">
+          <h3>${t.name}</h3>
+          <p>${t.desc}</p>
+          <div class="theme-card-footer">
+            <div class="theme-price">29€ <span>→ 79€</span></div>
+            <button class="btn-choose" onclick="chooseTheme('${t.id}')">Choisir →</button>
+          </div>
+        </div>`;
+      grid.appendChild(el);
+    });
+    container.appendChild(grid);
+  });
+
+  document.getElementById('count-badge').textContent = `${count} thème${count>1?'s':''} disponible${count>1?'s':''}`;
+}
+
+// Filter chips
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    renderCatalogue(chip.dataset.filter);
+  });
+});
+
+renderCatalogue();
+
+/* ════════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════════ */
+const TUNNEL_STEPS = ['page-upload', 'page-theme', 'page-preview', 'page-checkout'];
+const STEP_HINTS = [
+  { strong: 'Étape 1/4', sub: '— Upload ta photo' },
+  { strong: 'Étape 2/4', sub: '— Confirme ton thème' },
+  { strong: 'Étape 3/4', sub: '— Personnalise & prévisualise' },
+  { strong: 'Étape 4/4', sub: '— Choisis ton format' },
+];
+
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function goBack() {
+  if (state.tunnelStep > 0) {
+    state.tunnelStep--;
+    showPage(TUNNEL_STEPS[state.tunnelStep]);
+    updateProgress();
+  } else {
+    exitTunnel();
+  }
+}
+
+function exitTunnel() {
+  showPage('page-catalogue');
+  document.getElementById('progress-bar').classList.remove('visible');
+  document.getElementById('tunnel-footer').classList.add('hidden');
+  document.getElementById('nav-back').style.display = 'none';
+  state.tunnelStep = -1;
+  state.currentPage = 'catalogue';
+}
+
+function chooseTheme(themeId) {
+  const t = THEMES.find(th => th.id === themeId);
+  if (!t) return;
+  state.selectedTheme = t;
+
+  // Update tunnel theme preview
+  document.getElementById('sel-emoji').textContent = t.emoji;
+  document.getElementById('sel-name').textContent = t.name;
+  document.getElementById('sel-desc').textContent = t.desc;
+  document.getElementById('preview-bg').textContent = t.emoji;
+  document.getElementById('preview-label').textContent = t.name;
+  document.getElementById('sum-theme-name').textContent = t.name;
+  document.getElementById('sum-thumb').textContent = t.emoji;
+
+  // Enter tunnel
+  state.tunnelStep = 0;
+  showPage(TUNNEL_STEPS[0]);
+  document.getElementById('progress-bar').classList.add('visible');
+  document.getElementById('tunnel-footer').classList.remove('hidden');
+  document.getElementById('nav-back').style.display = 'flex';
+  updateProgress();
+  updateFooter();
+  renderMiniGrid();
+}
+
+function nextStep() {
+  if (state.tunnelStep === 0 && !state.uploadedImage) {
+    shakeUpload(); return;
+  }
+  if (state.tunnelStep < TUNNEL_STEPS.length - 1) {
+    state.tunnelStep++;
+    showPage(TUNNEL_STEPS[state.tunnelStep]);
+    updateProgress();
+    updateFooter();
+    if (state.tunnelStep === 2) simulateLoading();
+  }
+}
+
+function prevStep() {
+  if (state.tunnelStep > 0) {
+    state.tunnelStep--;
+    showPage(TUNNEL_STEPS[state.tunnelStep]);
+    updateProgress();
+    updateFooter();
+  } else {
+    exitTunnel();
+  }
+}
+
+function updateProgress() {
+  const s = state.tunnelStep;
+  for (let i = 0; i < 4; i++) {
+    const ps = document.getElementById('ps-'+i);
+    ps.classList.remove('active','done');
+    if (i < s) ps.classList.add('done');
+    if (i === s) ps.classList.add('active');
+  }
+  for (let i = 0; i < 3; i++) {
+    const pl = document.getElementById('pl-'+i);
+    pl.classList.toggle('done', i < s);
+  }
+}
+
+function updateFooter() {
+  const s = state.tunnelStep;
+  const hint = STEP_HINTS[s];
+  document.getElementById('tf-strong').textContent = hint.strong;
+  document.getElementById('tf-sub').textContent = hint.sub;
+  const btn = document.getElementById('btn-next');
+  if (s === TUNNEL_STEPS.length - 1) {
+    btn.style.display = 'none';
+  } else {
+    btn.style.display = '';
+    btn.textContent = s === 2 ? '✅ Valider mon tableau →' : 'Continuer →';
+  }
+  document.getElementById('btn-prev').style.display = s === 0 ? 'none' : '';
+}
+
+/* ════════════════════════════════════════════════════════════
+   UPLOAD
+════════════════════════════════════════════════════════════ */
+function triggerUpload() {
+  document.getElementById('file-input').click();
+}
+
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    state.uploadedImage = ev.target.result;
+    const zone = document.getElementById('upload-zone');
+    const preview = document.getElementById('upload-preview');
+    const change = document.getElementById('upload-change');
+    preview.src = ev.target.result;
+    preview.classList.add('visible');
+    zone.classList.add('has-image');
+    change.style.display = 'block';
+    // hide upload instructions
+    zone.querySelector('span.upload-icon').style.display = 'none';
+    zone.querySelector('h3').style.display = 'none';
+    zone.querySelector('p').style.display = 'none';
+    zone.querySelector('button').style.display = 'none';
+    document.getElementById('btn-next').disabled = false;
+  };
+  reader.readAsDataURL(file);
+}
+
+// Drag & drop
+const zone = document.getElementById('upload-zone');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+zone.addEventListener('drop', e => {
+  e.preventDefault(); zone.classList.remove('dragover');
+  const file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) {
+    const ev = { target: { files: [file] } };
+    handleFile(ev);
+  }
+});
+
+function shakeUpload() {
+  const z = document.getElementById('upload-zone');
+  z.style.animation = 'none';
+  z.style.borderColor = 'var(--coral)';
+  z.style.borderStyle = 'solid';
+  setTimeout(() => {
+    z.style.borderColor = '';
+    z.style.borderStyle = 'dashed';
+  }, 800);
+}
+
+/* ════════════════════════════════════════════════════════════
+   MINI THEME GRID
+════════════════════════════════════════════════════════════ */
+function renderMiniGrid() {
+  const grid = document.getElementById('mini-grid');
+  grid.innerHTML = '';
+  THEMES.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'mini-theme-card' + (state.selectedTheme && state.selectedTheme.id === t.id ? ' selected' : '');
+    el.innerHTML = `
+      <div class="mini-img" style="background:linear-gradient(135deg,${t.color})">${t.emoji}</div>
+      <div class="mini-label">${t.name}</div>`;
+    el.onclick = () => {
+      state.selectedTheme = t;
+      document.querySelectorAll('.mini-theme-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('sel-emoji').textContent = t.emoji;
+      document.getElementById('sel-name').textContent = t.name;
+      document.getElementById('sel-desc').textContent = t.desc;
+      document.getElementById('preview-bg').textContent = t.emoji;
+      document.getElementById('preview-label').textContent = t.name;
+      document.getElementById('sum-theme-name').textContent = t.name;
+      document.getElementById('sum-thumb').textContent = t.emoji;
+      document.getElementById('theme-picker-expand').style.display = 'none';
+    };
+    grid.appendChild(el);
+  });
+}
+
+function expandThemes() {
+  const el = document.getElementById('theme-picker-expand');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+/* ════════════════════════════════════════════════════════════
+   PREVIEW / PERSONALISATION
+════════════════════════════════════════════════════════════ */
+function simulateLoading() {
+  const loader = document.getElementById('preview-loading');
+  loader.classList.add('visible');
+  setTimeout(() => loader.classList.remove('visible'), 2200);
+}
+
+function regenerate() {
+  simulateLoading();
+}
+
+function selectTone(el) {
+  document.querySelectorAll('.tone-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.tone = el.dataset.tone;
+}
+
+function toggleDedicate() {
+  state.dedicateOn = !state.dedicateOn;
+  document.getElementById('dedicate-toggle').classList.toggle('on', state.dedicateOn);
+  document.getElementById('dedicate-field').classList.toggle('visible', state.dedicateOn);
+}
+
+function updatePreviewLabel() {
+  const val = document.getElementById('dedicate-input').value;
+  state.dedicate = val;
+  if (val) document.getElementById('preview-label').textContent = val;
+  else if (state.selectedTheme) document.getElementById('preview-label').textContent = state.selectedTheme.name;
+}
+
+/* ════════════════════════════════════════════════════════════
+   CHECKOUT
+════════════════════════════════════════════════════════════ */
+function selectFormat(el, label, price) {
+  document.querySelectorAll('.format-row').forEach(r => r.classList.remove('selected'));
+  el.classList.add('selected');
+  state.format = { label, price };
+  document.getElementById('sum-format-label').textContent = 'Format ' + label;
+  updateTotal();
+}
+
+function selectDelivery(el, type, price) {
+  document.querySelectorAll('.delivery-opt').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  state.deliveryPrice = price;
+  updateTotal();
+}
+
+function updateTotal() {
+  const total = state.format.price + state.deliveryPrice;
+  document.getElementById('sum-price').textContent = state.format.price + '€';
+  document.getElementById('sum-delivery').textContent = state.deliveryPrice === 0 ? 'Offerte' : '+' + state.deliveryPrice.toFixed(2).replace('.',',') + '€';
+  document.getElementById('sum-total').textContent = total % 1 === 0 ? total + '€' : total.toFixed(2).replace('.',',') + '€';
+}
+
+function placeOrder() {
+  const btn = document.querySelector('.btn-order');
+  btn.textContent = '⏳ Traitement en cours…';
+  btn.disabled = true;
+  setTimeout(() => {
+    showPage('page-confirm');
+    document.getElementById('progress-bar').classList.remove('visible');
+    document.getElementById('tunnel-footer').classList.add('hidden');
+    document.getElementById('nav-back').style.display = 'none';
+  }, 1600);
+}
+
+function restart() {
+  state = {
+    currentPage: 'catalogue', tunnelStep: -1,
+    selectedTheme: null, uploadedImage: null,
+    tone: 'classique', dedicateOn: false, dedicate: '', name: '',
+    format: { label:'A3 — 30×42 cm', price: 49 }, deliveryPrice: 0,
+  };
+  // Reset upload zone
+  const zone = document.getElementById('upload-zone');
+  zone.classList.remove('has-image');
+  const preview = document.getElementById('upload-preview');
+  preview.src = ''; preview.classList.remove('visible');
+  document.getElementById('upload-change').style.display = 'none';
+  zone.querySelector('span.upload-icon').style.display = '';
+  zone.querySelector('h3').style.display = '';
+  zone.querySelector('p').style.display = '';
+  zone.querySelector('button').style.display = '';
+  document.getElementById('file-input').value = '';
+  // Reset dedicate
+  document.getElementById('dedicate-toggle').classList.remove('on');
+  document.getElementById('dedicate-field').classList.remove('visible');
+  document.getElementById('dedicate-input').value = '';
+  // Reset tones
+  document.querySelectorAll('.tone-opt').forEach(o => o.classList.remove('selected'));
+  document.querySelector('[data-tone="classique"]').classList.add('selected');
+  // Reset format rows
+  document.querySelectorAll('.format-row').forEach(r => r.classList.remove('selected'));
+  document.querySelectorAll('.format-row')[1].classList.add('selected');
+  updateTotal();
+
+  renderCatalogue();
+  exitTunnel();
+}
+
+// Init
+updateTotal();
+</script>
+</body>
+</html>

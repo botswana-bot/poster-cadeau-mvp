@@ -63,15 +63,26 @@
     pointer-events: none; z-index: 9998; opacity: 0.5;
   }
 
+  /* ─── MAX WIDTH WRAPPER ─────────────────────────────────────── */
+  .page-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
   /* ─── NAV ───────────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
     background: var(--cream);
     border-bottom: 2px solid var(--ink);
     animation: slideDown 0.6s ease both;
+  }
+  .nav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
   }
 
   .logo {
@@ -116,13 +127,18 @@
   /* ─── HERO ───────────────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
     padding: 140px 48px 80px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
     align-items: center;
-    position: relative;
-    overflow: hidden;
   }
 
   /* Floating shapes */
@@ -265,7 +281,7 @@
   /* Hero right — floating portrait cards */
   .hero-right {
     position: relative;
-    height: 580px;
+    height: 560px;
     animation: slideUp 0.8s ease 0.3s both;
   }
 
@@ -286,7 +302,7 @@
   .portrait-card .card-img {
     width: 100%; height: 100%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 72px;
+    font-size: 64px;
     background: linear-gradient(135deg, var(--bg1), var(--bg2));
   }
 
@@ -295,36 +311,40 @@
     bottom: 0; left: 0; right: 0;
     background: var(--ink);
     color: var(--cream);
-    font-size: 11px; font-weight: 700;
+    font-size: 10px; font-weight: 700;
     letter-spacing: 1px;
-    padding: 8px 12px;
+    padding: 7px 10px;
     text-transform: uppercase;
   }
 
+  /* 2×2 layout — NO overlap guaranteed:
+     Top row:    card-1 (left)  card-2 (right)  height ~230px each, top 0/20px
+     Bottom row: card-3 (left)  card-4 (right)  height ~210px each, top 300px
+     Total container: 560px — gap between rows ≈ 50px minimum */
   .card-1 {
-    width: 200px; height: 260px;
-    top: 0; left: 10px;
-    transform: rotate(-5deg);
+    width: 185px; height: 235px;
+    top: 0; left: 0;
+    transform: rotate(-4deg);
     --bg1: #FFE4C8; --bg2: #FFB800;
     animation: floatCard 6s ease-in-out infinite;
   }
   .card-2 {
-    width: 240px; height: 300px;
-    top: 40px; right: 0;
+    width: 195px; height: 245px;
+    top: 20px; right: 0;
     transform: rotate(3deg);
     --bg1: #FFD6E0; --bg2: #FF4D6D;
     animation: floatCard 5s ease-in-out infinite 1s;
   }
   .card-3 {
-    width: 180px; height: 230px;
-    bottom: 20px; left: 60px;
-    transform: rotate(2deg);
+    width: 180px; height: 225px;
+    bottom: 0; left: 24px;
+    transform: rotate(2.5deg);
     --bg1: #C8FFF4; --bg2: #00C9B1;
     animation: floatCard 7s ease-in-out infinite 0.5s;
   }
   .card-4 {
-    width: 160px; height: 210px;
-    bottom: 60px; right: 30px;
+    width: 175px; height: 220px;
+    bottom: 14px; right: 14px;
     transform: rotate(-3deg);
     --bg1: #E8D4FF; --bg2: #7B2FBE;
     animation: floatCard 5.5s ease-in-out infinite 1.5s;
@@ -357,7 +377,12 @@
   }
 
   /* ─── HOW IT WORKS ───────────────────────────────────────────── */
-  .section { padding: 96px 48px; }
+  .section { padding: 96px 0; }
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
 
   .section-label {
     display: inline-flex; align-items: center; gap: 8px;
@@ -442,7 +467,11 @@
     background: var(--ink);
     overflow: hidden;
   }
-  .categories-section .inner { padding: 0 48px; }
+  .categories-section .inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
 
   .categories-section h2 { color: var(--cream); }
   .categories-section .section-label { color: var(--gold); }
@@ -517,10 +546,15 @@
 
   /* ─── TESTIMONIALS ───────────────────────────────────────────── */
   .testimonials {
-    padding: 96px 48px;
+    padding: 96px 0;
     background: var(--peach);
     border-top: 2px solid var(--ink);
     border-bottom: 2px solid var(--ink);
+  }
+  .testimonials-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
   }
 
   .testi-grid {
@@ -560,7 +594,12 @@
   .testi-sub { font-size: 12px; color: #7a6b8a; }
 
   /* ─── FORMATS / PRICING ──────────────────────────────────────── */
-  .formats { padding: 96px 48px; }
+  .formats { padding: 96px 0; }
+  .formats-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
 
   .formats-grid {
     display: grid;
@@ -650,8 +689,12 @@
   .format-card.featured .btn-format:hover { background: white; color: var(--ink); border-color: white; }
 
   /* ─── CTA FINAL ──────────────────────────────────────────────── */
+  .cta-final-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 48px 96px;
+  }
   .cta-final {
-    margin: 0 48px 96px;
     background: var(--violet);
     border: 2px solid var(--ink);
     border-radius: 32px;
@@ -696,12 +739,16 @@
   /* ─── FOOTER ─────────────────────────────────────────────────── */
   footer {
     background: var(--ink);
-    color: var(--cream);
+    border-top: 2px solid rgba(255,255,255,0.1);
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
     padding: 48px;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 48px;
-    border-top: 2px solid rgba(255,255,255,0.1);
+    color: var(--cream);
   }
 
   .footer-brand .logo { color: var(--cream); display: block; margin-bottom: 12px; font-size: 32px; }
@@ -724,6 +771,10 @@
   .footer-bottom {
     background: var(--ink);
     border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
     padding: 20px 48px;
     display: flex; align-items: center; justify-content: space-between;
     color: #7a6b8a; font-size: 13px;
@@ -738,9 +789,9 @@
     0%,100% { transform: var(--r,rotate(0deg)) translateY(0); }
     50%      { transform: var(--r,rotate(0deg)) translateY(-10px); }
   }
-  .card-1 { --r: rotate(-5deg); }
+  .card-1 { --r: rotate(-4deg); }
   .card-2 { --r: rotate(3deg); }
-  .card-3 { --r: rotate(2deg); }
+  .card-3 { --r: rotate(2.5deg); }
   .card-4 { --r: rotate(-3deg); }
 
   @keyframes morph {
@@ -764,27 +815,27 @@
 
   /* ─── RESPONSIVE MOBILE ──────────────────────────────────────── */
   @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
+    .nav-inner { padding: 16px 20px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
 
-    .hero {
+    .hero-inner {
       grid-template-columns: 1fr;
       padding: 120px 20px 60px;
       gap: 48px;
     }
 
     .hero-right {
-      height: 360px;
+      height: 320px;
       order: -1;
     }
 
-    .card-1 { width: 130px; height: 170px; top: 0; left: 5px; }
-    .card-2 { width: 150px; height: 190px; top: 20px; right: 0; }
-    .card-3 { width: 120px; height: 155px; bottom: 0; left: 30px; }
-    .card-4 { width: 110px; height: 145px; bottom: 20px; right: 20px; }
+    .card-1 { width: 130px; height: 164px; top: 0; left: 0; }
+    .card-2 { width: 138px; height: 174px; top: 10px; right: 0; }
+    .card-3 { width: 124px; height: 156px; bottom: 0; left: 10px; }
+    .card-4 { width: 118px; height: 148px; bottom: 8px; right: 10px; }
     .card-1 .card-img, .card-2 .card-img,
-    .card-3 .card-img, .card-4 .card-img { font-size: 48px; }
+    .card-3 .card-img, .card-4 .card-img { font-size: 44px; }
 
     .hero-stats { gap: 20px; flex-wrap: wrap; }
     .stat-num { font-size: 28px; }
@@ -793,35 +844,26 @@
     .shape-2 { display: none; }
     .shape-3 { display: none; }
 
-    .section { padding: 60px 20px; }
+    .section { padding: 60px 0; }
+    .section-inner { padding: 0 20px; }
 
     .steps-grid { grid-template-columns: 1fr; gap: 16px; }
     .testi-grid  { grid-template-columns: 1fr; gap: 16px; }
     .testi-card:nth-child(2) { transform: none; }
     .testi-card:nth-child(2):hover { transform: none; }
+    .testimonials-inner { padding: 0 20px; }
 
-    .formats-grid {
-      grid-template-columns: 1fr;
-      align-items: start;
-    }
+    .formats-grid { grid-template-columns: 1fr; align-items: start; }
     .format-card.featured { transform: none; }
     .format-card.featured:hover { transform: translate(-4px,-4px); }
+    .formats-inner { padding: 0 20px; }
 
-    .cta-final {
-      margin: 0 20px 60px;
-      padding: 48px 24px;
-    }
+    .cta-final-wrapper { padding: 0 20px 60px; }
+    .cta-final { padding: 48px 24px; }
 
-    footer {
-      grid-template-columns: 1fr;
-      gap: 32px;
-      padding: 40px 20px;
-    }
-    .footer-bottom {
-      flex-direction: column;
-      gap: 8px;
-      text-align: center;
-      padding: 16px 20px;
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+    .footer-bottom-inner {
+      flex-direction: column; gap: 8px; text-align: center; padding: 16px 20px;
     }
 
     .categories-section .inner { padding: 0 20px; }
@@ -829,7 +871,6 @@
     .scroll-hint { margin: 0 20px; margin-top: 8px; }
   }
   .portrait-card .card-img img { width:100%; height:100%; object-fit:cover; display:block; }
-
 </style>
 </head>
 
@@ -839,15 +880,17 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">ART<span>MOI</span></a>
-  <ul class="nav-links">
-    <li><a href="#categories">Catégories</a></li>
-    <li><a href="#comment">Comment ça marche</a></li>
-    <li><a href="#formats">Formats & Prix</a></li>
-    <li><a href="#" class="nav-cta">Créer mon tableau →</a></li>
-  </ul>
-  <div class="hamburger" onclick="toggleMenu(this)">
-    <span></span><span></span><span></span>
+  <div class="nav-inner">
+    <a href="#" class="logo">ART<span>MOI</span></a>
+    <ul class="nav-links">
+      <li><a href="#categories">Catégories</a></li>
+      <li><a href="#comment">Comment ça marche</a></li>
+      <li><a href="#formats">Formats & Prix</a></li>
+      <li><a href="#" class="nav-cta">Créer mon tableau →</a></li>
+    </ul>
+    <div class="hamburger" onclick="toggleMenu(this)">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
 
@@ -858,6 +901,7 @@
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
 
+  <div class="hero-inner">
   <div class="hero-left">
     <div class="hero-badge">
       <span class="dot"></span>
@@ -919,6 +963,7 @@
       <div class="card-label">Rock Star 80s</div>
     </div>
   </div>
+  </div><!-- /hero-inner -->
 </section>
 
 <!-- TICKER -->
@@ -941,6 +986,7 @@
 
 <!-- HOW IT WORKS -->
 <section class="section" id="comment">
+  <div class="section-inner">
   <div class="reveal">
     <div class="section-label">Simple comme bonjour</div>
     <h2>3 étapes vers<br>ta légende</h2>
@@ -966,6 +1012,7 @@
       <p>Imprimé sur papier photo premium, encadré et livré chez toi en 48h. Prêt à accrocher, prêt à éblouir.</p>
     </div>
   </div>
+  </div><!-- /section-inner -->
 </section>
 
 <!-- CATEGORIES -->
@@ -1065,6 +1112,7 @@
 
 <!-- TESTIMONIALS -->
 <section class="testimonials">
+  <div class="testimonials-inner">
   <div class="reveal" style="text-align:center">
     <div class="section-label" style="justify-content:center">Ils sont devenus des légendes</div>
     <h2>Ce qu'ils en disent</h2>
@@ -1113,10 +1161,12 @@
       </div>
     </div>
   </div>
+  </div><!-- /testimonials-inner -->
 </section>
 
 <!-- FORMATS -->
 <section class="formats section" id="formats">
+  <div class="formats-inner">
   <div class="reveal" style="text-align:center">
     <div class="section-label" style="justify-content:center">Formats & Tarifs</div>
     <h2>Choisis ton format</h2>
@@ -1171,60 +1221,67 @@
       <button class="btn-format">Choisir ce format</button>
     </div>
   </div>
+  </div><!-- /formats-inner -->
 </section>
 
 <!-- CTA FINAL -->
-<div class="cta-final reveal">
-  <h2>Ta légende<br>commence ici 🎨</h2>
-  <p>Rejoins les 12 000+ personnes qui sont déjà immortalisées.<br>Création en 5 minutes, livraison en 48h.</p>
-  <a href="#" class="btn-primary">
-    ✨ Créer mon tableau maintenant
-  </a>
-  <div class="confetti-row">
-    <span>👑</span><span>🎬</span><span>🧙</span><span>😂</span>
-    <span>⚡</span><span>🎮</span><span>🎭</span><span>🐾</span>
+<div class="cta-final-wrapper">
+  <div class="cta-final reveal">
+    <h2>Ta légende<br>commence ici 🎨</h2>
+    <p>Rejoins les 12 000+ personnes qui sont déjà immortalisées.<br>Création en 5 minutes, livraison en 48h.</p>
+    <a href="#" class="btn-primary">
+      ✨ Créer mon tableau maintenant
+    </a>
+    <div class="confetti-row">
+      <span>👑</span><span>🎬</span><span>🧙</span><span>😂</span>
+      <span>⚡</span><span>🎮</span><span>🎭</span><span>🐾</span>
+    </div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <span class="logo">ART<span>MOI</span></span>
-    <p>Transforme ta photo en chef-d'œuvre personnalisé. Chaque tableau est unique, imprimé en France sur papier premium.</p>
-  </div>
-  <div class="footer-col">
-    <h5>Explorer</h5>
-    <ul>
-      <li><a href="#">Tous les thèmes</a></li>
-      <li><a href="#">Portraits royaux</a></li>
-      <li><a href="#">Humour & Cadeau</a></li>
-      <li><a href="#">Portraits enfants</a></li>
-      <li><a href="#">Portraits animaux</a></li>
-    </ul>
-  </div>
-  <div class="footer-col">
-    <h5>Informations</h5>
-    <ul>
-      <li><a href="#">Comment ça marche</a></li>
-      <li><a href="#">Formats & Prix</a></li>
-      <li><a href="#">Livraison</a></li>
-      <li><a href="#">FAQ</a></li>
-    </ul>
-  </div>
-  <div class="footer-col">
-    <h5>Légal</h5>
-    <ul>
-      <li><a href="#">Mentions légales</a></li>
-      <li><a href="#">CGV</a></li>
-      <li><a href="#">Confidentialité</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">ART<span>MOI</span></span>
+      <p>Transforme ta photo en chef-d'œuvre personnalisé. Chaque tableau est unique, imprimé en France sur papier premium.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Explorer</h5>
+      <ul>
+        <li><a href="#">Tous les thèmes</a></li>
+        <li><a href="#">Portraits royaux</a></li>
+        <li><a href="#">Humour & Cadeau</a></li>
+        <li><a href="#">Portraits enfants</a></li>
+        <li><a href="#">Portraits animaux</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Informations</h5>
+      <ul>
+        <li><a href="#">Comment ça marche</a></li>
+        <li><a href="#">Formats & Prix</a></li>
+        <li><a href="#">Livraison</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Légal</h5>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">CGV</a></li>
+        <li><a href="#">Confidentialité</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
 <div class="footer-bottom">
-  <span>© 2024 ARTMOI — Fait avec 🎨 en France</span>
-  <span>Livraison offerte dès 49€ d'achat</span>
+  <div class="footer-bottom-inner">
+    <span>© 2024 ARTMOI — Fait avec 🎨 en France</span>
+    <span>Livraison offerte dès 49€ d'achat</span>
+  </div>
 </div>
 
 <script>
@@ -1260,7 +1317,7 @@
     } else {
       links.style.cssText = `
         display: flex; flex-direction: column;
-        position: fixed; top: 64px; left: 0; right: 0;
+        position: fixed; top: 68px; left: 0; right: 0;
         background: var(--cream); padding: 24px;
         border-bottom: 2px solid var(--ink); gap: 20px; z-index: 99;
       `;
@@ -1270,8 +1327,10 @@
   // Parallax shapes on scroll
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    document.querySelector('.shape-1').style.transform = `translateY(${y * 0.15}px)`;
-    document.querySelector('.shape-2').style.transform = `translateY(${-y * 0.1}px)`;
+    const s1 = document.querySelector('.shape-1');
+    const s2 = document.querySelector('.shape-2');
+    if (s1) s1.style.transform = `translateY(${y * 0.15}px)`;
+    if (s2) s2.style.transform = `translateY(${-y * 0.1}px)`;
   });
 </script>
 </body>

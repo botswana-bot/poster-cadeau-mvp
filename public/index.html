@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARTMOI — Deviens une Légende</title>
+<title>MUZE — Deviens une Légende</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -894,6 +894,16 @@
   @keyframes floatM3 { 0%,100%{transform:rotate( 2deg) translateY(0)} 50%{transform:rotate( 2deg) translateY(-6px)} }
   @keyframes floatM4 { 0%,100%{transform:rotate(-3deg) translateY(0)} 50%{transform:rotate(-3deg) translateY(-6px)} }
   .portrait-card .card-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ─── MUZE logo ("L'Italique Pur") ─────────────────────────── */
+  .logo-muze{display:flex;flex-direction:column;align-items:flex-start;gap:6px; text-decoration:none;}
+  .muze-wordmark{font-family:'Fraunces',serif;font-weight:900;font-size:28px; font-style:italic;letter-spacing:-2px;line-height:1;color:var(--ink);}
+  .muze-wordmark .uz{color:var(--coral);}
+  .muze-star{font-size:10px;letter-spacing:6px;color:var(--gold);line-height:1; opacity:.95;}
+  .muze-sub{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(26,10,46,.55);line-height:1;}
+  footer .logo-muze .muze-wordmark{color:var(--cream);} /* footer on dark */
+  footer .logo-muze .muze-sub{color:rgba(255,255,255,.35);} 
+
 </style>
 </head>
 
@@ -904,7 +914,11 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">ART<span>MOI</span></a>
+    <a href="#" class="logo logo-muze" aria-label="MUZE">
+      <span class="muze-wordmark">M<span class="uz">UZ</span>E</span>
+      <span class="muze-star">✦ ✦ ✦</span>
+      <span class="muze-sub">Portraits d'exception</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#categories">Catégories</a></li>
       <li><a href="#comment">Comment ça marche</a></li>
@@ -1266,7 +1280,11 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="logo">ART<span>MOI</span></span>
+      <span class="logo logo-muze" aria-label="MUZE">
+        <span class="muze-wordmark">M<span class="uz">UZ</span>E</span>
+        <span class="muze-star">✦ ✦ ✦</span>
+        <span class="muze-sub">Portraits d'exception</span>
+      </span>
       <p>Transforme ta photo en chef-d'œuvre personnalisé. Chaque tableau est unique, imprimé en France sur papier premium.</p>
     </div>
     <div class="footer-col">
@@ -1302,7 +1320,7 @@
 
 <div class="footer-bottom">
   <div class="footer-bottom-inner">
-    <span>© 2024 ARTMOI — Fait avec 🎨 en France</span>
+    <span>© 2024 MUZE — Fait avec 🎨 en France</span>
     <span>Livraison offerte dès 49€ d'achat</span>
   </div>
 </div>

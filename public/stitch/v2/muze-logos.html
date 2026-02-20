@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MUZE — Propositions de Logos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,900&family=Unbounded:wght@400;700;900&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FFF8F0;--ink:#1A0A2E;--coral:#FF4D6D;--gold:#FFB800;
+  --teal:#00C9B1;--violet:#7B2FBE;--lime:#D4FF3C;--peach:#FFD6C0;
+  --rose:#FFD6C0;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--ink);color:var(--cream);
+  min-height:100vh;overflow-x:hidden;
+}
+
+/* ── PAGE HEADER ─────────────────────────────────── */
+.page-header{
+  text-align:center;padding:64px 24px 48px;
+  border-bottom:2px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.page-header::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 100% 80% at 50% -20%,rgba(255,77,109,.2),transparent 70%),
+             radial-gradient(ellipse 60% 50% at 80% 100%,rgba(123,47,190,.15),transparent);
+  pointer-events:none;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.eyebrow::before,.eyebrow::after{content:'';display:block;width:32px;height:1px;background:var(--gold);opacity:.5;}
+.page-header h1{
+  font-family:'Fraunces',serif;font-size:clamp(40px,6vw,72px);
+  font-weight:900;letter-spacing:-3px;line-height:.95;color:var(--cream);margin-bottom:16px;
+}
+.page-header h1 em{font-style:italic;color:var(--coral);}
+.page-header p{font-size:15px;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto 32px;}
+
+/* Live preview strip */
+.name-strip{
+  display:inline-flex;align-items:center;gap:24px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:100px;padding:10px 28px;
+}
+.name-strip span{font-size:13px;color:rgba(255,255,255,.4);font-weight:600;}
+.name-strip .name{
+  font-family:'Fraunces',serif;font-weight:900;font-size:22px;
+  letter-spacing:-1px;color:var(--coral);font-style:italic;
+}
+
+/* ── FILTER ─────────────────────────────────────── */
+.filters{
+  display:flex;flex-wrap:wrap;gap:10px;
+  justify-content:center;padding:32px 24px 24px;
+}
+.filter-chip{
+  padding:8px 20px;border-radius:100px;
+  border:2px solid rgba(255,255,255,.15);
+  font-size:13px;font-weight:700;
+  background:transparent;color:rgba(255,255,255,.5);
+  cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;
+}
+.filter-chip:hover{border-color:rgba(255,255,255,.4);color:white;}
+.filter-chip.active{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+
+/* ── GRID ───────────────────────────────────────── */
+.logos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:24px;padding:8px 24px 120px;
+  max-width:1400px;margin:0 auto;
+}
+
+/* ── CARD ───────────────────────────────────────── */
+.logo-card{
+  border-radius:24px;border:2px solid rgba(255,255,255,.08);
+  overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s;
+  cursor:pointer;position:relative;
+  animation:fadeUp .4s ease both;
+}
+.logo-card:nth-child(1){animation-delay:.04s}
+.logo-card:nth-child(2){animation-delay:.08s}
+.logo-card:nth-child(3){animation-delay:.12s}
+.logo-card:nth-child(4){animation-delay:.16s}
+.logo-card:nth-child(5){animation-delay:.20s}
+.logo-card:nth-child(6){animation-delay:.24s}
+.logo-card:nth-child(7){animation-delay:.28s}
+.logo-card:nth-child(8){animation-delay:.32s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.logo-card:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.25);box-shadow:0 24px 64px rgba(0,0,0,.5);}
+.logo-card.selected{border-color:var(--coral);box-shadow:0 0 0 4px rgba(255,77,109,.2);}
+
+.logo-preview{
+  height:260px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:40px;
+  transition:background .3s;
+}
+
+/* bg swatches */
+.swatches{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;z-index:10;
+}
+.swatch{
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);cursor:pointer;
+  transition:transform .15s,border-color .2s;flex-shrink:0;
+}
+.swatch:hover{transform:scale(1.2);}
+.swatch.active{border-color:white;border-width:2.5px;transform:scale(1.15);}
+
+.fav-btn{
+  position:absolute;top:14px;right:14px;z-index:10;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(0,0,0,.35);backdrop-filter:blur(6px);
+  border:2px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;cursor:pointer;transition:transform .15s,background .2s;
+  user-select:none;
+}
+.fav-btn:hover{transform:scale(1.15);}
+.fav-btn.on{background:var(--coral);border-color:var(--coral);}
+
+.logo-info{
+  padding:20px 24px 22px;
+  border-top:2px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.025);
+}
+.logo-num{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.3);margin-bottom:4px;}
+.logo-name{font-family:'Fraunces',serif;font-size:19px;font-weight:700;color:white;margin-bottom:5px;}
+.logo-concept{font-size:13px;color:rgba(255,255,255,.4);line-height:1.55;margin-bottom:14px;}
+.logo-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.tag{
+  padding:3px 12px;border-radius:100px;
+  font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  border:1.5px solid rgba(255,255,255,.12);color:rgba(255,255,255,.4);
+}
+
+.selected-badge{
+  position:absolute;top:14px;left:14px;
+  background:var(--coral);color:white;
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 12px;border-radius:100px;border:2px solid rgba(0,0,0,.2);
+  display:none;
+}
+.logo-card.selected .selected-badge{display:block;}
+
+/* ════════════════════════════════════════════════════
+   THE 8 MUZE LOGO DESIGNS
+════════════════════════════════════════════════════ */
+
+/* ── 1. MUZE ITALIC SERIF + ÉTOILE ──────────────────
+   Fraunces grand italic, petit symbole étoile,
+   pure élégance typographique                       */
+.m1{position:relative;text-align:center;}
+.m1-wordmark{
+  font-family:'Fraunces',serif;font-weight:900;font-size:72px;
+  font-style:italic;letter-spacing:-4px;line-height:.9;
+  color:var(--cream);display:block;position:relative;
+}
+.m1-wordmark .uz{color:var(--coral);}
+.m1-star{
+  display:block;font-size:16px;letter-spacing:8px;
+  color:var(--gold);margin-top:6px;
+  animation:twinkle 2s ease-in-out infinite;
+}
+@keyframes twinkle{0%,100%{opacity:1;letter-spacing:8px}50%{opacity:.6;letter-spacing:10px}}
+.m1-sub{
+  display:block;font-size:9px;font-weight:700;letter-spacing:6px;
+  text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:10px;
+}
+
+/* ── 2. MUZE FRAME DORÉE ─────────────────────────────
+   Lettre M dans un carré/cadre, le nom à côté,
+   style galerie d'art contemporaine                */
+.m2{display:flex;align-items:center;gap:18px;}
+.m2-box{
+  width:72px;height:72px;border-radius:12px;
+  background:transparent;
+  border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;flex-shrink:0;
+  box-shadow:4px 4px 0 var(--gold);
+}
+.m2-box::before{
+  content:'';position:absolute;
+  inset:4px;border-radius:8px;
+  background:rgba(255,184,0,.08);
+}
+.m2-m{
+  font-family:'Fraunces',serif;font-weight:900;font-size:44px;
+  font-style:italic;color:var(--gold);line-height:1;
+  position:relative;z-index:1;
+}
+.m2-text .name{
+  font-family:'Fraunces',serif;font-weight:900;font-size:46px;
+  letter-spacing:-2px;color:var(--cream);line-height:1;
+}
+.m2-text .name .uze{color:var(--coral);}
+.m2-text .sub{
+  font-size:10px;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+  margin-top:3px;display:block;
+}
+
+/* ── 3. MUZE SPLIT COULEUR ───────────────────────────
+   Chaque lettre dans sa propre couleur
+   style pop coloré joyeux                           */
+.m3{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.m3-letters{display:flex;align-items:baseline;gap:-2px;}
+.m3-l{
+  font-family:'Fraunces',serif;font-weight:900;font-size:76px;
+  letter-spacing:-5px;line-height:1;font-style:italic;
+  display:inline-block;transition:transform .3s;
+}
+.m3-l:nth-child(1){color:var(--coral);  transform:rotate(-3deg);}
+.m3-l:nth-child(2){color:var(--gold);   transform:rotate(1deg) translateY(-4px);}
+.m3-l:nth-child(3){color:var(--teal);   transform:rotate(-1deg);}
+.m3-l:nth-child(4){color:var(--violet); transform:rotate(2deg) translateY(-2px);}
+.m3-underline{
+  height:4px;width:90%;border-radius:2px;
+  background:linear-gradient(90deg,var(--coral),var(--gold),var(--teal),var(--violet));
+  margin-top:2px;
+}
+.m3-sub{
+  font-size:9px;font-weight:700;letter-spacing:6px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:8px;
+}
+/* hover animation sur les lettres */
+.logo-card:hover .m3-l:nth-child(1){transform:rotate(-5deg) translateY(-4px);}
+.logo-card:hover .m3-l:nth-child(2){transform:rotate(3deg) translateY(-8px);}
+.logo-card:hover .m3-l:nth-child(3){transform:rotate(-2deg) translateY(-4px);}
+.logo-card:hover .m3-l:nth-child(4){transform:rotate(4deg) translateY(-6px);}
+.m3-l{transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+
+/* ── 4. MUZE MONOGRAMME CIRCULAIRE ───────────────────
+   Le M dans un cercle avec texte circulaire,
+   style sceau / marque premium                     */
+.m4{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.m4-seal{
+  width:110px;height:110px;position:relative;
+  display:flex;align-items:center;justify-content:center;
+}
+.m4-circle-text{
+  position:absolute;inset:0;
+  animation:rotateSeal 20s linear infinite;
+}
+.m4-inner{
+  width:78px;height:78px;border-radius:50%;
+  background:var(--coral);
+  border:3px solid var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  box-shadow:0 0 0 2px var(--coral), 0 0 0 5px rgba(255,77,109,.2);
+}
+.m4-letter{
+  font-family:'Fraunces',serif;font-weight:900;font-size:42px;
+  font-style:italic;color:white;line-height:1;
+}
+.m4-name{
+  font-family:'Fraunces',serif;font-weight:900;font-size:42px;
+  letter-spacing:-1px;color:var(--cream);line-height:1;font-style:italic;
+}
+.m4-name .uze{color:var(--coral);}
+@keyframes rotateSeal{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+/* ── 5. MUZE MINIMAL BAUHAUS ─────────────────────────
+   Géométrie pure : cercle + M,
+   style Bauhaus / design suisse                    */
+.m5{display:flex;align-items:center;gap:20px;}
+.m5-geo{
+  width:72px;height:72px;position:relative;flex-shrink:0;
+}
+.m5-circle-outer{
+  position:absolute;inset:0;border-radius:50%;
+  border:3px solid var(--cream);
+}
+.m5-circle-inner{
+  position:absolute;inset:14px;border-radius:50%;
+  background:var(--coral);
+}
+.m5-bar{
+  position:absolute;top:50%;left:50%;
+  width:3px;height:100%;
+  background:var(--cream);
+  transform:translate(-50%,-50%);
+}
+.m5-text{display:flex;flex-direction:column;gap:3px;}
+.m5-wordmark{
+  font-family:'Syne',sans-serif;font-weight:900;
+  font-size:48px;letter-spacing:-1px;color:var(--cream);line-height:1;
+}
+.m5-wordmark .uze{color:var(--coral);}
+.m5-sub{
+  font-size:9px;font-weight:700;letter-spacing:5px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+}
+
+/* ── 6. MUZE PORTRAIT BRUSH ─────────────────────────
+   Le M stylisé comme un double portrait,
+   coup de pinceau magistral                        */
+.m6{text-align:center;position:relative;}
+.m6-wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:700;font-size:86px;font-style:italic;
+  letter-spacing:-3px;line-height:.85;
+  color:var(--cream);position:relative;display:inline-block;
+}
+.m6-stroke{
+  position:absolute;
+  bottom:-8px;left:-8px;right:-8px;height:16px;
+  border-radius:0 8px 0 8px;
+  background:var(--coral);
+  transform:rotate(-1deg);
+  z-index:-1;
+}
+.m6-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);border-radius:100px;
+  padding:4px 16px;margin-top:12px;
+  font-size:9px;font-weight:700;letter-spacing:4px;
+  text-transform:uppercase;color:var(--ink);
+}
+
+/* ── 7. MUZE NÉON ────────────────────────────────────
+   Effet néon lumineux, lifestyle nocturne,
+   cool et moderne                                  */
+.m7{text-align:center;}
+.m7-wordmark{
+  font-family:'Fraunces',serif;font-weight:900;font-size:72px;
+  font-style:italic;letter-spacing:-3px;line-height:1;
+  color:var(--cream);
+  text-shadow:
+    0 0 10px rgba(255,77,109,.9),
+    0 0 30px rgba(255,77,109,.6),
+    0 0 60px rgba(255,77,109,.3);
+  animation:neonPulse 3s ease-in-out infinite;
+}
+.m7-wordmark .uze{
+  color:var(--gold);
+  text-shadow:
+    0 0 10px rgba(255,184,0,.9),
+    0 0 30px rgba(255,184,0,.6),
+    0 0 60px rgba(255,184,0,.3);
+}
+.m7-line{
+  width:120px;height:2px;margin:10px auto;
+  background:linear-gradient(90deg,transparent,var(--coral),var(--gold),transparent);
+}
+.m7-sub{
+  font-size:10px;font-weight:700;letter-spacing:6px;
+  text-transform:uppercase;color:rgba(255,255,255,.3);
+}
+@keyframes neonPulse{
+  0%,100%{text-shadow:0 0 10px rgba(255,77,109,.9),0 0 30px rgba(255,77,109,.6),0 0 60px rgba(255,77,109,.3)}
+  50%{text-shadow:0 0 15px rgba(255,77,109,1),0 0 40px rgba(255,77,109,.8),0 0 80px rgba(255,77,109,.5)}
+}
+
+/* ── 8. MUZE BOLD STAMP ──────────────────────────────
+   Bloc de couleur + texte inversé,
+   ultra-lisible, brand packaging                  */
+.m8{display:flex;flex-direction:column;align-items:flex-start;gap:0;}
+.m8-block{
+  background:var(--coral);
+  padding:8px 20px 4px;
+  display:inline-block;
+  position:relative;
+}
+.m8-block::after{
+  content:'';position:absolute;
+  right:-10px;top:0;bottom:0;width:10px;
+  background:var(--coral);
+  clip-path:polygon(0 0,100% 50%,0 100%);
+}
+.m8-word{
+  font-family:'Fraunces',serif;font-weight:900;font-size:62px;
+  font-style:italic;letter-spacing:-3px;line-height:.9;color:white;
+}
+.m8-sub-block{
+  background:var(--ink);border:3px solid var(--coral);
+  padding:4px 20px;display:inline-flex;align-items:center;gap:10px;
+  margin-top:0;
+}
+.m8-tagline{
+  font-size:9px;font-weight:700;letter-spacing:5px;
+  text-transform:uppercase;color:var(--coral);
+}
+.m8-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+/* ════════════════════════════════════════════════════
+   COMPARE BAR + MODAL
+════════════════════════════════════════════════════ */
+.compare-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:white;border-top:3px solid var(--ink);
+  padding:16px 40px;
+  display:flex;align-items:center;gap:20px;
+  transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.compare-bar.visible{transform:translateY(0);}
+.compare-bar h4{
+  font-family:'Fraunces',serif;font-weight:900;font-size:18px;
+  color:var(--ink);white-space:nowrap;flex-shrink:0;
+}
+.compare-thumbs{display:flex;gap:10px;flex:1;flex-wrap:wrap;}
+.compare-thumb{
+  border:2px solid var(--ink);border-radius:100px;
+  padding:6px 16px;background:var(--cream);
+  font-size:13px;font-weight:700;color:var(--ink);
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+}
+.compare-thumb .remove{
+  cursor:pointer;color:var(--coral);font-size:16px;line-height:1;
+  font-weight:900;
+}
+.btn-compare{
+  background:var(--coral);color:white;
+  border:2px solid var(--ink);border-radius:100px;
+  padding:12px 28px;font-size:14px;font-weight:700;
+  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
+  white-space:nowrap;box-shadow:3px 3px 0 var(--ink);
+  transition:transform .15s,box-shadow .15s;flex-shrink:0;
+}
+.btn-compare:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+
+.modal-overlay{
+  position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.9);backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:#1e1040;border:2px solid rgba(255,255,255,.15);
+  border-radius:28px;width:100%;max-width:1000px;
+  max-height:90vh;overflow-y:auto;padding:40px;
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:32px;
+}
+.modal-head h2{
+  font-family:'Fraunces',serif;font-weight:900;font-size:28px;color:white;
+}
+.modal-close{
+  font-size:28px;cursor:pointer;color:rgba(255,255,255,.3);
+  transition:color .2s;line-height:1;
+}
+.modal-close:hover{color:var(--coral);}
+.compare-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.compare-item{
+  border:2px solid rgba(255,255,255,.12);border-radius:20px;overflow:hidden;
+}
+.compare-item-preview{
+  height:200px;display:flex;align-items:center;justify-content:center;padding:28px;
+}
+.compare-item-label{
+  padding:12px 18px;border-top:2px solid rgba(255,255,255,.08);
+  font-family:'Fraunces',serif;font-size:16px;font-weight:700;color:white;
+}
+.compare-item-label small{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.3);margin-top:2px;}
+
+@media(max-width:600px){
+  .logos-grid{grid-template-columns:1fr;padding:8px 16px 120px;}
+  .compare-bar{padding:12px 16px;gap:12px;}
+  .compare-bar h4{display:none;}
+  .m1-wordmark{font-size:60px;}
+  .m3-l{font-size:64px;}
+  .m6-wordmark{font-size:70px;}
+  .m7-wordmark{font-size:60px;}
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="eyebrow">Direction artistique</div>
+  <h1>8 logos<br>pour <em>MUZE</em></h1>
+  <p>Sélectionne tes préférés avec ♡ et compare-les côte à côte</p>
+  <div class="name-strip">
+    <span>Ton service s'appelle</span>
+    <span class="name">MUZE</span>
+    <span>— 8 directions</span>
+  </div>
+</div>
+
+<div class="filters">
+  <button class="filter-chip active" data-f="all">Tous</button>
+  <button class="filter-chip" data-f="serif">Serif élégant</button>
+  <button class="filter-chip" data-f="pop">Pop &amp; Couleurs</button>
+  <button class="filter-chip" data-f="embleme">Emblème</button>
+  <button class="filter-chip" data-f="bold">Bold &amp; Graphique</button>
+</div>
+
+<div class="logos-grid" id="grid">
+
+  <!-- 1 — ITALIC SERIF + ÉTOILE -->
+  <div class="logo-card" data-cat="serif" data-id="1">
+    <div class="logo-preview" id="p1" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,1)">♡</div>
+      <div class="m1">
+        <span class="m1-wordmark">M<span class="uz">UZ</span>E</span>
+        <span class="m1-star">✦ ✦ ✦</span>
+        <span class="m1-sub">Portraits d'exception</span>
+      </div>
+      <div class="swatches" id="sw1"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">01</div>
+      <div class="logo-name">L'Italique Pur</div>
+      <div class="logo-concept">Fraunces serif grand italic. UZ en coral, étoiles d'or animées. Pure élégance — chaque lettre comme une brushstroke.</div>
+      <div class="logo-tags"><span class="tag">Fraunces</span><span class="tag">Serif</span><span class="tag">Élégant</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 2 — FRAME DORÉE -->
+  <div class="logo-card" data-cat="embleme serif" data-id="2">
+    <div class="logo-preview" id="p2" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,2)">♡</div>
+      <div class="m2">
+        <div class="m2-box">
+          <span class="m2-m">M</span>
+        </div>
+        <div class="m2-text">
+          <span class="name">M<span class="uze">UZE</span></span>
+          <span class="sub">Deviens une légende</span>
+        </div>
+      </div>
+      <div class="swatches" id="sw2"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">02</div>
+      <div class="logo-name">Le M Encadré</div>
+      <div class="logo-concept">M italic dans un carré doré avec box-shadow. Galerie d'art contemporaine. Fort en header et en icon d'app.</div>
+      <div class="logo-tags"><span class="tag">Emblème</span><span class="tag">Or</span><span class="tag">Galerie</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 3 — SPLIT COULEURS -->
+  <div class="logo-card" data-cat="pop" data-id="3">
+    <div class="logo-preview" id="p3" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,3)">♡</div>
+      <div class="m3">
+        <div class="m3-letters">
+          <span class="m3-l">M</span>
+          <span class="m3-l">U</span>
+          <span class="m3-l">Z</span>
+          <span class="m3-l">E</span>
+        </div>
+        <div class="m3-underline"></div>
+        <span class="m3-sub">Portraits · Légende · France</span>
+      </div>
+      <div class="swatches" id="sw3"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">03</div>
+      <div class="logo-name">Les 4 Couleurs</div>
+      <div class="logo-concept">Chaque lettre dans la palette du site, dansante et décalée. Hover : elles s'animent. Joyeux, mémorable, viral.</div>
+      <div class="logo-tags"><span class="tag">Pop</span><span class="tag">Multicolore</span><span class="tag">Festif</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 4 — SCEAU CIRCULAIRE -->
+  <div class="logo-card" data-cat="embleme" data-id="4">
+    <div class="logo-preview" id="p4" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,4)">♡</div>
+      <div class="m4">
+        <div class="m4-seal">
+          <svg class="m4-circle-text" viewBox="0 0 110 110">
+            <defs>
+              <path id="circle" d="M55,55 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/>
+            </defs>
+            <text font-size="9" font-family="Plus Jakarta Sans" font-weight="700" letter-spacing="4" fill="rgba(255,255,255,0.35)" text-anchor="middle">
+              <textPath href="#circle" startOffset="0%">PORTRAITS · LÉGENDE · FRANCE · PORTRAITS · LÉGENDE · FRANCE ·</textPath>
+            </text>
+          </svg>
+          <div class="m4-inner">
+            <span class="m4-letter">M</span>
+          </div>
+        </div>
+        <div class="m4-name">M<span class="uze">UZE</span></div>
+      </div>
+      <div class="swatches" id="sw4"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">04</div>
+      <div class="logo-name">Le Sceau Royal</div>
+      <div class="logo-concept">M dans un médaillon coral avec texte circulaire tournant. Prestige, authenticité, brand packaging premium.</div>
+      <div class="logo-tags"><span class="tag">Sceau</span><span class="tag">Animé</span><span class="tag">Premium</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 5 — MINIMAL GÉOMÉTRIE -->
+  <div class="logo-card" data-cat="bold embleme" data-id="5">
+    <div class="logo-preview" id="p5" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,5)">♡</div>
+      <div class="m5">
+        <div class="m5-geo">
+          <div class="m5-circle-outer"></div>
+          <div class="m5-circle-inner"></div>
+          <div class="m5-bar"></div>
+        </div>
+        <div class="m5-text">
+          <span class="m5-wordmark">M<span class="uze">UZE</span></span>
+          <span class="m5-sub">Portraits d'exception</span>
+        </div>
+      </div>
+      <div class="swatches" id="sw5"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">05</div>
+      <div class="logo-name">Le Géométrique</div>
+      <div class="logo-concept">Cercle Bauhaus avec point coral à l'intérieur, wordmark Syne en gras. Moderne, tech, app mobile parfait.</div>
+      <div class="logo-tags"><span class="tag">Syne</span><span class="tag">Bauhaus</span><span class="tag">Minimal</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 6 — BRUSH PORTRAIT -->
+  <div class="logo-card" data-cat="serif bold" data-id="6">
+    <div class="logo-preview" id="p6" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,6)">♡</div>
+      <div class="m6">
+        <span class="m6-wordmark">
+          MUZE
+          <div class="m6-stroke"></div>
+        </span>
+        <div class="m6-badge">✦ Made in France</div>
+      </div>
+      <div class="swatches" id="sw6"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">06</div>
+      <div class="logo-name">Le Coup de Pinceau</div>
+      <div class="logo-concept">Cormorant Garamond ultra-italic, soulignement coral comme un coup de pinceau sous le nom. Artistique et premium.</div>
+      <div class="logo-tags"><span class="tag">Cormorant</span><span class="tag">Pinceau</span><span class="tag">Artistique</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 7 — NÉON -->
+  <div class="logo-card" data-cat="pop bold" data-id="7">
+    <div class="logo-preview" id="p7" style="background:#0a0010">
+      <div class="fav-btn" onclick="fav(this,7)">♡</div>
+      <div class="m7">
+        <div class="m7-wordmark">M<span class="uze">UZE</span></div>
+        <div class="m7-line"></div>
+        <div class="m7-sub">Portraits d'exception</div>
+      </div>
+      <div class="swatches" id="sw7"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">07</div>
+      <div class="logo-name">Le Néon</div>
+      <div class="logo-concept">Effet néon lumineux pulsant — M en coral incandescent, UZE en or. Lifestyle nocturne, énergie créative, très Instagram.</div>
+      <div class="logo-tags"><span class="tag">Néon</span><span class="tag">Lumineux</span><span class="tag">Social</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+  <!-- 8 — BOLD STAMP -->
+  <div class="logo-card" data-cat="bold pop" data-id="8">
+    <div class="logo-preview" id="p8" style="background:#1A0A2E">
+      <div class="fav-btn" onclick="fav(this,8)">♡</div>
+      <div class="m8">
+        <div class="m8-block">
+          <span class="m8-word">MUZE</span>
+        </div>
+        <div class="m8-sub-block">
+          <div class="m8-dot"></div>
+          <span class="m8-tagline">Deviens une légende</span>
+          <div class="m8-dot"></div>
+        </div>
+      </div>
+      <div class="swatches" id="sw8"></div>
+    </div>
+    <div class="logo-info">
+      <div class="logo-num">08</div>
+      <div class="logo-name">Le Stamp Coral</div>
+      <div class="logo-concept">Bloc coral avec tagline en bandeau. Ultra-lisible, fort en tout format — packaging, sticker, t-shirt, favicon.</div>
+      <div class="logo-tags"><span class="tag">Bold</span><span class="tag">Packaging</span><span class="tag">Graphique</span></div>
+    </div>
+    <div class="selected-badge">✓ Favori</div>
+  </div>
+
+</div>
+
+<!-- COMPARE BAR -->
+<div class="compare-bar" id="bar">
+  <h4>✦ Mes favoris</h4>
+  <div class="compare-thumbs" id="thumbs"></div>
+  <button class="btn-compare" onclick="openModal()">Comparer →</button>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeOut(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2>Comparaison des logos MUZE</h2>
+      <span class="modal-close" onclick="closeModal()">✕</span>
+    </div>
+    <div class="compare-grid" id="cGrid"></div>
+  </div>
+</div>
+
+<script>
+/* ── BG PALETTES ──────────────────────────────────── */
+const BG = {
+  1:['#1A0A2E','#FFF8F0','#7B2FBE','#0a0010'],
+  2:['#1A0A2E','#FFF8F0','#FFB800','#7B2FBE'],
+  3:['#1A0A2E','#FFF8F0','#FFB800','#FF4D6D'],
+  4:['#1A0A2E','#FFF8F0','#7B2FBE','#FF4D6D'],
+  5:['#1A0A2E','#FFF8F0','#7B2FBE','#00C9B1'],
+  6:['#1A0A2E','#FFF8F0','#FFB800','#FF4D6D'],
+  7:['#0a0010','#1A0A2E','#2d0050','#0d0020'],
+  8:['#1A0A2E','#FFF8F0','#7B2FBE','#D4FF3C'],
+};
+
+/* init swatches */
+for(let i=1;i<=8;i++){
+  const sw = document.getElementById('sw'+i);
+  BG[i].forEach((col,j)=>{
+    const d=document.createElement('div');
+    d.className='swatch'+(j===0?' active':'');
+    d.style.background=col;
+    d.onclick=e=>{
+      e.stopPropagation();
+      sw.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+      d.classList.add('active');
+      document.getElementById('p'+i).style.background=col;
+    };
+    sw.appendChild(d);
+  });
+}
+
+/* ── FAVORITES ────────────────────────────────────── */
+const favs = new Set();
+const NAMES={1:'L\'Italique Pur',2:'Le M Encadré',3:'Les 4 Couleurs',4:'Le Sceau Royal',5:'Le Géométrique',6:'Le Pinceau',7:'Le Néon',8:'Le Stamp Coral'};
+
+function fav(btn,id){
+  btn.classList.toggle('on');
+  const card=btn.closest('.logo-card');
+  card.classList.toggle('selected');
+  btn.textContent = favs.has(id) ? '♡' : '♥';
+  favs.has(id) ? favs.delete(id) : favs.add(id);
+  renderBar();
+}
+
+function renderBar(){
+  const thumbs=document.getElementById('thumbs');
+  thumbs.innerHTML='';
+  favs.forEach(id=>{
+    const t=document.createElement('div');
+    t.className='compare-thumb';
+    t.innerHTML=`<span>0${id} — ${NAMES[id]}</span><span class="remove" onclick="removeFav(${id})">✕</span>`;
+    thumbs.appendChild(t);
+  });
+  document.getElementById('bar').classList.toggle('visible',favs.size>0);
+}
+
+function removeFav(id){
+  favs.delete(id);
+  const card=document.querySelector(`[data-id="${id}"]`);
+  const btn=card.querySelector('.fav-btn');
+  btn.classList.remove('on');
+  btn.textContent='♡';
+  card.classList.remove('selected');
+  renderBar();
+}
+
+/* ── MODAL ────────────────────────────────────────── */
+function openModal(){
+  if(!favs.size) return;
+  const g=document.getElementById('cGrid');
+  g.innerHTML='';
+  favs.forEach(id=>{
+    const src=document.getElementById('p'+id);
+    const bg=src.style.background||BG[id][0];
+    // deep clone without swatches/favbtn
+    const clone=src.cloneNode(true);
+    clone.querySelectorAll('.swatches,.fav-btn').forEach(el=>el.remove());
+    const item=document.createElement('div');
+    item.className='compare-item';
+    item.innerHTML=`<div class="compare-item-preview" style="background:${bg}">${clone.innerHTML}</div>
+      <div class="compare-item-label">0${id} — ${NAMES[id]}<small>${document.querySelector('[data-id="'+id+'"] .logo-concept').textContent.slice(0,60)}…</small></div>`;
+    g.appendChild(item);
+  });
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function closeOut(e){if(e.target===document.getElementById('modal'))closeModal();}
+
+/* ── FILTERS ──────────────────────────────────────── */
+document.querySelectorAll('.filter-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const f=chip.dataset.f;
+    document.querySelectorAll('.logo-card').forEach(card=>{
+      card.style.display=(f==='all'||card.dataset.cat.includes(f))?'':'none';
+    });
+  });
+});
+</script>
+</body>
+</html>

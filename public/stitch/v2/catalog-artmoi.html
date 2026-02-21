@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARTMOI — Catalogue & Commander</title>
+<title>MUZE — Catalogue & Commander</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -749,13 +749,25 @@ nav {
 
   img{max-width:100%; height:auto;}
   .card img, .tile img, .poster img, .thumb img, .preview img { width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ─── MUZE logo (L'Italique Pur) ─────────────────────────── */
+  .logo-muze{display:flex;flex-direction:column;align-items:flex-start;gap:6px; text-decoration:none;}
+  .muze-wordmark{font-family:'Fraunces',serif;font-weight:900;font-size:22px; font-style:italic;letter-spacing:-2px;line-height:1;color:var(--ink);}
+  .muze-wordmark .uz{color:var(--coral);}
+  .muze-star{font-size:9px;letter-spacing:6px;color:var(--gold);line-height:1; opacity:.95;}
+  .muze-sub{font-size:8px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(26,10,46,.55);line-height:1;}
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="main-nav">
-  <a href="homepage.html" class="logo">ART<span>MOI</span></a>
+  <a href="/" class="logo logo-muze" aria-label="MUZE">
+    <span class="muze-wordmark">M<span class="uz">UZ</span>E</span>
+    <span class="muze-star">✦ ✦ ✦</span>
+    <span class="muze-sub">Portraits d'exception</span>
+  </a>
   <div id="nav-center"></div>
   <a id="nav-back" class="nav-back" href="#" onclick="goBack(); return false;" style="display:none">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">

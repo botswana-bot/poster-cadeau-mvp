@@ -89,12 +89,28 @@
   .logo {
     font-family: 'Fraunces', serif;
     font-weight: 900;
-    font-size: 28px;
-    letter-spacing: -1px;
-    color: var(--ink);
+    font-style: italic;
+    font-size: 32px;
+    letter-spacing: -2px;
+    color: #FF6B9D;
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: .9;
   }
-  .logo span { color: var(--coral); }
+  .logo span { color: #FF6B9D; }
+  .logo-baseline {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: rgba(255, 107, 157, 0.7);
+    margin-top: 5px;
+    display: block;
+    font-style: normal;
+  }
 
   .nav-links {
     display: flex; gap: 32px; list-style: none;
@@ -752,7 +768,8 @@
     color: var(--cream);
   }
 
-  .footer-brand .logo { color: var(--cream); display: block; margin-bottom: 12px; font-size: 32px; }
+  .footer-brand .logo { color: #FF6B9D; display: flex; margin-bottom: 12px; font-size: 32px; }
+  .footer-brand .logo .logo-baseline { color: rgba(255, 107, 157, 0.6); }
   .footer-brand p { font-size: 14px; color: #7a6b8a; line-height: 1.6; }
 
   .footer-col h5 {
@@ -894,12 +911,11 @@
   @keyframes floatM2 { 0%,100%{transform:rotate( 3deg) translateY(0)} 50%{transform:rotate( 3deg) translateY(-6px)} }
   @keyframes floatM3 { 0%,100%{transform:rotate( 2deg) translateY(0)} 50%{transform:rotate( 2deg) translateY(-6px)} }
   @keyframes floatM4 { 0%,100%{transform:rotate(-3deg) translateY(0)} 50%{transform:rotate(-3deg) translateY(-6px)} }
-  .portrait-card .card-img img { width:100%; height:100%; object-fit:cover; display:block; }
 
-  /* ─── MUZE logo ("L'Italique Pur") ─────────────────────────── */
+  /* ─── MUZE logo (SVG wordmark) ─────────────────────────── */
   .logo-muze{display:inline-flex; align-items:center; text-decoration:none;}
   .logo-muze img{display:block; height:44px; width:auto;}
-  footer .logo-muze img{filter:saturate(0.95) brightness(1.05);} 
+  footer .logo-muze img{filter:saturate(0.95) brightness(1.05);}
 
 </style>
 </head>
@@ -911,9 +927,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo logo-muze" aria-label="MUZE">
-      <img src="/muze-wordmark.svg" alt="MUZE — Portraits personnalisés" loading="eager" decoding="async">
-    </a>
+    <a href="#" class="logo">MUZE<span class="logo-baseline">Portraits personnalisés</span></a>
     <ul class="nav-links">
       <li><a href="#categories">Catégories</a></li>
       <li><a href="#comment">Comment ça marche</a></li>
@@ -979,19 +993,19 @@
   <!-- Floating portrait cards -->
   <div class="hero-right">
     <div class="portrait-card card-1">
-      <div class="card-img"><img src="/generated-nano-plan/nano_idea_1_1.webp" alt="Portrait Royal" loading="lazy"></div>
+      <div class="card-img">👑</div>
       <div class="card-label">Portrait Royal</div>
     </div>
     <div class="portrait-card card-2">
-      <div class="card-img"><img src="/generated-nano-plan/nano_idea_2_2.webp" alt="Super-héros" loading="lazy"></div>
+      <div class="card-img">🦸</div>
       <div class="card-label">Super-Héros</div>
     </div>
     <div class="portrait-card card-3">
-      <div class="card-img"><img src="/generated-nano-plan/nano_idea_3_2.webp" alt="Sorcier" loading="lazy"></div>
+      <div class="card-img">🧙</div>
       <div class="card-label">Sorcier Légendaire</div>
     </div>
     <div class="portrait-card card-4">
-      <div class="card-img"><img src="/generated-nano-plan/nano_idea_4_3.webp" alt="Rock Star 80s" loading="lazy"></div>
+      <div class="card-img">🎸</div>
       <div class="card-label">Rock Star 80s</div>
     </div>
   </div>
@@ -1275,9 +1289,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="logo logo-muze" aria-label="MUZE">
-        <img src="/muze-wordmark.svg" alt="MUZE — Portraits personnalisés" loading="lazy" decoding="async">
-      </span>
+      <span class="logo">MUZE<span class="logo-baseline">Portraits personnalisés</span></span>
       <p>Transforme ta photo en chef-d'œuvre personnalisé. Chaque tableau est unique, imprimé en France sur papier premium.</p>
     </div>
     <div class="footer-col">

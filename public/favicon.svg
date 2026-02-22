@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Background rounded square -->
+  <rect width="100" height="100" rx="22" fill="#1A0A2E"/>
+
+  <!-- Subtle rose border glow -->
+  <rect width="100" height="100" rx="22" fill="none" stroke="#FF6B9D" stroke-width="3" opacity="0.35"/>
+
+  <!-- M letter centered -->
+  <text
+    x="50" y="74"
+    font-family="'Fraunces', 'Georgia', serif"
+    font-size="74"
+    font-weight="900"
+    font-style="italic"
+    fill="#FF6B9D"
+    text-anchor="middle">M</text>
+</svg>
